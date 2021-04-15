@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class FirePoint : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void ChangePosition(Vector2 newPos)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        transform.localPosition = newPos;
     }
 }

@@ -4,15 +4,41 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    #region Singleton
+
+    public static PlayerStats instance;
+
+    private void Awake()
     {
-        
+        if (instance != null)
+        {
+            if (instance != this)
+            {
+                Destroy(this.gameObject);
+                return;
+            }
+
+            currentHealth = maxHealth;
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    #endregion
+
+    public int maxHealth = 100;
+
+    private int currentHealth;
+    public int Health
     {
-        
+        get { return currentHealth; }
+        set { currentHealth = Mathf.Clamp(value, 0, maxHealth); }
     }
+
+    public float speed = 3f;
+    public float fireRate = 3f;
+    public float timeInvincible = 2f;
 }

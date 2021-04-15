@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2102144189814137505}
+  - component: {fileID: 8281342802418052154}
   m_Layer: 0
   m_Name: Firepoint
   m_TagString: Untagged
@@ -30,6 +31,18 @@ Transform:
   m_Father: {fileID: 2102144190411539179}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8281342802418052154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102144189814137504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb95dcc05016e10458c8cb6aa0aa59d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2102144190411539173
 GameObject:
   m_ObjectHideFlags: 0
@@ -43,6 +56,7 @@ GameObject:
   - component: {fileID: 2102144190411539177}
   - component: {fileID: 2102144190411539175}
   - component: {fileID: 2102144190411539174}
+  - component: {fileID: 1004121213}
   m_Layer: 8
   m_Name: Brocolli
   m_TagString: Player
@@ -182,3 +196,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.26994342, y: 0.3734087}
   m_EdgeRadius: 0
+--- !u!114 &1004121213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102144190411539173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de72e368a542265408fcebd38b6dad41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileSpeed: 300
