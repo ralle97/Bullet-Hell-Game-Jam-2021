@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BurgerRunRight
+  m_Name: PizzaIdleUp
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,25 +20,13 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: -7521784535800094309, guid: ed15179fc7ea5c946b716fcb733f5dd4,
-        type: 3}
-    - time: 0.2
-      value: {fileID: -2840720534993311503, guid: ed15179fc7ea5c946b716fcb733f5dd4,
-        type: 3}
-    - time: 0.4
-      value: {fileID: -9114261357480157134, guid: ed15179fc7ea5c946b716fcb733f5dd4,
-        type: 3}
-    - time: 0.6
-      value: {fileID: 1479665929058117743, guid: ed15179fc7ea5c946b716fcb733f5dd4,
-        type: 3}
-    - time: 0.8
-      value: {fileID: 5649036187244405507, guid: ed15179fc7ea5c946b716fcb733f5dd4,
+      value: {fileID: 3562567222868739341, guid: 34c6d728deb5910409d26d57c522a614,
         type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 5
+  m_SampleRate: 1
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -53,11 +41,7 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: -7521784535800094309, guid: ed15179fc7ea5c946b716fcb733f5dd4, type: 3}
-    - {fileID: -2840720534993311503, guid: ed15179fc7ea5c946b716fcb733f5dd4, type: 3}
-    - {fileID: -9114261357480157134, guid: ed15179fc7ea5c946b716fcb733f5dd4, type: 3}
-    - {fileID: 1479665929058117743, guid: ed15179fc7ea5c946b716fcb733f5dd4, type: 3}
-    - {fileID: 5649036187244405507, guid: ed15179fc7ea5c946b716fcb733f5dd4, type: 3}
+    - {fileID: 3562567222868739341, guid: 34c6d728deb5910409d26d57c522a614, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

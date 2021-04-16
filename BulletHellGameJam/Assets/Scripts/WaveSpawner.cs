@@ -7,6 +7,7 @@ public class WaveSpawner : MonoBehaviour
 {
     public enum SpawnState { SPAWNING, WAITING, COUNTING };
 
+    [System.Serializable]
     public class Wave
     {
         public string name;
@@ -17,6 +18,8 @@ public class WaveSpawner : MonoBehaviour
     private Bounds bounds;
 
     public GameObject[] waveEnemyPrefabs;
+
+    private int[] waveEnemyCount;
 
     public Wave[] waves;
     private int nextWave = 0;
@@ -54,6 +57,8 @@ public class WaveSpawner : MonoBehaviour
         waveCountdown = timeBetweenWaves;
 
         searchTimer = searchCountdown;
+
+        waveEnemyCount = new int[waveEnemyPrefabs.Length];
     }
 
     // Update is called once per frame
@@ -129,20 +134,21 @@ public class WaveSpawner : MonoBehaviour
 
         for (int i = 0; i < wave.enemyCounts.Length; i++)
         {
+            waveEnemyCount[i] = wave.enemyCounts[i];
             totalEnemyCount += wave.enemyCounts[i];
         }
 
         for (int i = 0; i < totalEnemyCount; i++)
         {
-            int index = Random.Range(0, wave.enemyCounts.Length);
+            int index = Random.Range(0, waveEnemyCount.Length);
 
-            while (wave.enemyCounts[index] <= 0)
+            while (waveEnemyCount[index] <= 0)
             {
-                index = Random.Range(0, wave.enemyCounts.Length);
+                index = Random.Range(0, waveEnemyCount.Length);
             }
 
             SpawnEnemy(index);
-            wave.enemyCounts[index]--;
+            waveEnemyCount[index]--;
 
             yield return new WaitForSeconds(1f / wave.rate);
         }

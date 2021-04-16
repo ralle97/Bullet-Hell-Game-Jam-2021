@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6511767459705877063}
   - component: {fileID: 3783575382651255694}
   - component: {fileID: 1022478772652862925}
+  - component: {fileID: -7235271106551546920}
   m_Layer: 10
   m_Name: IceCreamEnemy
   m_TagString: Enemy
@@ -121,3 +122,24 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.025}
   m_Size: {x: 0.625, y: 1.1}
   m_Direction: 0
+--- !u!114 &-7235271106551546920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491885632186370003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 969603039b7ba72479c8f9f848f157bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats:
+    maxHealth: 120
+    damage: 50
+    fireRate: 2
+    projectileForce: 150
+    speed: 2
+    movementRange: 5
+  enemyType: 0
+  player: {fileID: 0}

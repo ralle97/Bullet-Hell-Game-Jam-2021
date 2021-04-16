@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 5078726573639917203}
   - component: {fileID: 2695561801960339180}
   - component: {fileID: 5153625891437725012}
+  - component: {fileID: -3827957480373013963}
+  - component: {fileID: 544105016806252989}
   m_Layer: 10
   m_Name: DonutEnemy
   m_TagString: Enemy
@@ -121,3 +123,43 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.75
+--- !u!114 &-3827957480373013963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4185689788584157373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 969603039b7ba72479c8f9f848f157bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats:
+    maxHealth: 300
+    damage: 20
+    fireRate: 1
+    projectileForce: 300
+    speed: 1
+    movementRange: 5
+  enemyType: 3
+  player: {fileID: 0}
+--- !u!95 &544105016806252989
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4185689788584157373}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 57b898388d70cbb4bb7371b17e3c3b44, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

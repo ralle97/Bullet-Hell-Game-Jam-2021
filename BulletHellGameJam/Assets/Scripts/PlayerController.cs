@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rigidBody;
 
+    [SerializeField]
     private bool isInvincible = false;
     private float invincibleTimer;
     private bool shotCooldown = false;
@@ -72,7 +73,7 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("Look X", lookDir.x);
         animator.SetFloat("Look Y", lookDir.y);
         animator.SetFloat("Speed", move.magnitude);
-
+        /*
         if (isInvincible)
         {
             invincibleTimer -= Time.deltaTime;
@@ -80,11 +81,10 @@ public class PlayerController : MonoBehaviour
             if (invincibleTimer <= 0.0f)
             {
                 animator.SetBool("Hit", false);
-                GetComponent<Collider2D>().enabled = true;
                 isInvincible = false;
             }
         }
-
+        */
         if (shotCooldown)
         {
             shotTimer -= Time.deltaTime;
@@ -158,18 +158,20 @@ public class PlayerController : MonoBehaviour
 
     public void DamagePlayer(int damage)
     {
-        stats.Health -= damage;
+        if (!isInvincible)
+        {
+            stats.Health -= damage;
 
-        if (stats.Health <= 0)
-        {
-            GameMaster.KillPlayer(this);
-        }
-        else
-        {
-            isInvincible = true;
-            invincibleTimer = stats.timeInvincible;
-            GetComponent<Collider2D>().enabled = false;
-            animator.SetBool("Hit", true);
+            if (stats.Health <= 0)
+            {
+                GameMaster.KillPlayer(this);
+            }
+            else
+            {
+                isInvincible = true;
+                invincibleTimer = stats.timeInvincible;
+                animator.SetBool("Hit", true);
+            }
         }
     }
 
