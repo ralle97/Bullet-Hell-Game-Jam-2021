@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameMaster : MonoBehaviour
 {
@@ -22,13 +23,28 @@ public class GameMaster : MonoBehaviour
 
     #endregion
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+    }
+
     public void EndGame()
     {
+        // TODO: Show GAME OVER Screen
         Debug.Log("GAME OVER!");
     }
 
-    public void KillEnemy(Enemy enemy)
+    public static void KillEnemy(Enemy enemy)
     {
         enemy.gameObject.SetActive(false);
+    }
+
+    public static void KillPlayer(PlayerController player)
+    {
+        Destroy(player.gameObject);
+        instance.EndGame();
     }
 }

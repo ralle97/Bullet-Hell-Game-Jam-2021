@@ -28,7 +28,8 @@ public class PlayerController : MonoBehaviour
     private FirePoint firePoint;
     private float firePointOffset;
 
-    private void Awake()
+    // Start is called before the first frame update
+    void Start()
     {
         stats = PlayerStats.instance;
         stats.Health = stats.maxHealth;
@@ -36,11 +37,7 @@ public class PlayerController : MonoBehaviour
         objectPooler = ObjectPooler.instance;
 
         mainCamera = Camera.main;
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
         animator = GetComponent<Animator>();
 
         rigidBody = GetComponent<Rigidbody2D>();
@@ -82,6 +79,8 @@ public class PlayerController : MonoBehaviour
 
             if (invincibleTimer <= 0.0f)
             {
+                animator.SetBool("Hit", false);
+                GetComponent<Collider2D>().enabled = true;
                 isInvincible = false;
             }
         }
@@ -107,8 +106,8 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Vector2 position = rigidBody.position;
-        position.x += horizontal * stats.speed * Time.deltaTime;
-        position.y += vertical * stats.speed * Time.deltaTime;
+        position.x += horizontal * stats.speed * Time.fixedDeltaTime;
+        position.y += vertical * stats.speed * Time.fixedDeltaTime;
 
         rigidBody.MovePosition(position);
     }
@@ -155,5 +154,27 @@ public class PlayerController : MonoBehaviour
         obj.transform.position = pos;
         obj.transform.rotation = rot;
         obj.SetActive(true);
+    }
+
+    public void DamagePlayer(int damage)
+    {
+        stats.Health -= damage;
+
+        if (stats.Health <= 0)
+        {
+            GameMaster.KillPlayer(this);
+        }
+        else
+        {
+            isInvincible = true;
+            invincibleTimer = stats.timeInvincible;
+            GetComponent<Collider2D>().enabled = false;
+            animator.SetBool("Hit", true);
+        }
+    }
+
+    public bool IsInvincible()
+    {
+        return isInvincible;
     }
 }

@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour
 
     private Rigidbody2D rigidBody;
 
+    public Enemy owner;
     public float timeToLive = 10.0f;
     private float timer;
 
@@ -37,14 +38,24 @@ public class Projectile : MonoBehaviour
         rigidBody.AddForce(dir * force);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
             // TODO: Change to SetActive(false) in case you do enemies via object pooling
-            Destroy(collision.gameObject);
+            Enemy enemy = collision.GetComponent<Enemy>();
+            enemy.DamageEnemy(PlayerStats.instance.damage);
         }
 
-        this.gameObject.SetActive(false);
+        else if (collision.gameObject.CompareTag("Player"))
+        {
+            PlayerController player = collision.GetComponent<PlayerController>();
+            player.DamagePlayer(owner.stats.damage);
+        }
+
+        if (!this.name.Equals("IceCreamProjectileBig"))
+        {
+            this.gameObject.SetActive(false);
+        }
     }
 }
