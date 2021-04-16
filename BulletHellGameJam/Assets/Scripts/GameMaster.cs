@@ -22,7 +22,8 @@ public class GameMaster : MonoBehaviour
     }
 
     #endregion
-
+    
+    /*  FOR DEBUGGING PURPOSE
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
@@ -30,7 +31,8 @@ public class GameMaster : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
-
+    */
+    
     public void EndGame()
     {
         // TODO: Show GAME OVER Screen
