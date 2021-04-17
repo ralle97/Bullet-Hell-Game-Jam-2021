@@ -14,6 +14,7 @@ public class GameMaster : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(this);
         }
         else
         {
@@ -22,7 +23,14 @@ public class GameMaster : MonoBehaviour
     }
 
     #endregion
-    
+
+    public CameraShake cameraShake;
+
+    private void Start()
+    {
+        cameraShake = CameraShake.instance;
+    }
+
     /*  FOR DEBUGGING PURPOSE
     private void Update()
     {
@@ -32,7 +40,7 @@ public class GameMaster : MonoBehaviour
         }
     }
     */
-    
+
     public void EndGame()
     {
         // TODO: Show GAME OVER Screen
@@ -41,12 +49,19 @@ public class GameMaster : MonoBehaviour
 
     public static void KillEnemy(Enemy enemy)
     {
-        enemy.gameObject.SetActive(false);
+        Instantiate(enemy.deathEffect, enemy.transform.position, Quaternion.identity);
+        instance.cameraShake.Shake(2f, 0.15f);
+
+        // TODO: If object pooling for enemies, then change active to false
+        //enemy.gameObject.SetActive(false);
+        Destroy(enemy.gameObject);
     }
 
     public static void KillPlayer(PlayerController player)
     {
+        Instantiate(player.deathEffect, player.transform.position, Quaternion.identity);
         Destroy(player.gameObject);
+        
         instance.EndGame();
     }
 }

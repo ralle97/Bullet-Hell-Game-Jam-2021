@@ -138,12 +138,15 @@ MonoBehaviour:
   stats:
     maxHealth: 300
     damage: 20
-    fireRate: 1
+    fireRate: 3
     projectileForce: 300
     speed: 1
     movementRange: 5
   enemyType: 3
   player: {fileID: 0}
+  shoot: 0
+  deathEffect: {fileID: 7558710792730019333, guid: cc46d56ce3807b24993c7216300a0973,
+    type: 3}
 --- !u!95 &544105016806252989
 Animator:
   serializedVersion: 3

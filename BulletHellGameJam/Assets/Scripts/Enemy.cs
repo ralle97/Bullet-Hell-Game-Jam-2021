@@ -51,15 +51,17 @@ public class Enemy : MonoBehaviour
 
     private Vector2 lookDir = new Vector2(0, -1);
 
-    private int allAroundShots = 18;
+    private int allAroundShots = 24;
     private int triangleShotCount = 5;
-    private float triangleTotalAngle = 45;
+    private float triangleTotalAngle = 60;
+
+    public GameObject deathEffect;
 
     private void OnEnable()
     {
         stats.Init();
         player = FindObjectOfType<PlayerController>();
-        shotTimer = stats.fireRate;
+        shotTimer = stats.fireRate / 2;
     }
 
     private void Start()
@@ -77,20 +79,12 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        // TODO: Attacks
-
         shotTimer -= Time.deltaTime;
 
         if (shotTimer <= 0f && player != null)
         {
             if (enemyType == EnemyType.ICECREAM)
             {
-                // TODO: BigProjectile that explodes in small ones
-            }
-
-            else if (enemyType == EnemyType.PIZZA)
-            {
-                // TODO: Triangle attack
                 if (!waitToShoot && !shoot)
                 {
                     animator.SetTrigger("Shoot");
@@ -98,14 +92,27 @@ public class Enemy : MonoBehaviour
                 }
                 else if (waitToShoot && shoot)
                 {
-                    TriangleAttack(triangleShotCount, triangleTotalAngle);
+                    IceCreamAttack("IceCreamProjectileBig");
+                    waitToShoot = false;
+                }
+            }
+
+            else if (enemyType == EnemyType.PIZZA)
+            {
+                if (!waitToShoot && !shoot)
+                {
+                    animator.SetTrigger("Shoot");
+                    waitToShoot = true;
+                }
+                else if (waitToShoot && shoot)
+                {
+                    TriangleAttack(triangleShotCount, triangleTotalAngle, "PizzaProjectile");
                     waitToShoot = false;
                 }
             }
 
             else if (enemyType == EnemyType.DONUT)
             {
-                // TODO: All around attack
                 if (!waitToShoot && !shoot)
                 {
                     animator.SetTrigger("Shoot");
@@ -113,7 +120,7 @@ public class Enemy : MonoBehaviour
                 }
                 else if (waitToShoot && shoot)
                 {
-                    AllAroundAttack(allAroundShots);
+                    AllAroundAttack(allAroundShots, "DonutProjectile");
                     waitToShoot = false;
                 }
             }
@@ -142,7 +149,7 @@ public class Enemy : MonoBehaviour
         {
             animator.SetFloat("Look X", lookDir.x);
             animator.SetFloat("Look Y", lookDir.y);
-            Debug.Log(lookDir.y);
+            
             animator.SetFloat("Speed", movementDirection.magnitude);
         }
 
@@ -188,7 +195,7 @@ public class Enemy : MonoBehaviour
         obj.SetActive(true);
     }
 
-    public void TriangleAttack(int count, float angle)
+    public void TriangleAttack(int count, float angle, string projectileTag)
     {
         if (player == null)
         {
@@ -214,11 +221,9 @@ public class Enemy : MonoBehaviour
             positions[i] = new Vector2(transform.position.x + posX, transform.position.y + posY);
         }
 
-        Debug.Log(positions.Length);
-
         for (int i = 0; i < positions.Length; i++)
         {
-            GameObject projectileObject = objectPooler.SpawnFromPool("PizzaProjectile");
+            GameObject projectileObject = objectPooler.SpawnFromPool(projectileTag);
 
             if (projectileObject != null)
             {
@@ -234,7 +239,7 @@ public class Enemy : MonoBehaviour
         shotTimer = 1f / stats.fireRate;
     }
 
-    public void AllAroundAttack(int count)
+    public void AllAroundAttack(int count, string projectileTag)
     {
         Vector2[] positions = new Vector2[count];
 
@@ -248,11 +253,9 @@ public class Enemy : MonoBehaviour
             positions[i] = new Vector2(transform.position.x + posX, transform.position.y + posY);
         }
 
-        Debug.Log(positions.Length);
-
         for (int i = 0; i < positions.Length; i++)
         {
-            GameObject projectileObject = objectPooler.SpawnFromPool("DonutProjectile");
+            GameObject projectileObject = objectPooler.SpawnFromPool(projectileTag);
 
             if (projectileObject != null)
             {
@@ -263,6 +266,35 @@ public class Enemy : MonoBehaviour
 
                 projectile.Launch((positions[i] - (Vector2)transform.position).normalized, stats.projectileForce);
             }
+        }
+
+        shotTimer = 1f / stats.fireRate;
+    }
+
+    public void IceCreamAttack(string projectileTag)
+    {
+        Vector2 startPosition = (player.transform.position - this.transform.position).normalized * firePointOffset;
+
+        float offsetX = Random.Range(0.9f, 1.1f);
+        float offsetY = Random.Range(0.9f, 1.1f);
+
+        float angle = Mathf.Atan2(startPosition.y, startPosition.x);
+
+        float posX = Mathf.Cos(angle * offsetX) * firePointOffset;
+        float posY = Mathf.Sin(angle * offsetY) * firePointOffset;
+
+        Vector2 position = new Vector2(transform.position.x + posX, transform.position.y + posY);
+
+        GameObject projectileObject = objectPooler.SpawnFromPool(projectileTag);
+
+        if (projectileObject != null)
+        {
+            SetPosRotActivate(projectileObject, position, Quaternion.identity);
+
+            Projectile projectile = projectileObject.GetComponent<Projectile>();
+            projectile.owner = this;
+
+            projectile.Launch((position - (Vector2)transform.position).normalized, stats.projectileForce);
         }
 
         shotTimer = 1f / stats.fireRate;

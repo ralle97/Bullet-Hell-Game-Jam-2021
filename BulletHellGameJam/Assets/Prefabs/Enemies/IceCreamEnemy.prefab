@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3783575382651255694}
   - component: {fileID: 1022478772652862925}
   - component: {fileID: -7235271106551546920}
+  - component: {fileID: 679865692501288352}
   m_Layer: 10
   m_Name: IceCreamEnemy
   m_TagString: Enemy
@@ -135,11 +136,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-    maxHealth: 120
+    maxHealth: 150
     damage: 50
     fireRate: 2
-    projectileForce: 150
+    projectileForce: 175
     speed: 2
     movementRange: 5
   enemyType: 0
   player: {fileID: 0}
+  shoot: 0
+  deathEffect: {fileID: 4904587520576108710, guid: 7418dcc1e7ab83a40a48da5a2bf027c3,
+    type: 3}
+--- !u!95 &679865692501288352
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491885632186370003}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1f16acaace95f244bbc51e72c0e18e85, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -153,14 +153,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-    maxHealth: 100
+    maxHealth: 120
     damage: 40
-    fireRate: 3
+    fireRate: 1.5
     projectileForce: 400
     speed: 2
     movementRange: 5
   enemyType: 1
   player: {fileID: 0}
+  shoot: 0
+  deathEffect: {fileID: 1076346069997427241, guid: f4b9165109447144a9a96b27ef89b779,
+    type: 3}
 --- !u!95 &4092304196641313011
 Animator:
   serializedVersion: 3

@@ -144,6 +144,9 @@ MonoBehaviour:
     movementRange: 5
   enemyType: 2
   player: {fileID: 0}
+  shoot: 0
+  deathEffect: {fileID: 4753978146953238806, guid: 30046495b600911479005141e190bee6,
+    type: 3}
 --- !u!95 &308378164
 Animator:
   serializedVersion: 3
