@@ -129,10 +129,13 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Vector2 temp;
         Vector2 movementDirection = Vector2.zero;
+        
         if (player != null)
         {
-            movementDirection = (player.transform.position - transform.position).normalized;
+            temp = (player.transform.position - transform.position);
+            movementDirection = temp.normalized;
         }
         else
         {
@@ -153,13 +156,17 @@ public class Enemy : MonoBehaviour
             animator.SetFloat("Speed", movementDirection.magnitude);
         }
 
-        if ((player.transform.position - transform.position).magnitude > stats.movementRange || enemyType == EnemyType.BURGER)
+        if (temp.magnitude > stats.movementRange || enemyType == EnemyType.BURGER)
         {
             Vector2 position = rigidBody.position;
             position.x += movementDirection.x * stats.speed * Time.fixedDeltaTime;
             position.y += movementDirection.y * stats.speed * Time.fixedDeltaTime;
 
             rigidBody.MovePosition(position);
+        }
+        else
+        {
+            rigidBody.velocity = Vector2.zero;
         }
     }
 
@@ -236,7 +243,9 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        shotTimer = 1f / stats.fireRate;
+        float shotTimeOffset = Random.Range(0.9f, 1.1f);
+
+        shotTimer = 1f / stats.fireRate * shotTimeOffset;
     }
 
     public void AllAroundAttack(int count, string projectileTag)
@@ -268,7 +277,9 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        shotTimer = 1f / stats.fireRate;
+        float shotTimeOffset = Random.Range(0.9f, 1.1f);
+
+        shotTimer = 1f / stats.fireRate * shotTimeOffset;
     }
 
     public void IceCreamAttack(string projectileTag)
@@ -297,6 +308,8 @@ public class Enemy : MonoBehaviour
             projectile.Launch((position - (Vector2)transform.position).normalized, stats.projectileForce);
         }
 
-        shotTimer = 1f / stats.fireRate;
+        float shotTimeOffset = Random.Range(0.9f, 1.1f);
+
+        shotTimer = 1f / stats.fireRate * shotTimeOffset;
     }
 }

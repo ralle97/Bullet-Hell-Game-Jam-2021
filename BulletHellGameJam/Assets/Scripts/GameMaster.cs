@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Cinemachine;
 
 public class GameMaster : MonoBehaviour
 {
@@ -25,21 +26,50 @@ public class GameMaster : MonoBehaviour
     #endregion
 
     public CameraShake cameraShake;
+    private Bounds bounds;
+
+    public float powerupCooldown = 10f;
+    private float powerupTimer;
 
     private void Start()
     {
         cameraShake = CameraShake.instance;
+
+        CinemachineConfiner confiner = FindObjectOfType<CinemachineConfiner>();
+
+        bounds.center = confiner.m_BoundingShape2D.bounds.center * 3 / 5;
+        bounds.extents = confiner.m_BoundingShape2D.bounds.extents * 3 / 5;
+
+        powerupTimer = powerupCooldown;
     }
 
-    /*  FOR DEBUGGING PURPOSE
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        powerupTimer -= Time.deltaTime;
+
+        if (powerupTimer <= 0f)
+        {
+            SpawnRandomPowerup();
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Debug.Log("Quiting application");
+            Application.Quit();
+        }
     }
-    */
+
+    void SpawnRandomPowerup()
+    {
+        Debug.Log("Powerup spawned");
+
+        powerupTimer = powerupCooldown;
+    }
 
     public void EndGame()
     {
