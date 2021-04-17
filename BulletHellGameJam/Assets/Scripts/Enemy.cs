@@ -57,10 +57,19 @@ public class Enemy : MonoBehaviour
 
     public GameObject deathEffect;
 
+    [SerializeField]
+    private HPIndicatorUI hpIndicator;
+
     private void OnEnable()
     {
         stats.Init();
         player = FindObjectOfType<PlayerController>();
+
+        if (hpIndicator != null)
+        {
+            hpIndicator.SetHealth(stats.CurrentHealth, stats.maxHealth);
+        }
+
         shotTimer = stats.fireRate / 2;
     }
 
@@ -177,6 +186,11 @@ public class Enemy : MonoBehaviour
         if (stats.CurrentHealth <= 0)
         {
             GameMaster.KillEnemy(this);
+        }
+
+        if (hpIndicator != null)
+        {
+            hpIndicator.SetHealth(stats.CurrentHealth, stats.maxHealth);
         }
     }
 
