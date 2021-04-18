@@ -13,6 +13,10 @@ public class GameOverUI : MonoBehaviour
     private string buttonPressSound = "ButtonPress";
     */
 
+    public string menuSceneName = "MainMenu";
+
+    public SceneFader sceneFader;
+
     private AudioManager audioManager;
 
     // Start is called before the first frame update
@@ -30,7 +34,7 @@ public class GameOverUI : MonoBehaviour
     public void ToMainMenu()
     {
         Debug.Log("To MainMenu!!!");
-        // TODO: LoadScene("MainMenu");
+        // TODO: LoadScene("MainMenu"); with sceneFader
     }
 
     public void Quit()
@@ -41,7 +45,7 @@ public class GameOverUI : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        sceneFader.FadeTo(SceneManager.GetActiveScene().name);
     }
 
     private void OnMouseOver()

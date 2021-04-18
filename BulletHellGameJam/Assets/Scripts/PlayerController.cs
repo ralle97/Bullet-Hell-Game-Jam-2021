@@ -110,8 +110,8 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Vector2 position = rigidBody.position;
-        position.x += horizontal * stats.speed * Time.fixedDeltaTime;
-        position.y += vertical * stats.speed * Time.fixedDeltaTime;
+        position.x += horizontal * stats.speed * Time.fixedDeltaTime / Time.timeScale;
+        position.y += vertical * stats.speed * Time.fixedDeltaTime / Time.timeScale;
 
         rigidBody.MovePosition(position);
     }

@@ -13,6 +13,10 @@ public class PauseGameUI : MonoBehaviour
     private string buttonPressSound = "ButtonPress";
     */
 
+    public SceneFader sceneFader;
+
+    public string menuSceneName = "MainMenu";
+
     private AudioManager audioManager;
 
     // Start is called before the first frame update
@@ -30,7 +34,7 @@ public class PauseGameUI : MonoBehaviour
     public void ToMainMenu()
     {
         Debug.Log("To MainMenu!!!");
-        // TODO: LoadScene("MainMenu");
+        // TODO: LoadScene("MainMenu"); with sceneFader
     }
 
     public void Quit()

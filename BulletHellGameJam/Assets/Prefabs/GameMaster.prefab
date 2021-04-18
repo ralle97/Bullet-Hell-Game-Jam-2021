@@ -47,6 +47,8 @@ MonoBehaviour:
   gameOverUI: {fileID: 0}
   pauseGameUI: {fileID: 0}
   powerupCooldown: 10
+  powerupPrefabs:
+  - {fileID: 1160799125822410833, guid: 3cf1e433dd290bf40a9349fb38e96ba3, type: 3}
 --- !u!114 &2893620147787128783
 MonoBehaviour:
   m_ObjectHideFlags: 0
