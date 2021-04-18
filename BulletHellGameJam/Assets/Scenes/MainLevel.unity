@@ -904,7 +904,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1738594523}
         m_MethodName: ToMainMenu
         m_Mode: 1
         m_Arguments:
@@ -1484,7 +1484,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1738594523}
         m_MethodName: Quit
         m_Mode: 1
         m_Arguments:
@@ -2070,7 +2070,7 @@ GameObject:
   - component: {fileID: 1729259543}
   - component: {fileID: 1729259542}
   m_Layer: 5
-  m_Name: RestartButton
+  m_Name: ContinueButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2154,8 +2154,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: Restart
+      - m_Target: {fileID: 1738594523}
+        m_MethodName: Continue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2379,7 +2379,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 100
+  m_fontSize: 85.9
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -17368,6 +17368,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5443134910397806408, guid: 65d847f07e262034d9edd6d8311db9ad,
+        type: 3}
+      propertyPath: waves.Array.data[0].enemyCounts.Array.data[0]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5443134910397806408, guid: 65d847f07e262034d9edd6d8311db9ad,
+        type: 3}
+      propertyPath: waves.Array.data[0].enemyCounts.Array.data[1]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5443134910397806408, guid: 65d847f07e262034d9edd6d8311db9ad,
+        type: 3}
+      propertyPath: waves.Array.data[0].enemyCounts.Array.data[2]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5443134910397806408, guid: 65d847f07e262034d9edd6d8311db9ad,
+        type: 3}
+      propertyPath: waves.Array.data[0].enemyCounts.Array.data[3]
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5443134910397806409, guid: 65d847f07e262034d9edd6d8311db9ad,
         type: 3}
       propertyPath: m_Name
@@ -17506,6 +17526,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2345349270259090367, guid: ec52f967137fe2548807588b27b07c4c,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: -9999
+      objectReference: {fileID: 0}
     - target: {fileID: 2936351551863172649, guid: ec52f967137fe2548807588b27b07c4c,
         type: 3}
       propertyPath: m_RootOrder
@@ -17565,6 +17590,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SceneFader
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760454472033862160, guid: ec52f967137fe2548807588b27b07c4c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec52f967137fe2548807588b27b07c4c, type: 3}

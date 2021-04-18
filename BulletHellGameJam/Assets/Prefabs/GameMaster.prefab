@@ -49,6 +49,14 @@ MonoBehaviour:
   powerupCooldown: 10
   powerupPrefabs:
   - {fileID: 1160799125822410833, guid: 3cf1e433dd290bf40a9349fb38e96ba3, type: 3}
+  - {fileID: 8166324004130516687, guid: 5af27c4ab3b43634ab57d48121de4373, type: 3}
+  - {fileID: 3823953856373348569, guid: c36790791898330478c0f1bb6d6db700, type: 3}
+  - {fileID: 7507515204060124383, guid: 302ba3fcf443edc4290888675214822c, type: 3}
+  slowTimeDuration: 3
+  timeSlowAmount: 0.5
+  fireRateDuration: 3
+  fireRateAmount: 2
+  triangleAttackDuration: 5
 --- !u!114 &2893620147787128783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,3 +74,4 @@ MonoBehaviour:
   speed: 5
   fireRate: 4
   timeInvincible: 2.5
+  isTriangleAttack: 0

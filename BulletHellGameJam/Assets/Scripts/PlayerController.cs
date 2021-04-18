@@ -103,7 +103,15 @@ public class PlayerController : MonoBehaviour
         {
             ChangeMousePos();
             ChangeFirePointPos();
-            LaunchProjectile();
+
+            if (!stats.isTriangleAttack)
+            {
+                LaunchProjectile();
+            }
+            else
+            {
+                TriangleProjectile(3, 30f);
+            }
         }
     }
 
@@ -151,6 +159,42 @@ public class PlayerController : MonoBehaviour
             shotTimer = 1 / stats.fireRate;
             shotCooldown = true;
         }
+    }
+
+    private void TriangleProjectile(int count, float angle)
+    {
+        Vector2[] positions = new Vector2[count];
+        Vector2 startPosition = (mousePos - (Vector2)this.transform.position).normalized * firePointOffset;
+
+        float startAngle = Mathf.Atan2(startPosition.y, startPosition.x);
+        float fractionAngleRad = angle / count * Mathf.Deg2Rad;
+
+        for (int i = 0; i < count; i++)
+        {
+            float offsetAngleRad = (i - count / 2) * fractionAngleRad;
+
+            float posX = Mathf.Cos((startAngle + offsetAngleRad)) * firePointOffset;
+            float posY = Mathf.Sin((startAngle + offsetAngleRad)) * firePointOffset;
+
+            positions[i] = new Vector2(transform.position.x + posX, transform.position.y + posY);
+        }
+
+        for (int i = 0; i < positions.Length; i++)
+        {
+            GameObject projectileObject = objectPooler.SpawnFromPool("PlayerProjectile");
+
+            if (projectileObject != null)
+            {
+                SetPosRotActivate(projectileObject, positions[i], Quaternion.identity);
+
+                Projectile projectile = projectileObject.GetComponent<Projectile>();
+
+                projectile.Launch((positions[i] - (Vector2)transform.position).normalized, projectileSpeed);
+            }
+        }
+
+        shotTimer = 1f / stats.fireRate;
+        shotCooldown = true;
     }
 
     private void SetPosRotActivate(GameObject obj, Vector2 pos, Quaternion rot)

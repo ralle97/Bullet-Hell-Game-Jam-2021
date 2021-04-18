@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Powerup : MonoBehaviour
 {
-    public enum PowerupType { HPREGEN, STOPWATCH };
+    public enum PowerupType { HPREGEN, STOPWATCH, FIRERATE, TRIANGLE };
 
     public PowerupType powerupType;
 

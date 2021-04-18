@@ -48,9 +48,19 @@ public class GameMaster : MonoBehaviour
     public GameObject[] powerupPrefabs;
 
     private bool isTimeSlowed;
-    public float slowTimeDuration = 3f;
+    public float slowTimeDuration = 2f;
     private float slowTimer;
     public float timeSlowAmount = 0.5f;
+
+    private bool isFireRateEnhanced;
+    public float fireRateDuration = 3f;
+    private float fireRateTimer;
+    public float fireRateAmount = 2f;
+    private float prevFireRate;
+
+    private bool isTriangleAttack;
+    public float triangleAttackDuration = 5f;
+    private float triangleTimer;
 
     private void Start()
     {
@@ -89,6 +99,28 @@ public class GameMaster : MonoBehaviour
             {
                 isTimeSlowed = false;
                 Time.timeScale = 1f;
+            }
+        }
+
+        if (isFireRateEnhanced)
+        {
+            fireRateTimer -= Time.deltaTime;
+
+            if (fireRateTimer < 0f)
+            {
+                isFireRateEnhanced = false;
+                playerStats.fireRate = prevFireRate;
+            }
+        }
+
+        if (isTriangleAttack)
+        {
+            triangleTimer -= Time.deltaTime;
+
+            if (triangleTimer < 0f)
+            {
+                isTriangleAttack = false;
+                playerStats.isTriangleAttack = false;
             }
         }
 
@@ -181,10 +213,37 @@ public class GameMaster : MonoBehaviour
         }
         else if (type == Powerup.PowerupType.STOPWATCH)
         {
+            // TODO: What to do when already active?
             prevTimeScale = Time.timeScale;
             Time.timeScale = timeSlowAmount;
             isTimeSlowed = true;
             slowTimer = slowTimeDuration;
+        }
+        else if (type == Powerup.PowerupType.FIRERATE)
+        {
+            if (!isFireRateEnhanced)
+            {
+                prevFireRate = playerStats.fireRate;
+                playerStats.fireRate *= fireRateAmount;
+                isFireRateEnhanced = true;
+                fireRateTimer = fireRateDuration;
+            }
+            else
+            {
+                fireRateTimer += fireRateDuration;
+            }
+        }
+        else if (type == Powerup.PowerupType.TRIANGLE)
+        {
+            if (!isTriangleAttack)
+            {
+                playerStats.isTriangleAttack = true;
+                triangleTimer = triangleAttackDuration;
+            }
+            else
+            {
+                triangleTimer += triangleAttackDuration;
+            }
         }
 
         Debug.Log("Powerup " + type + " picked.");
