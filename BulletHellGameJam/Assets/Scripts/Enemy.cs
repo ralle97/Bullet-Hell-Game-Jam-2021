@@ -266,12 +266,14 @@ public class Enemy : MonoBehaviour
     {
         Vector2[] positions = new Vector2[count];
 
+        float angleOffset = Random.Range(-10f, 10f);
+
         for (int i = 0; i < count; i++)
         {
             float angle = i * (360 / count) * Mathf.Deg2Rad;
 
-            float posX = Mathf.Cos(angle) * firePointOffset;
-            float posY = Mathf.Sin(angle) * firePointOffset;
+            float posX = Mathf.Cos(angle + angleOffset) * firePointOffset;
+            float posY = Mathf.Sin(angle + angleOffset) * firePointOffset;
 
             positions[i] = new Vector2(transform.position.x + posX, transform.position.y + posY);
         }

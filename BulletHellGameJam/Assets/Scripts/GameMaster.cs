@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Cinemachine;
+using TMPro;
 
 public class GameMaster : MonoBehaviour
 {
@@ -35,6 +36,12 @@ public class GameMaster : MonoBehaviour
     [SerializeField]
     private GameObject pauseGameUI;
 
+    [SerializeField]
+    private GameObject gameFinishedUI;
+
+    [HideInInspector]
+    public bool isPaused;
+
     public float powerupCooldown = 10f;
     private float powerupTimer;
 
@@ -61,6 +68,12 @@ public class GameMaster : MonoBehaviour
     private bool isTriangleAttack;
     public float triangleAttackDuration = 5f;
     private float triangleTimer;
+
+    [SerializeField]
+    private TextMeshProUGUI powerupTimerText;
+
+    [HideInInspector]
+    public bool gameFinished;
 
     private void Start()
     {
@@ -124,9 +137,16 @@ public class GameMaster : MonoBehaviour
             }
         }
 
+        if (gameFinished)
+        {
+            FinishGame();
+        }
+
         if (!isGameOver)
         {
             powerupTimer -= Time.deltaTime;
+
+            powerupTimerText.text = "Powerup in: " + powerupTimer.ToString("F2") + "s";
 
             if (powerupTimer <= 0f)
             {
@@ -146,11 +166,13 @@ public class GameMaster : MonoBehaviour
         
         if (active)
         {
+            isPaused = true;
             prevTimeScale = Time.timeScale;
             Time.timeScale = 0f;    
         }
         else
         {
+            isPaused = false;
             Time.timeScale = prevTimeScale;
         }
     }
@@ -178,6 +200,15 @@ public class GameMaster : MonoBehaviour
         gameOverUI.SetActive(true);
 
         Debug.Log("GAME OVER!");
+    }
+
+    private void FinishGame()
+    {
+        isGameOver = true;
+
+        gameFinishedUI.SetActive(true);
+
+        Debug.Log("CONGRATULATIONS!");
     }
 
     public static void KillEnemy(Enemy enemy)

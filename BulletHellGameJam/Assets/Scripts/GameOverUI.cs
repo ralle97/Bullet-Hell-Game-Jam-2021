@@ -33,18 +33,24 @@ public class GameOverUI : MonoBehaviour
 
     public void ToMainMenu()
     {
+        Time.timeScale = 1f;
         Debug.Log("To MainMenu!!!");
-        // TODO: LoadScene("MainMenu"); with sceneFader
+        
+        sceneFader.FadeTo(menuSceneName);
     }
 
     public void Quit()
     {
+        Time.timeScale = 1f;
         Debug.Log("APPLICATION QUIT!");
         Application.Quit();
     }
 
     public void Restart()
     {
+        Time.timeScale = 1f;
+        Debug.Log("Restart Cicked");
+        
         sceneFader.FadeTo(SceneManager.GetActiveScene().name);
     }
 

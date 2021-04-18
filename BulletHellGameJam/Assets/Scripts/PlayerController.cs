@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    private GameMaster gm;
     private PlayerStats stats;
     private ObjectPooler objectPooler;
 
@@ -34,6 +35,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gm = GameMaster.instance;
+
         stats = PlayerStats.instance;
         stats.Health = stats.maxHealth;
 
@@ -99,7 +102,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetButton("Fire1") && !shotCooldown)
+        if (Input.GetButton("Fire1") && !shotCooldown && !gm.isPaused)
         {
             ChangeMousePos();
             ChangeFirePointPos();

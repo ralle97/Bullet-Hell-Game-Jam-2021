@@ -64,28 +64,35 @@ public class WaveSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (state == SpawnState.WAITING)
+        if (!bossWave)
         {
-            if (!EnemyIsAlive())
+            if (state == SpawnState.WAITING)
             {
-                WaveCompleted();
+                if (!EnemyIsAlive())
+                {
+                    WaveCompleted();
+                }
+                else
+                {
+                    return;
+                }
+            }
+
+            if (waveCountdown <= 0)
+            {
+                if (state != SpawnState.SPAWNING)
+                {
+                    StartCoroutine(SpawnWave(waves[nextWave]));
+                }
             }
             else
             {
-                return;
-            }
-        }
-
-        if (waveCountdown <= 0)
-        {
-            if (state != SpawnState.SPAWNING)
-            {
-                StartCoroutine(SpawnWave(waves[nextWave]));
+                waveCountdown -= Time.deltaTime;
             }
         }
         else
         {
-            waveCountdown -= Time.deltaTime;
+            // TODO: Summon boss
         }
     }
 
@@ -115,8 +122,9 @@ public class WaveSpawner : MonoBehaviour
 
         if (nextWave + 1 >= waves.Length)
         {
-            // TODO: Change to spawn boss wave
-            nextWave = 0;
+            // TODO: Finish game for now; add boss fight
+            bossWave = true;
+            GameMaster.instance.gameFinished = true;
         }
         else
         {
