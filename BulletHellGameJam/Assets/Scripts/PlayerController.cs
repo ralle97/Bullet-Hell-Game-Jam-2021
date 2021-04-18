@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("Speed", move.magnitude);
         
         // TODO: Enable after testing
-        /*
+        
         if (isInvincible)
         {
             invincibleTimer -= Time.deltaTime;
@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
                 isInvincible = false;
             }
         }
-        */
+        
         if (shotCooldown)
         {
             shotTimer -= Time.deltaTime;

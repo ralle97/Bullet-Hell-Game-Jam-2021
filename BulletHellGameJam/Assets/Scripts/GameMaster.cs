@@ -12,35 +12,45 @@ public class GameMaster : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
+        if (instance != null)
         {
-            instance = this;
-            DontDestroyOnLoad(this);
+            if (instance != this)
+            {
+                Destroy(this.gameObject);
+            }
         }
         else
         {
-            Debug.LogError("MORE THAN ONE GameMaster INSTANCE");
+            instance = this;
         }
     }
 
     #endregion
 
-    public CameraShake cameraShake;
     private Bounds bounds;
+
+    [SerializeField]
+    private GameObject gameOverUI;
+
+    [SerializeField]
+    private GameObject upgradeMenuUI;
 
     public float powerupCooldown = 10f;
     private float powerupTimer;
 
     private void Start()
     {
-        cameraShake = CameraShake.instance;
-
         CinemachineConfiner confiner = FindObjectOfType<CinemachineConfiner>();
 
         bounds.center = confiner.m_BoundingShape2D.bounds.center * 3 / 5;
         bounds.extents = confiner.m_BoundingShape2D.bounds.extents * 3 / 5;
 
         powerupTimer = powerupCooldown;
+
+        if (gameOverUI == null)
+        {
+            Debug.LogError("GameOverUI not found!");
+        }
     }
 
     private void Update()
@@ -73,14 +83,15 @@ public class GameMaster : MonoBehaviour
 
     public void EndGame()
     {
-        // TODO: Show GAME OVER Screen
+        gameOverUI.SetActive(true);
+
         Debug.Log("GAME OVER!");
     }
 
     public static void KillEnemy(Enemy enemy)
     {
         Instantiate(enemy.deathEffect, enemy.transform.position, Quaternion.identity);
-        instance.cameraShake.Shake(2f, 0.15f);
+        CameraShake.instance.Shake(2f, 0.15f);
 
         // TODO: If object pooling for enemies, then change active to false
         //enemy.gameObject.SetActive(false);
@@ -90,6 +101,8 @@ public class GameMaster : MonoBehaviour
     public static void KillPlayer(PlayerController player)
     {
         Instantiate(player.deathEffect, player.transform.position, Quaternion.identity);
+        CameraShake.instance.Shake(5f, 0.6f);
+        
         Destroy(player.gameObject);
         
         instance.EndGame();

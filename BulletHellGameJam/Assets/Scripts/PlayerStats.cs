@@ -23,7 +23,7 @@ public class PlayerStats : MonoBehaviour
         else
         {
             instance = this;
-            DontDestroyOnLoad(this);
+            //DontDestroyOnLoad(this);
         }
     }
 
@@ -41,6 +41,6 @@ public class PlayerStats : MonoBehaviour
     public int damage = 10;
 
     public float speed = 5f;
-    public float fireRate = 3f;
+    public float fireRate = 5f;
     public float timeInvincible = 2f;
 }

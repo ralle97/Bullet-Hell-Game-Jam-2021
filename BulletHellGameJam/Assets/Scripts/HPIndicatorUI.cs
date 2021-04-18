@@ -28,7 +28,7 @@ public class HPIndicatorUI : MonoBehaviour
 
         if (currentHP <= 0.2f * maxHP)
         {
-            hpImage.color = Color.magenta;
+            hpImage.color = Color.red;
         }
         else if (currentHP <= 0.4f * maxHP)
         {

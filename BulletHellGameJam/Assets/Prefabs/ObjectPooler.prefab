@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8460145476636074953
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8460145476636074954}
+  - component: {fileID: 8460145476636074955}
+  m_Layer: 0
+  m_Name: ObjectPooler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8460145476636074954
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8460145476636074953}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8460145476636074955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8460145476636074953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cf28c8c836f52042bfa21afe5ed75fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools:
+  - tag: PlayerProjectile
+    prefab: {fileID: 1564739167302467889, guid: bb9faa09921bb334f99b0bfc09fc9163,
+      type: 3}
+    size: 50
+    shouldExpand: 1
+  - tag: IceCreamProjectileBig
+    prefab: {fileID: 7894915121836836943, guid: 079a2e2be4230284e98740e48772b1d2,
+      type: 3}
+    size: 20
+    shouldExpand: 1
+  - tag: IceCreamProjectileSmall
+    prefab: {fileID: 6218438492807546662, guid: 7f8534cceea7c5a439de846dfa6fc5b7,
+      type: 3}
+    size: 150
+    shouldExpand: 1
+  - tag: PizzaProjectile
+    prefab: {fileID: 1453607141316119030, guid: bdb28ffe15828ee44a8eccaae36dc3a5,
+      type: 3}
+    size: 100
+    shouldExpand: 1
+  - tag: DonutProjectile
+    prefab: {fileID: 6826661833687961802, guid: c1ec81f51e91aa642bbb0705a5aef288,
+      type: 3}
+    size: 120
+    shouldExpand: 1
