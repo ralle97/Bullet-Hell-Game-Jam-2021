@@ -207,6 +207,19 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            PlayerController player = collision.collider.GetComponent<PlayerController>();
+
+            if (player != null && !player.IsInvincible())
+            {
+                player.DamagePlayer(stats.damage);
+            }
+        }
+    }
+
     //==================== ATACKS ====================
 
     private void SetPosRotActivate(GameObject obj, Vector2 pos, Quaternion rot)

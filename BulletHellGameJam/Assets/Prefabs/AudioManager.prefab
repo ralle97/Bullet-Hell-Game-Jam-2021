@@ -46,8 +46,8 @@ MonoBehaviour:
   sounds:
   - name: Pickup
     clip: {fileID: 8300000, guid: e749039bffe011b4f974cc7e5c862d7f, type: 3}
-    volume: 0.7
+    volume: 0.5
     pitch: 1
-    randomVolume: 0.1
+    randomVolume: 0.2
     randomPitch: 0.1
     loop: 0

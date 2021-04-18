@@ -137,7 +137,7 @@ public class GameMaster : MonoBehaviour
             }
         }
 
-        if (gameFinished)
+        if (gameFinished && !isGameOver)
         {
             FinishGame();
         }
@@ -228,7 +228,10 @@ public class GameMaster : MonoBehaviour
         
         Destroy(player.gameObject);
         
-        instance.EndGame();
+        if (!instance.isGameOver)
+        {
+            instance.EndGame();
+        }
     }
 
     public void PowerupPicked(Powerup.PowerupType type)

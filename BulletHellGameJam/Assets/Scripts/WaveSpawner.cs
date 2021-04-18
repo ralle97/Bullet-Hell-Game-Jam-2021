@@ -28,7 +28,7 @@ public class WaveSpawner : MonoBehaviour
         get { return nextWave; }
     }
 
-    public float timeBetweenWaves = 5f;
+    public float timeBetweenWaves = 10f;
     private float waveCountdown;
     public float WaveCountdown
     {
@@ -54,7 +54,7 @@ public class WaveSpawner : MonoBehaviour
         bounds.center = confiner.m_BoundingShape2D.bounds.center * 3 / 5;
         bounds.extents = confiner.m_BoundingShape2D.bounds.extents * 3 / 5;
 
-        waveCountdown = timeBetweenWaves;
+        waveCountdown = timeBetweenWaves / 2f;
 
         searchTimer = searchCountdown;
 
