@@ -172,6 +172,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
+                CameraShake.instance.Shake(2f, 0.15f);
                 isInvincible = true;
                 invincibleTimer = stats.timeInvincible;
                 animator.SetBool("Hit", true);

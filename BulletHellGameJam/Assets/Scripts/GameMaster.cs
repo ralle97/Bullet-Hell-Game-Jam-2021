@@ -33,10 +33,14 @@ public class GameMaster : MonoBehaviour
     private GameObject gameOverUI;
 
     [SerializeField]
-    private GameObject upgradeMenuUI;
+    private GameObject pauseGameUI;
 
     public float powerupCooldown = 10f;
     private float powerupTimer;
+
+    private float prevTimeScale = 1f;
+
+    private bool isGameOver = false;
 
     private void Start()
     {
@@ -55,22 +59,34 @@ public class GameMaster : MonoBehaviour
 
     private void Update()
     {
-        powerupTimer -= Time.deltaTime;
-
-        if (powerupTimer <= 0f)
+        if (!isGameOver)
         {
-            SpawnRandomPowerup();
+            powerupTimer -= Time.deltaTime;
+
+            if (powerupTimer <= 0f)
+            {
+                SpawnRandomPowerup();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
+            {
+                TogglePauseMenu(!pauseGameUI.activeSelf);
+            }
         }
+    }
 
-        if (Input.GetKeyDown(KeyCode.P))
+    public void TogglePauseMenu(bool active)
+    {
+        pauseGameUI.SetActive(active);
+        
+        if (active)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            prevTimeScale = Time.timeScale;
+            Time.timeScale = 0f;    
         }
-
-        if (Input.GetKeyDown(KeyCode.Escape))
+        else
         {
-            Debug.Log("Quiting application");
-            Application.Quit();
+            Time.timeScale = prevTimeScale;
         }
     }
 
@@ -83,6 +99,8 @@ public class GameMaster : MonoBehaviour
 
     public void EndGame()
     {
+        isGameOver = true;
+
         gameOverUI.SetActive(true);
 
         Debug.Log("GAME OVER!");
@@ -106,5 +124,10 @@ public class GameMaster : MonoBehaviour
         Destroy(player.gameObject);
         
         instance.EndGame();
+    }
+
+    public void PowerupPicked(Powerup.PowerupType type)
+    {
+        Debug.Log("Powerup " + type + " picked.");
     }
 }

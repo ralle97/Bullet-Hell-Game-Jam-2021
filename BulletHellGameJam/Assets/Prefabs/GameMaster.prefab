@@ -44,9 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cdd79b9177590e428fad76c6c5b9c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraShake: {fileID: 0}
   gameOverUI: {fileID: 0}
-  upgradeMenuUI: {fileID: 0}
+  pauseGameUI: {fileID: 0}
   powerupCooldown: 10
 --- !u!114 &2893620147787128783
 MonoBehaviour:
@@ -63,5 +62,5 @@ MonoBehaviour:
   maxHealth: 100
   damage: 20
   speed: 5
-  fireRate: 3
-  timeInvincible: 2
+  fireRate: 4
+  timeInvincible: 2.5

@@ -38,9 +38,9 @@ public class PlayerStats : MonoBehaviour
         set { currentHealth = Mathf.Clamp(value, 0, maxHealth); }
     }
 
-    public int damage = 10;
+    public int damage = 20;
 
     public float speed = 5f;
-    public float fireRate = 5f;
-    public float timeInvincible = 2f;
+    public float fireRate = 4f;
+    public float timeInvincible = 2.5f;
 }
