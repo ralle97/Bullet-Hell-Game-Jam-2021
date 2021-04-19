@@ -11,10 +11,8 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private Camera mainCamera;
 
-    [HideInInspector]
-    public float horizontal;
-    [HideInInspector]
-    public float vertical;
+    private float horizontal;
+    private float vertical;
 
     private Rigidbody2D rigidBody;
 
@@ -71,9 +69,16 @@ public class PlayerController : MonoBehaviour
     {
         if (gm.upgradeMenuOpened || gm.isGameOver || gm.isPaused)
         {
+            horizontal = 0;
+            vertical = 0;
+
+            animator.SetFloat("Look X", 0);
+            animator.SetFloat("Look Y", 0);
+            animator.SetFloat("Speed", 0);
+
             return;
         }
-
+        
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
 
@@ -90,7 +95,7 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("Speed", move.magnitude);
         
         // TODO: Enable after testing
-        /*
+        
         if (isInvincible)
         {
             invincibleTimer -= Time.deltaTime;
@@ -101,7 +106,7 @@ public class PlayerController : MonoBehaviour
                 isInvincible = false;
             }
         }
-        */
+        
         if (shotCooldown)
         {
             shotTimer -= Time.deltaTime;
@@ -112,7 +117,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetButton("Fire1") && !shotCooldown && !gm.isPaused)
+        if (Input.GetButton("Fire1") && !shotCooldown && !gm.isPaused && !gm.isGameOver && !gm.upgradeMenuOpened)
         {
             ChangeMousePos();
             ChangeFirePointPos();
@@ -131,6 +136,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Vector2 position = rigidBody.position;
+
         position.x += horizontal * stats.speed * Time.fixedDeltaTime / Time.timeScale;
         position.y += vertical * stats.speed * Time.fixedDeltaTime / Time.timeScale;
 

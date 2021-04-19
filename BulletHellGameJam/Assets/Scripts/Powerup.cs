@@ -22,8 +22,6 @@ public class Powerup : MonoBehaviour
                 }
             }
 
-            // TODO: What to do with multiple stopwatches?
-
             GameMaster.instance.PowerupPicked(powerupType);
             Destroy(gameObject);
         }

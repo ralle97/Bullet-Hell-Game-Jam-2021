@@ -47,8 +47,11 @@ MonoBehaviour:
   gameOverUI: {fileID: 0}
   pauseGameUI: {fileID: 0}
   gameFinishedUI: {fileID: 0}
+  upgradeMenuUI: {fileID: 0}
+  waveCountdownUI: {fileID: 0}
   isPaused: 0
   powerupCooldown: 10
+  isGameOver: 0
   powerupPrefabs:
   - {fileID: 1160799125822410833, guid: 3cf1e433dd290bf40a9349fb38e96ba3, type: 3}
   - {fileID: 8166324004130516687, guid: 5af27c4ab3b43634ab57d48121de4373, type: 3}
@@ -62,6 +65,11 @@ MonoBehaviour:
   powerupTimerText: {fileID: 0}
   gameFinished: 0
   hpBar: {fileID: 0}
+  startingUpgradePoints: 0
+  upgradePointsAward: 1
+  canUpgrade: 0
+  upgradeMenuOpened: 0
+  upgradePointsText: {fileID: 0}
 --- !u!114 &2893620147787128783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,5 +86,5 @@ MonoBehaviour:
   damage: 20
   speed: 5
   fireRate: 4
-  timeInvincible: 2.5
+  timeInvincible: 2
   isTriangleAttack: 0

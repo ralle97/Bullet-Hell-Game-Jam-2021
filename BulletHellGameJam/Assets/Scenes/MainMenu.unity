@@ -492,8 +492,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: " -<u>WASD or Arrows to move</u>\n -<u>Left mouse button to shoot</u>\n
-    -<u>Escape or P to pause the game</u>"
+  m_text: '-<u>WASD or Arrows to move</u>
+
+    -<u>Left mouse button to shoot</u>
+
+    -<u>Escape
+    or P to pause the game</u>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 08042dd87092de64e867eee476692419, type: 2}
   m_sharedMaterial: {fileID: 5997340380222705213, guid: 08042dd87092de64e867eee476692419,

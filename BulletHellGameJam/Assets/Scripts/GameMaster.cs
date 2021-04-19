@@ -53,6 +53,7 @@ public class GameMaster : MonoBehaviour
 
     private float prevTimeScale = 1f;
 
+    [HideInInspector]
     public bool isGameOver = false;
 
     private AudioManager audioManager;
@@ -79,7 +80,7 @@ public class GameMaster : MonoBehaviour
     private TextMeshProUGUI powerupTimerText;
 
     [HideInInspector]
-    public bool gameFinished;
+    public bool gameFinished = false;
 
     [SerializeField]
     private HPIndicatorUI hpBar;
@@ -87,7 +88,7 @@ public class GameMaster : MonoBehaviour
     [SerializeField]
     private int startingUpgradePoints = 0;
     [SerializeField]
-    private int upgradePointsAward = 2;
+    private int upgradePointsAward = 1;
     [HideInInspector]
     public bool canUpgrade = false;
     public bool upgradeMenuOpened = false;
@@ -152,7 +153,7 @@ public class GameMaster : MonoBehaviour
         if (isTriangleAttack)
         {
             triangleTimer -= Time.deltaTime;
-
+            
             if (triangleTimer < 0f)
             {
                 isTriangleAttack = false;
@@ -202,6 +203,9 @@ public class GameMaster : MonoBehaviour
         if (active)
         {
             isPaused = true;
+
+
+            
             prevTimeScale = Time.timeScale;
             Time.timeScale = 0f;    
         }
@@ -220,6 +224,9 @@ public class GameMaster : MonoBehaviour
         {
             upgradeMenuOpened = true;
             upgradePointsText.gameObject.SetActive(false);
+
+
+            
             prevTimeScale = Time.timeScale;
             Time.timeScale = 0.5f;
         }
@@ -262,7 +269,9 @@ public class GameMaster : MonoBehaviour
     {
         Time.timeScale = 1f;
         isGameOver = true;
+        
 
+        
         waveCountdownUI.SetActive(false);
         gameFinishedUI.SetActive(true);
     }
@@ -283,11 +292,8 @@ public class GameMaster : MonoBehaviour
         CameraShake.instance.Shake(5f, 0.6f);
         
         Destroy(player.gameObject);
-        
-        if (!instance.isGameOver)
-        {
-            instance.EndGame();
-        }
+
+        instance.EndGame();
     }
 
     public void PowerupPicked(Powerup.PowerupType type)
@@ -302,11 +308,17 @@ public class GameMaster : MonoBehaviour
         }
         else if (type == Powerup.PowerupType.STOPWATCH)
         {
-            // TODO: What to do when already active?
-            prevTimeScale = Time.timeScale;
-            Time.timeScale = timeSlowAmount;
-            isTimeSlowed = true;
-            slowTimer = slowTimeDuration;
+            if (!isTimeSlowed)
+            {
+                prevTimeScale = Time.timeScale;
+                Time.timeScale = timeSlowAmount;
+                isTimeSlowed = true;
+                slowTimer = slowTimeDuration;
+            }
+            else
+            {
+                slowTimer += slowTimeDuration;
+            }
         }
         else if (type == Powerup.PowerupType.FIRERATE)
         {
@@ -327,6 +339,7 @@ public class GameMaster : MonoBehaviour
             if (!isTriangleAttack)
             {
                 playerStats.isTriangleAttack = true;
+                isTriangleAttack = true;
                 triangleTimer = triangleAttackDuration;
             }
             else
@@ -343,5 +356,16 @@ public class GameMaster : MonoBehaviour
         UpgradePoints += upgradePointsAward;
         upgradePointsText.text = "Upgrade points: " + UpgradePoints.ToString() + "UP";
         canUpgrade = true;
+    }
+
+    public void WaveStart()
+    {
+        if (upgradeMenuOpened)
+        {
+            upgradeMenuUI.SetActive(false);
+            upgradeMenuOpened = false;
+        }
+        
+        canUpgrade = false;
     }
 }

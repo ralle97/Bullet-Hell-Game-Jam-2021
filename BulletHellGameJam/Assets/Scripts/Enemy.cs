@@ -168,6 +168,7 @@ public class Enemy : MonoBehaviour
         if (temp.magnitude > stats.movementRange || enemyType == EnemyType.BURGER)
         {
             Vector2 position = rigidBody.position;
+            
             position.x += movementDirection.x * stats.speed * Time.fixedDeltaTime;
             position.y += movementDirection.y * stats.speed * Time.fixedDeltaTime;
 

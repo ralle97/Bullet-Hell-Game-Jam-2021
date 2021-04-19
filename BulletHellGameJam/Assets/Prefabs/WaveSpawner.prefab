@@ -48,8 +48,23 @@ MonoBehaviour:
   - {fileID: 1655877193983522738, guid: a177a3edfc02f6740b46007d5d40aca2, type: 3}
   - {fileID: 4185689788584157373, guid: 739e0765ebeb98b4ea7e8e4652e43013, type: 3}
   - {fileID: 7421881503099605230, guid: 3aadb1cca1abe0941a95f99df112ac25, type: 3}
+  bossEnemyPrefab: {fileID: 0}
   waves:
   - name: Wave1
-    enemyCounts: 02000000000000000000000000000000
+    enemyCounts: 03000000000000000000000000000000
     rate: 1
-  timeBetweenWaves: 5
+  - name: Wave2
+    enemyCounts: 01000000020000000000000000000000
+    rate: 1
+  - name: Wave3
+    enemyCounts: 01000000010000000200000000000000
+    rate: 1
+  - name: Wave4
+    enemyCounts: 01000000010000000000000003000000
+    rate: 1
+  - name: Wave5
+    enemyCounts: 02000000020000000100000003000000
+    rate: 1
+  timeBetweenWaves: 10
+  waveCountdownUI: {fileID: 0}
+  waveCountdownText: {fileID: 0}

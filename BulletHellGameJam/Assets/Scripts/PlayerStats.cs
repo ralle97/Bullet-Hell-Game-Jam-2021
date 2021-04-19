@@ -42,8 +42,8 @@ public class PlayerStats : MonoBehaviour
 
     public float speed = 5f;
     public float fireRate = 4f;
-    public float timeInvincible = 2.5f;
+    public float timeInvincible = 2f;
 
     [HideInInspector]
-    public bool isTriangleAttack;
+    public bool isTriangleAttack = false;
 }

@@ -16,10 +16,6 @@ public class HPIndicatorUI : MonoBehaviour
         {
             Debug.LogError("HP INDICATOR: No health bar object referenced!");
         }
-        else
-        {
-            hpImage = healthBarRect.GetComponent<Image>();
-        }
     }
 
     public void SetHealth(int currentHP, int maxHP)
@@ -28,11 +24,18 @@ public class HPIndicatorUI : MonoBehaviour
 
         if (currentHP <= 0.2f * maxHP)
         {
+            hpImage = healthBarRect.GetComponent<Image>();
             hpImage.color = Color.red;
         }
         else if (currentHP <= 0.4f * maxHP)
         {
+            hpImage = healthBarRect.GetComponent<Image>();
             hpImage.color = Color.yellow;
+        }
+        else
+        {
+            hpImage = healthBarRect.GetComponent<Image>();
+            hpImage.color = Color.green;
         }
 
         healthBarRect.localScale = new Vector3(value, healthBarRect.localScale.y, healthBarRect.localScale.z);

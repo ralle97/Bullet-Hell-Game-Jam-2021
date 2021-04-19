@@ -25,8 +25,6 @@ public class Projectile : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log(timer);
-
         timer -= Time.deltaTime;
 
         if (timer <= 0.0f)
@@ -47,6 +45,11 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.CompareTag("Powerup"))
+        {
+            return;
+        }
+
         if (collision.gameObject.CompareTag("Enemy"))
         {
             // TODO: Change to SetActive(false) in case you do enemies via object pooling

@@ -15,13 +15,13 @@ public class UpgradeMenuUI : MonoBehaviour
     private TextMeshProUGUI damageText;
 
     [SerializeField]
-    private int healthAddition = 75;
+    private int healthAddition = 50;
     [SerializeField]
     private float speedAddition = 1f;
     [SerializeField]
     private float fireRateAddition = 1f;
     [SerializeField]
-    private int damageAddition = 10;
+    private int damageAddition = 5;
 
     [SerializeField]
     private int upgradeCost = 1;
@@ -35,8 +35,8 @@ public class UpgradeMenuUI : MonoBehaviour
     {
         stats = PlayerStats.instance;
 
-        healthAddition = stats.maxHealth / 2;
-        damageAddition = stats.damage / 2;
+        healthAddition = stats.maxHealth / 3;
+        damageAddition = stats.damage / 4;
     }
 
     private void OnEnable()

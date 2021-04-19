@@ -4117,7 +4117,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -10
   m_TargetDisplay: 0
 --- !u!224 &1128395943
 RectTransform:
@@ -5246,7 +5246,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1394493487}
-  - component: {fileID: 1394493488}
   m_Layer: 5
   m_Name: WaveAndUpgradeButtonUI
   m_TagString: Untagged
@@ -5275,18 +5274,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1394493488
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1394493486}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fc6244b9166d2e48bdb7deb23bfd329, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1494639372
 GameObject:
   m_ObjectHideFlags: 0
@@ -5934,7 +5921,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1738575674}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b98f69b9c70064a479a2e56f8b6106db, type: 3}
   m_Name: 
@@ -5948,7 +5935,7 @@ MonoBehaviour:
   fireRateAddition: 1
   damageAddition: 10
   upgradeCost: 1
-  hpBar: {fileID: 0}
+  hpBar: {fileID: 652377604}
 --- !u!1 &1738594521
 GameObject:
   m_ObjectHideFlags: 0
@@ -20683,7 +20670,7 @@ PrefabInstance:
     - target: {fileID: 2102144190411539179, guid: 90c97fa0f4756b5408882d9c313cb72b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2102144190411539179, guid: 90c97fa0f4756b5408882d9c313cb72b,
         type: 3}
@@ -21735,6 +21722,16 @@ PrefabInstance:
       propertyPath: powerupTimerText
       value: 
       objectReference: {fileID: 1258169293}
+    - target: {fileID: 2893620147787128776, guid: 698e106e7f4a9af4a9eda33ef0ac7665,
+        type: 3}
+      propertyPath: upgradePointsText
+      value: 
+      objectReference: {fileID: 867932587}
+    - target: {fileID: 2893620147787128776, guid: 698e106e7f4a9af4a9eda33ef0ac7665,
+        type: 3}
+      propertyPath: upgradePointsAward
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2893620147787128777, guid: 698e106e7f4a9af4a9eda33ef0ac7665,
         type: 3}
       propertyPath: m_RootOrder
@@ -21795,6 +21792,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameMaster
       objectReference: {fileID: 0}
+    - target: {fileID: 2893620147787128778, guid: 698e106e7f4a9af4a9eda33ef0ac7665,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 698e106e7f4a9af4a9eda33ef0ac7665, type: 3}
 --- !u!1001 &5443134911260354713
@@ -21806,6 +21808,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5443134910397806408, guid: 65d847f07e262034d9edd6d8311db9ad,
         type: 3}
+      propertyPath: upgradeMenuUI
+      value: 
+      objectReference: {fileID: 1738575674}
+    - target: {fileID: 5443134910397806408, guid: 65d847f07e262034d9edd6d8311db9ad,
+        type: 3}
       propertyPath: waveCountdownUI
       value: 
       objectReference: {fileID: 1394493486}
@@ -21814,26 +21821,6 @@ PrefabInstance:
       propertyPath: waveCountdownText
       value: 
       objectReference: {fileID: 1365419173}
-    - target: {fileID: 5443134910397806408, guid: 65d847f07e262034d9edd6d8311db9ad,
-        type: 3}
-      propertyPath: waves.Array.data[0].enemyCounts.Array.data[0]
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5443134910397806408, guid: 65d847f07e262034d9edd6d8311db9ad,
-        type: 3}
-      propertyPath: waves.Array.data[0].enemyCounts.Array.data[1]
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5443134910397806408, guid: 65d847f07e262034d9edd6d8311db9ad,
-        type: 3}
-      propertyPath: waves.Array.data[0].enemyCounts.Array.data[2]
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5443134910397806408, guid: 65d847f07e262034d9edd6d8311db9ad,
-        type: 3}
-      propertyPath: waves.Array.data[0].enemyCounts.Array.data[3]
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 5443134910397806409, guid: 65d847f07e262034d9edd6d8311db9ad,
         type: 3}
       propertyPath: m_Name
@@ -21907,6 +21894,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6760659210139466696, guid: 0f101771dd39dcb479dbbcd68762145c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6760659210139466698, guid: 0f101771dd39dcb479dbbcd68762145c,
         type: 3}
@@ -22037,6 +22029,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneFader
       objectReference: {fileID: 0}
+    - target: {fileID: 3606282051122068602, guid: ec52f967137fe2548807588b27b07c4c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8760454472033862160, guid: ec52f967137fe2548807588b27b07c4c,
         type: 3}
       propertyPath: m_IsActive
@@ -22067,6 +22064,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ObjectPooler
+      objectReference: {fileID: 0}
+    - target: {fileID: 8460145476636074953, guid: d0de7937210616844a8bc10427216252,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8460145476636074954, guid: d0de7937210616844a8bc10427216252,
         type: 3}

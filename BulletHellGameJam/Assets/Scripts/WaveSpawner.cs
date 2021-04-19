@@ -53,6 +53,9 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI waveCountdownText;
 
+    [SerializeField]
+    private GameObject upgradeMenuUI;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -151,9 +154,9 @@ public class WaveSpawner : MonoBehaviour
         
         state = SpawnState.SPAWNING;
 
+        GameMaster.instance.WaveStart();
+        
         waveCountdownUI.SetActive(false);
-
-        GameMaster.instance.canUpgrade = false;
 
         int totalEnemyCount = 0;
 
