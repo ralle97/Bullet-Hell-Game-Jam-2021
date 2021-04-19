@@ -12,7 +12,17 @@ public class Powerup : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            // TODO: If health full don't allow pickup; Same for other pickups, if already in use, forbid now one
+            if (powerupType == PowerupType.HPREGEN)
+            {
+                PlayerStats stats = PlayerStats.instance;
+
+                if (stats.Health >= stats.maxHealth)
+                {
+                    return;
+                }
+            }
+
+            // TODO: What to do with multiple stopwatches?
 
             GameMaster.instance.PowerupPicked(powerupType);
             Destroy(gameObject);

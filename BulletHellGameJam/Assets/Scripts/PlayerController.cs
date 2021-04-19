@@ -11,8 +11,10 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private Camera mainCamera;
 
-    private float horizontal;
-    private float vertical;
+    [HideInInspector]
+    public float horizontal;
+    [HideInInspector]
+    public float vertical;
 
     private Rigidbody2D rigidBody;
 
@@ -31,6 +33,9 @@ public class PlayerController : MonoBehaviour
     private float firePointOffset;
 
     public GameObject deathEffect;
+
+    [SerializeField]
+    private HPIndicatorUI hpBar;
 
     // Start is called before the first frame update
     void Start()
@@ -64,6 +69,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gm.upgradeMenuOpened || gm.isGameOver || gm.isPaused)
+        {
+            return;
+        }
+
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
 
@@ -80,7 +90,7 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("Speed", move.magnitude);
         
         // TODO: Enable after testing
-        
+        /*
         if (isInvincible)
         {
             invincibleTimer -= Time.deltaTime;
@@ -91,7 +101,7 @@ public class PlayerController : MonoBehaviour
                 isInvincible = false;
             }
         }
-        
+        */
         if (shotCooldown)
         {
             shotTimer -= Time.deltaTime;
@@ -212,6 +222,8 @@ public class PlayerController : MonoBehaviour
         if (!isInvincible)
         {
             stats.Health -= damage;
+
+            hpBar.SetHealth(stats.Health, stats.maxHealth);
 
             if (stats.Health <= 0)
             {

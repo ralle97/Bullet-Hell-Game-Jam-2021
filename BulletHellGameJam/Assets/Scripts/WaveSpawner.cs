@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using TMPro;
 
 public class WaveSpawner : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class WaveSpawner : MonoBehaviour
     private Bounds bounds;
 
     public GameObject[] waveEnemyPrefabs;
+    public GameObject bossEnemyPrefab;
 
     private int[] waveEnemyCount;
 
@@ -45,6 +47,11 @@ public class WaveSpawner : MonoBehaviour
     }
 
     private bool bossWave = false;
+
+    [SerializeField]
+    private GameObject waveCountdownUI;
+    [SerializeField]
+    private TextMeshProUGUI waveCountdownText;
 
     // Start is called before the first frame update
     void Start()
@@ -82,17 +89,21 @@ public class WaveSpawner : MonoBehaviour
             {
                 if (state != SpawnState.SPAWNING)
                 {
+                    GameMaster.instance.canUpgrade = false;
                     StartCoroutine(SpawnWave(waves[nextWave]));
                 }
             }
             else
             {
                 waveCountdown -= Time.deltaTime;
+                waveCountdownText.text = "Next Wave in: " + (int)waveCountdown + "s";
             }
         }
         else
         {
             // TODO: Summon boss
+            //Instantiate(bossEnemyPrefab, Vector2.zero, Quaternion.identity);
+            GameMaster.instance.gameFinished = true;
         }
     }
 
@@ -117,14 +128,16 @@ public class WaveSpawner : MonoBehaviour
     {
         Debug.Log("Wave Completed!");
 
+        waveCountdownUI.SetActive(true);
+
         state = SpawnState.COUNTING;
         waveCountdown = timeBetweenWaves;
 
+        GameMaster.instance.WaveFinished();
+
         if (nextWave + 1 >= waves.Length)
         {
-            // TODO: Finish game for now; add boss fight
             bossWave = true;
-            GameMaster.instance.gameFinished = true;
         }
         else
         {
@@ -137,6 +150,10 @@ public class WaveSpawner : MonoBehaviour
         Debug.Log("Spawning Wave: " + wave.name);
         
         state = SpawnState.SPAWNING;
+
+        waveCountdownUI.SetActive(false);
+
+        GameMaster.instance.canUpgrade = false;
 
         int totalEnemyCount = 0;
 

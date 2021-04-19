@@ -39,6 +39,12 @@ public class GameMaster : MonoBehaviour
     [SerializeField]
     private GameObject gameFinishedUI;
 
+    [SerializeField]
+    private GameObject upgradeMenuUI;
+
+    [SerializeField]
+    private GameObject waveCountdownUI;
+
     [HideInInspector]
     public bool isPaused;
 
@@ -47,7 +53,7 @@ public class GameMaster : MonoBehaviour
 
     private float prevTimeScale = 1f;
 
-    private bool isGameOver = false;
+    public bool isGameOver = false;
 
     private AudioManager audioManager;
     private PlayerStats playerStats;
@@ -75,6 +81,20 @@ public class GameMaster : MonoBehaviour
     [HideInInspector]
     public bool gameFinished;
 
+    [SerializeField]
+    private HPIndicatorUI hpBar;
+
+    [SerializeField]
+    private int startingUpgradePoints = 0;
+    [SerializeField]
+    private int upgradePointsAward = 2;
+    [HideInInspector]
+    public bool canUpgrade = false;
+    public bool upgradeMenuOpened = false;
+    public static int UpgradePoints;
+    [SerializeField]
+    private TextMeshProUGUI upgradePointsText;
+
     private void Start()
     {
         playerStats = PlayerStats.instance;
@@ -100,6 +120,9 @@ public class GameMaster : MonoBehaviour
         {
             Debug.LogError("GameOverUI not found!");
         }
+
+        UpgradePoints = startingUpgradePoints;
+        upgradePointsText.text = "Upgrade points: " + UpgradePoints.ToString() + "UP";
     }
 
     private void Update()
@@ -155,7 +178,19 @@ public class GameMaster : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
             {
-                TogglePauseMenu(!pauseGameUI.activeSelf);
+                if (!upgradeMenuOpened)
+                {
+                    TogglePauseMenu(!pauseGameUI.activeSelf);
+                }
+                else
+                {
+                    ToggleUpgradeMenu(!upgradeMenuUI.activeSelf);
+                }
+            }
+
+            if (canUpgrade && Input.GetKeyDown(KeyCode.U))
+            {
+                ToggleUpgradeMenu(!upgradeMenuUI.activeSelf);
             }
         }
     }
@@ -177,6 +212,27 @@ public class GameMaster : MonoBehaviour
         }
     }
 
+    public void ToggleUpgradeMenu(bool active)
+    {
+        upgradeMenuUI.SetActive(active);
+
+        if (active)
+        {
+            upgradeMenuOpened = true;
+            upgradePointsText.gameObject.SetActive(false);
+            prevTimeScale = Time.timeScale;
+            Time.timeScale = 0.5f;
+        }
+        else
+        {
+            upgradeMenuOpened = false;
+            upgradePointsText.gameObject.SetActive(true);
+            Time.timeScale = prevTimeScale;
+        }
+
+        upgradePointsText.text = "Upgrade points: " + UpgradePoints.ToString() + "UP";
+    }
+
     void SpawnRandomPowerup()
     {
         int index = Random.Range(0, powerupPrefabs.Length);
@@ -195,20 +251,20 @@ public class GameMaster : MonoBehaviour
 
     public void EndGame()
     {
+        Time.timeScale = 1f;
         isGameOver = true;
 
+        waveCountdownUI.SetActive(false);
         gameOverUI.SetActive(true);
-
-        Debug.Log("GAME OVER!");
     }
 
     private void FinishGame()
     {
+        Time.timeScale = 1f;
         isGameOver = true;
 
+        waveCountdownUI.SetActive(false);
         gameFinishedUI.SetActive(true);
-
-        Debug.Log("CONGRATULATIONS!");
     }
 
     public static void KillEnemy(Enemy enemy)
@@ -240,10 +296,9 @@ public class GameMaster : MonoBehaviour
 
         if (type == Powerup.PowerupType.HPREGEN)
         {
-            // TODO: Revamp to check if HP is already max
             playerStats.Health = playerStats.maxHealth;
-            
-            // TODO: Update health bar
+
+            hpBar.SetHealth(playerStats.Health, playerStats.maxHealth);
         }
         else if (type == Powerup.PowerupType.STOPWATCH)
         {
@@ -281,5 +336,12 @@ public class GameMaster : MonoBehaviour
         }
 
         Debug.Log("Powerup " + type + " picked.");
+    }
+
+    public void WaveFinished()
+    {
+        UpgradePoints += upgradePointsAward;
+        upgradePointsText.text = "Upgrade points: " + UpgradePoints.ToString() + "UP";
+        canUpgrade = true;
     }
 }

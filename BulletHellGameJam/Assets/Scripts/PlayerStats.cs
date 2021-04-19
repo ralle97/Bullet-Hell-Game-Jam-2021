@@ -29,7 +29,7 @@ public class PlayerStats : MonoBehaviour
 
     #endregion
 
-    public int maxHealth = 100;
+    public int maxHealth = 150;
 
     private int currentHealth;
     public int Health
