@@ -286,6 +286,21 @@ public class GameMaster : MonoBehaviour
         Destroy(enemy.gameObject);
     }
 
+    public static void KillBoss(BossEnemy boss)
+    {
+        for (int i = 0; i < boss.deathParticles.Length; i++)
+        {
+            Instantiate(boss.deathParticles[i], boss.transform.position, Quaternion.identity);
+        }
+        CameraShake.instance.Shake(7f, 1f);
+
+        boss.patternChangeText.gameObject.SetActive(false);
+
+        Destroy(boss.gameObject);
+
+        instance.gameFinished = true;
+    }
+
     public static void KillPlayer(PlayerController player)
     {
         Instantiate(player.deathEffect, player.transform.position, Quaternion.identity);
@@ -302,7 +317,7 @@ public class GameMaster : MonoBehaviour
 
         if (type == Powerup.PowerupType.HPREGEN)
         {
-            playerStats.Health = playerStats.maxHealth;
+            playerStats.Health += Mathf.RoundToInt(playerStats.maxHealth / 3f);
 
             hpBar.SetHealth(playerStats.Health, playerStats.maxHealth);
         }

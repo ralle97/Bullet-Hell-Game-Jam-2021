@@ -47,6 +47,7 @@ public class WaveSpawner : MonoBehaviour
     }
 
     private bool bossWave = false;
+    private bool bossSpawned = false;
 
     [SerializeField]
     private GameObject waveCountdownUI;
@@ -74,6 +75,11 @@ public class WaveSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (bossSpawned)
+        {
+            return;
+        }
+
         if (!bossWave)
         {
             if (state == SpawnState.WAITING)
@@ -105,8 +111,8 @@ public class WaveSpawner : MonoBehaviour
         else
         {
             // TODO: Summon boss
-            //Instantiate(bossEnemyPrefab, Vector2.zero, Quaternion.identity);
-            GameMaster.instance.gameFinished = true;
+            Instantiate(bossEnemyPrefab, Vector2.zero, Quaternion.identity);
+            bossSpawned = true;
         }
     }
 

@@ -9,6 +9,7 @@ TagManager:
   - PlayerProjectile
   - Background
   - Powerup
+  - BossEnemy
   layers:
   - Default
   - TransparentFX

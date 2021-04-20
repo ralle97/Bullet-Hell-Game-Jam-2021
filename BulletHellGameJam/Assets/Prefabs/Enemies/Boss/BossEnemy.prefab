@@ -160,8 +160,8 @@ GameObject:
   - component: {fileID: 2827643321042461055}
   - component: {fileID: 8406657572537729914}
   - component: {fileID: 6806599524058583708}
-  - component: {fileID: 8482788501878683557}
   - component: {fileID: 2761340298851302951}
+  - component: {fileID: 8482788501878683557}
   m_Layer: 0
   m_Name: BossEnemy
   m_TagString: Untagged
@@ -294,32 +294,8 @@ PolygonCollider2D:
       - {x: 2.3772137, y: 0.117651224}
       - {x: 2.963662, y: -0.3676721}
       - {x: 2.3954406, y: -0.83561873}
-      - {x: 1.2144325, y: -0.9247515}
+      - {x: 1.1721126, y: -0.9564915}
       - {x: 1.0807338, y: -2.5160856}
---- !u!114 &8482788501878683557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5742358458125421292}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deaea62165f3b4948b0fbaaba5a0d67d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stats:
-    maxHealth: 100
-    damage: 40
-    fireRate: 2
-    projectileForce: 500
-    speed: 2
-    movementRange: 5
-  enemyType: 0
-  player: {fileID: 0}
-  shoot: 0
-  deathEffect: {fileID: 0}
-  hpIndicator: {fileID: 0}
 --- !u!95 &2761340298851302951
 Animator:
   serializedVersion: 3
@@ -339,6 +315,66 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8482788501878683557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5742358458125421292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deaea62165f3b4948b0fbaaba5a0d67d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats:
+    maxHealth: 1000
+    damage: 40
+    speed: 2
+  hpIndicator: {fileID: 323241605330959967}
+  patterns:
+  - name: ScatterAttack
+    patternCooldown: 20
+    patternFireRate: 0
+    patternDuration: 10
+    projectileName: 
+    projectileForce: 0
+    projectileDamage: 0
+  - name: TriangleAttack
+    patternCooldown: 20
+    patternFireRate: 0
+    patternDuration: 10
+    projectileName: 
+    projectileForce: 0
+    projectileDamage: 0
+  - name: AllAroundAttack
+    patternCooldown: 20
+    patternFireRate: 0
+    patternDuration: 10
+    projectileName: 
+    projectileForce: 0
+    projectileDamage: 0
+  - name: RotateFullCircleAttack
+    patternCooldown: 20
+    patternFireRate: 0
+    patternDuration: 10
+    projectileName: 
+    projectileForce: 0
+    projectileDamage: 0
+  - name: RotateToPlayerPositionAttack
+    patternCooldown: 20
+    patternFireRate: 0
+    patternDuration: 10
+    projectileName: 
+    projectileForce: 0
+    projectileDamage: 0
+  player: {fileID: 0}
+  shoot: 0
+  deathParticles:
+  - {fileID: 2337370661862193964, guid: ec766682d75681b49b11ee9d0c026e6b, type: 3}
+  - {fileID: 4485688021553597617, guid: 87a589cda63643a45b5ca4f371415b97, type: 3}
+  - {fileID: 1855421453145356677, guid: fbef3de941a99bc4eb0e235fcef71713, type: 3}
+  - {fileID: 3409925352235540501, guid: 44da463a6524dc14b8a8c25c159191ca, type: 3}
 --- !u!1 &6972626347119513481
 GameObject:
   m_ObjectHideFlags: 0

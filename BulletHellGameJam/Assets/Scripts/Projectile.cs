@@ -8,9 +8,18 @@ public class Projectile : MonoBehaviour
 
     private Rigidbody2D rigidBody;
 
+    [HideInInspector]
     public Enemy owner;
+    private int projectileDamage;
     public float timeToLive = 10.0f;
     private float timer;
+
+    private float projectileForce;
+
+    [HideInInspector]
+    public bool isOwnerBoss = false;
+    [HideInInspector]
+    public int bossProjectileDamage;
 
     private void Awake()
     {
@@ -21,6 +30,11 @@ public class Projectile : MonoBehaviour
     private void OnEnable()
     {
         timer = timeToLive;
+
+        if (owner != null)
+        {
+            projectileDamage = owner.stats.damage;
+        }
     }
 
     private void Update()
@@ -40,6 +54,8 @@ public class Projectile : MonoBehaviour
 
     public void Launch(Vector2 dir, float force)
     {
+        projectileForce = force;
+
         rigidBody.AddForce(dir * force);
     }
 
@@ -60,7 +76,20 @@ public class Projectile : MonoBehaviour
         else if (collision.gameObject.CompareTag("Player"))
         {
             PlayerController player = collision.GetComponent<PlayerController>();
-            player.DamagePlayer(owner.stats.damage);
+            if (!isOwnerBoss)
+            {
+                player.DamagePlayer(projectileDamage);
+            }
+            else
+            {
+                player.DamagePlayer(bossProjectileDamage);
+            }
+        }
+
+        else if (collision.gameObject.CompareTag("BossEnemy"))
+        {
+            BossEnemy boss = collision.GetComponent<BossEnemy>();
+            boss.DamageBoss(PlayerStats.instance.damage);
         }
 
         if ((this.name.Equals("IceCreamProjectileBig") || this.name.Equals("IceCreamProjectileBig(Clone)")) && collision.CompareTag("Background"))
@@ -79,12 +108,14 @@ public class Projectile : MonoBehaviour
     {
         Vector2[] positions = new Vector2[count];
 
+        float angleOffset = Random.Range(-10f, 10f);
+
         for (int i = 0; i < count; i++)
         {
             float angle = i * (360 / count) * Mathf.Deg2Rad;
 
-            float posX = Mathf.Cos(angle) * firePointOffset;
-            float posY = Mathf.Sin(angle) * firePointOffset;
+            float posX = Mathf.Cos(angle + angleOffset) * firePointOffset;
+            float posY = Mathf.Sin(angle + angleOffset) * firePointOffset;
 
             positions[i] = new Vector2(transform.position.x + posX, transform.position.y + posY);
         }
@@ -100,9 +131,9 @@ public class Projectile : MonoBehaviour
                 projectileObject.SetActive(true);
 
                 Projectile projectile = projectileObject.GetComponent<Projectile>();
-                projectile.owner = this.owner;
+                projectile.projectileDamage = this.projectileDamage;
 
-                projectile.Launch((positions[i] - (Vector2)transform.position).normalized, owner.stats.projectileForce * 2);
+                projectile.Launch((positions[i] - (Vector2)transform.position).normalized, projectileForce * 2);
             }
         }
     }

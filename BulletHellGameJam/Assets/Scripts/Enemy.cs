@@ -37,6 +37,7 @@ public class Enemy : MonoBehaviour
 
     public EnemyType enemyType;
 
+    [HideInInspector]
     public PlayerController player;
 
     private Rigidbody2D rigidBody;
@@ -92,46 +93,46 @@ public class Enemy : MonoBehaviour
 
         if (shotTimer <= 0f && player != null)
         {
-            if (enemyType == EnemyType.ICECREAM)
+            switch (enemyType)
             {
-                if (!waitToShoot && !shoot)
-                {
-                    animator.SetTrigger("Shoot");
-                    waitToShoot = true;
-                }
-                else if (waitToShoot && shoot)
-                {
-                    IceCreamAttack("IceCreamProjectileBig");
-                    waitToShoot = false;
-                }
-            }
+                case EnemyType.ICECREAM:
+                    if (!waitToShoot && !shoot)
+                    {
+                        animator.SetTrigger("Shoot");
+                        waitToShoot = true;
+                    }
+                    else if (waitToShoot && shoot)
+                    {
+                        IceCreamAttack("IceCreamProjectileBig");
+                        waitToShoot = false;
+                    }
+                    break;
 
-            else if (enemyType == EnemyType.PIZZA)
-            {
-                if (!waitToShoot && !shoot)
-                {
-                    animator.SetTrigger("Shoot");
-                    waitToShoot = true;
-                }
-                else if (waitToShoot && shoot)
-                {
-                    TriangleAttack(triangleShotCount, triangleTotalAngle, "PizzaProjectile");
-                    waitToShoot = false;
-                }
-            }
+                case EnemyType.PIZZA:
+                    if (!waitToShoot && !shoot)
+                    {
+                        animator.SetTrigger("Shoot");
+                        waitToShoot = true;
+                    }
+                    else if (waitToShoot && shoot)
+                    {
+                        TriangleAttack(triangleShotCount, triangleTotalAngle, "PizzaProjectile");
+                        waitToShoot = false;
+                    }
+                    break;
 
-            else if (enemyType == EnemyType.DONUT)
-            {
-                if (!waitToShoot && !shoot)
-                {
-                    animator.SetTrigger("Shoot");
-                    waitToShoot = true;
-                }
-                else if (waitToShoot && shoot)
-                {
-                    AllAroundAttack(allAroundShots, "DonutProjectile");
-                    waitToShoot = false;
-                }
+                case EnemyType.DONUT:
+                    if (!waitToShoot && !shoot)
+                    {
+                        animator.SetTrigger("Shoot");
+                        waitToShoot = true;
+                    }
+                    else if (waitToShoot && shoot)
+                    {
+                        AllAroundAttack(allAroundShots, "DonutProjectile");
+                        waitToShoot = false;
+                    }
+                    break;
             }
         }
     }

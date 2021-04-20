@@ -69,3 +69,13 @@ MonoBehaviour:
       type: 3}
     size: 120
     shouldExpand: 1
+  - tag: BossProjectileBlack
+    prefab: {fileID: 2558553481705781045, guid: 678a64493bc221d46a8f361b34324511,
+      type: 3}
+    size: 200
+    shouldExpand: 1
+  - tag: BossProjectileBlue
+    prefab: {fileID: 3572980859649742611, guid: 769982eee74363347a4a354a1fd16f43,
+      type: 3}
+    size: 200
+    shouldExpand: 1
