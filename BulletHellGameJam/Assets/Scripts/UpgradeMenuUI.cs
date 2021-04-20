@@ -31,12 +31,21 @@ public class UpgradeMenuUI : MonoBehaviour
     [SerializeField]
     private HPIndicatorUI hpBar;
 
+    private AudioManager audioManager;
+
+    [SerializeField]
+    private string upgradeSound = "Upgrade";
+    [SerializeField]
+    private string noUpgradePointsSound = "NoUpgradePoints";
+
     private void Awake()
     {
         stats = PlayerStats.instance;
 
         healthAddition = stats.maxHealth / 3;
         damageAddition = stats.damage / 4;
+
+        audioManager = AudioManager.instance;
     }
 
     private void OnEnable()
@@ -56,7 +65,7 @@ public class UpgradeMenuUI : MonoBehaviour
     {
         if (GameMaster.UpgradePoints < upgradeCost)
         {
-            AudioManager.instance.PlaySound("NoUpgradePoints");
+            audioManager.PlaySound(noUpgradePointsSound);
             return false;
         }
         else
@@ -68,7 +77,7 @@ public class UpgradeMenuUI : MonoBehaviour
     private void Upgrade()
     {
         GameMaster.UpgradePoints -= upgradeCost;
-        AudioManager.instance.PlaySound("Upgrade");
+        audioManager.PlaySound(upgradeSound);
 
         UpdateValues();
     }

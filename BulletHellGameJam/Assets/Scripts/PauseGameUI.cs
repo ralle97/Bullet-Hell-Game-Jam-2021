@@ -5,17 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class PauseGameUI : MonoBehaviour
 {
-    /*
     [SerializeField]
     private string mouseHoverSound = "ButtonHover";
 
     [SerializeField]
     private string buttonPressSound = "ButtonPress";
-    */
 
     public SceneFader sceneFader;
 
-    public string menuSceneName = "MainMenu";
+    [SerializeField]
+    private string menuSceneName = "MainMenu";
 
     private AudioManager audioManager;
 
@@ -29,27 +28,30 @@ public class PauseGameUI : MonoBehaviour
         }
     }
 
-    // TODO: AudioManager to play button press sound
-
     public void ToMainMenu()
     {
-        Debug.Log("To MainMenu!!!");
-        // TODO: LoadScene("MainMenu"); with sceneFader
+        audioManager.PlaySound(buttonPressSound);
+
+        sceneFader.FadeTo(menuSceneName);
     }
 
     public void Quit()
     {
+        audioManager.PlaySound(buttonPressSound);
+
         Debug.Log("APPLICATION QUIT!");
         Application.Quit();
     }
 
     public void Continue()
     {
+        audioManager.PlaySound(buttonPressSound);
+
         GameMaster.instance.TogglePauseMenu(false);
     }
 
-    private void OnMouseOver()
+    public void OnMouseOver()
     {
-        // TODO: play mouseHover sound
+        audioManager.PlaySound(mouseHoverSound);
     }
 }

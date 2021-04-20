@@ -172,6 +172,7 @@ GameObject:
   - component: {fileID: 155398449}
   - component: {fileID: 155398452}
   - component: {fileID: 155398453}
+  - component: {fileID: 155398454}
   m_Layer: 5
   m_Name: RestartButton
   m_TagString: Untagged
@@ -324,6 +325,34 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &155398454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155398447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 232192064}
+          m_MethodName: OnMouseOver
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &232192060
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,6 +444,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07625d4f5b8baec4e85cdc1cc91aca9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mouseHoverSound: ButtonHover
+  buttonPressSound: ButtonPress
   menuSceneName: MainMenu
   sceneFader: {fileID: 6796243334179953264}
 --- !u!1 &237954657
@@ -567,6 +598,7 @@ GameObject:
   - component: {fileID: 322146789}
   - component: {fileID: 322146788}
   - component: {fileID: 322146787}
+  - component: {fileID: 322146792}
   m_Layer: 5
   m_Name: MainMenuButton
   m_TagString: Untagged
@@ -719,6 +751,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 322146785}
   m_CullTransparentMesh: 0
+--- !u!114 &322146792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322146785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1380030201}
+          m_MethodName: OnMouseOver
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &347675372
 GameObject:
   m_ObjectHideFlags: 0
@@ -2184,6 +2244,7 @@ GameObject:
   - component: {fileID: 736116182}
   - component: {fileID: 736116181}
   - component: {fileID: 736116185}
+  - component: {fileID: 736116186}
   m_Layer: 5
   m_Name: MainMenuButton
   m_TagString: Untagged
@@ -2336,6 +2397,34 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &736116186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736116179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1738594523}
+          m_MethodName: OnMouseOver
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &774065062
 GameObject:
   m_ObjectHideFlags: 0
@@ -3374,6 +3463,7 @@ GameObject:
   - component: {fileID: 1044433776}
   - component: {fileID: 1044433775}
   - component: {fileID: 1044433774}
+  - component: {fileID: 1044433779}
   m_Layer: 5
   m_Name: RestartButton
   m_TagString: Untagged
@@ -3526,6 +3616,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1044433772}
   m_CullTransparentMesh: 0
+--- !u!114 &1044433779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044433772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1380030201}
+          m_MethodName: OnMouseOver
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1057289568
 GameObject:
   m_ObjectHideFlags: 0
@@ -4294,6 +4412,7 @@ GameObject:
   - component: {fileID: 1249740520}
   - component: {fileID: 1249740519}
   - component: {fileID: 1249740523}
+  - component: {fileID: 1249740524}
   m_Layer: 5
   m_Name: QuitButton
   m_TagString: Untagged
@@ -4446,6 +4565,34 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1249740524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249740517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1738594523}
+          m_MethodName: OnMouseOver
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1258169291
 GameObject:
   m_ObjectHideFlags: 0
@@ -4594,6 +4741,7 @@ GameObject:
   - component: {fileID: 1265167998}
   - component: {fileID: 1265168001}
   - component: {fileID: 1265168002}
+  - component: {fileID: 1265168003}
   m_Layer: 5
   m_Name: MainMenuButton
   m_TagString: Untagged
@@ -4746,6 +4894,34 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1265168003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265167996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 232192064}
+          m_MethodName: OnMouseOver
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1272097096
 GameObject:
   m_ObjectHideFlags: 0
@@ -4760,6 +4936,7 @@ GameObject:
   - component: {fileID: 1272097098}
   - component: {fileID: 1272097101}
   - component: {fileID: 1272097102}
+  - component: {fileID: 1272097103}
   m_Layer: 5
   m_Name: QuitButton
   m_TagString: Untagged
@@ -4912,6 +5089,34 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1272097103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272097096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 232192064}
+          m_MethodName: OnMouseOver
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1356218919
 GameObject:
   m_ObjectHideFlags: 0
@@ -5198,6 +5403,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07625d4f5b8baec4e85cdc1cc91aca9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mouseHoverSound: ButtonHover
+  buttonPressSound: ButtonPress
   menuSceneName: MainMenu
   sceneFader: {fileID: 6796243334179953264}
 --- !u!114 &1380030202
@@ -5722,6 +5929,7 @@ GameObject:
   - component: {fileID: 1729259543}
   - component: {fileID: 1729259542}
   - component: {fileID: 1729259546}
+  - component: {fileID: 1729259547}
   m_Layer: 5
   m_Name: ContinueButton
   m_TagString: Untagged
@@ -5874,6 +6082,34 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1729259547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1729259540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1738594523}
+          m_MethodName: OnMouseOver
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1738575674
 GameObject:
   m_ObjectHideFlags: 0
@@ -5936,6 +6172,8 @@ MonoBehaviour:
   damageAddition: 10
   upgradeCost: 1
   hpBar: {fileID: 652377604}
+  upgradeSound: Upgrade
+  noUpgradePointsSound: NoUpgradePoints
 --- !u!1 &1738594521
 GameObject:
   m_ObjectHideFlags: 0
@@ -5990,6 +6228,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5e43607aa7e4604e8c70a3d19744210, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mouseHoverSound: ButtonHover
+  buttonPressSound: ButtonPress
   sceneFader: {fileID: 6796243334179953264}
   menuSceneName: MainMenu
 --- !u!114 &1738594524
@@ -21528,6 +21768,7 @@ GameObject:
   - component: {fileID: 2110479125}
   - component: {fileID: 2110479124}
   - component: {fileID: 2110479123}
+  - component: {fileID: 2110479128}
   m_Layer: 5
   m_Name: QuitButton
   m_TagString: Untagged
@@ -21680,6 +21921,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2110479121}
   m_CullTransparentMesh: 0
+--- !u!114 &2110479128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110479121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1380030201}
+          m_MethodName: OnMouseOver
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &2893620147741581059
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21727,11 +21996,6 @@ PrefabInstance:
       propertyPath: upgradePointsText
       value: 
       objectReference: {fileID: 867932587}
-    - target: {fileID: 2893620147787128776, guid: 698e106e7f4a9af4a9eda33ef0ac7665,
-        type: 3}
-      propertyPath: upgradePointsAward
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2893620147787128777, guid: 698e106e7f4a9af4a9eda33ef0ac7665,
         type: 3}
       propertyPath: m_RootOrder
@@ -21791,11 +22055,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GameMaster
-      objectReference: {fileID: 0}
-    - target: {fileID: 2893620147787128778, guid: 698e106e7f4a9af4a9eda33ef0ac7665,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 698e106e7f4a9af4a9eda33ef0ac7665, type: 3}
@@ -21894,11 +22153,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AudioManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 6760659210139466696, guid: 0f101771dd39dcb479dbbcd68762145c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6760659210139466698, guid: 0f101771dd39dcb479dbbcd68762145c,
         type: 3}

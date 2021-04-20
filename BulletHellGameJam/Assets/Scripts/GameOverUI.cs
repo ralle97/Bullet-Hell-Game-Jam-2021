@@ -5,13 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class GameOverUI : MonoBehaviour
 {
-    /*
     [SerializeField]
     private string mouseHoverSound = "ButtonHover";
 
     [SerializeField]
-    private string buttonPressSound = "ButtonPress";
-    */
+    private string buttonPressSound = "ButtonPress";   
 
     public string menuSceneName = "MainMenu";
 
@@ -29,28 +27,30 @@ public class GameOverUI : MonoBehaviour
         }
     }
 
-    // TODO: AudioManager to play button press sound
-
     public void ToMainMenu()
     {
+        audioManager.PlaySound(buttonPressSound);
+
         sceneFader.FadeTo(menuSceneName);
     }
 
     public void Quit()
     {
+        audioManager.PlaySound(buttonPressSound);
+        
         Debug.Log("APPLICATION QUIT!");
         Application.Quit();
     }
 
     public void Restart()
     {
-        Debug.Log("Restart Cicked");
+        audioManager.PlaySound(buttonPressSound);
         
         sceneFader.FadeTo(SceneManager.GetActiveScene().name);
     }
 
-    private void OnMouseOver()
+    public void OnMouseOver()
     {
-        // TODO: play mouseHover sound
+        audioManager.PlaySound(mouseHoverSound);
     }
 }

@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuUI : MonoBehaviour
 {
+    [SerializeField]
+    private string mouseHoverSound = "ButtonHover";
+
+    [SerializeField]
+    private string buttonPressSound = "ButtonPress";
+
     public SceneFader sceneFader;
 
     public string playLevelSceneName = "MainLevel";
@@ -23,17 +29,23 @@ public class MainMenuUI : MonoBehaviour
 
     public void PlayGame()
     {
+        audioManager.PlaySound(buttonPressSound);
+
         SceneManager.LoadScene(playLevelSceneName);
     }
 
     public void QuitGame()
     {
+        audioManager.PlaySound(buttonPressSound);
+
         Debug.Log("Application exiting...");
         Application.Quit();
     }
 
-    private void OnMouseOver()
+    public void OnMouseOver()
     {
-        
+        Debug.Log("Sound should play");
+
+        audioManager.PlaySound(mouseHoverSound);
     }
 }

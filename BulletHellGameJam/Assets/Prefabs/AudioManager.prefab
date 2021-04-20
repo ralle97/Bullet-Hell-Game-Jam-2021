@@ -51,3 +51,17 @@ MonoBehaviour:
     randomVolume: 0.2
     randomPitch: 0.1
     loop: 0
+  - name: ButtonPress
+    clip: {fileID: 8300000, guid: 78970f4e883b5544dbbbf2558ee81e5d, type: 3}
+    volume: 0.8
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+    loop: 0
+  - name: ButtonHover
+    clip: {fileID: 8300000, guid: b8c4582f00a0e0247b89ac61b3aff8fe, type: 3}
+    volume: 0.5
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+    loop: 0
