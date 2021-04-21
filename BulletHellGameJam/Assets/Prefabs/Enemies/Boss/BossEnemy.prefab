@@ -328,10 +328,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-    maxHealth: 4000
+    maxHealth: 8000
     damage: 50
     speed: 1.5
-    armorPct: 0.2
+    armorPct: 0.3
   hpIndicator: {fileID: 323241605330959967}
   patterns:
   - name: ScatterAttack
@@ -364,7 +364,7 @@ MonoBehaviour:
     projectileDamage: 30
   - name: RotateToPlayerPositionAttack
     patternCooldown: 20
-    patternFireRate: 10
+    patternFireRate: 12
     patternDuration: 10
     projectileName: BossProjectileBlue
     projectileForce: 400
@@ -377,7 +377,7 @@ MonoBehaviour:
   allAroundShots: 24
   rotateSpeed: 3
   numOfFirepoints: 3
-  totalAngleCoverage: 90
+  totalAngleCoverage: 60
   deathParticles:
   - {fileID: 2337370661862193964, guid: ec766682d75681b49b11ee9d0c026e6b, type: 3}
   - {fileID: 4485688021553597617, guid: 87a589cda63643a45b5ca4f371415b97, type: 3}

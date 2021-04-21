@@ -39,6 +39,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private string fireProjectileSound = "FireProjectile";
 
+    [SerializeField]
+    private string playerGruntSound = "PlayerGrunt";
+
     // Start is called before the first frame update
     void Start()
     {
@@ -98,8 +101,6 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("Look X", lookDir.x);
         animator.SetFloat("Look Y", lookDir.y);
         animator.SetFloat("Speed", move.magnitude);
-        
-        // TODO: Enable after testing
         
         if (isInvincible)
         {
@@ -237,6 +238,8 @@ public class PlayerController : MonoBehaviour
             stats.Health -= damage;
 
             hpBar.SetHealth(stats.Health, stats.maxHealth);
+
+            audioManager.PlaySound(playerGruntSound);
 
             if (stats.Health <= 0)
             {

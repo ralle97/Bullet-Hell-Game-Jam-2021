@@ -35,7 +35,7 @@ public class BossEnemy : MonoBehaviour
 
         public float speed = 2f;
 
-        public float armorPct = 0.2f;
+        public float armorPct = 0.25f;
 
         public void Init()
         {
@@ -325,6 +325,11 @@ public class BossEnemy : MonoBehaviour
         
         while (scatterTimer > 0f)
         {
+            if (player == null)
+            {
+                yield break;
+            }    
+
             Vector2 startPosition = (player.transform.position - this.transform.position).normalized * firePointOffset;
 
             float offsetX = Random.Range(0.92f, 1.08f);
@@ -372,6 +377,11 @@ public class BossEnemy : MonoBehaviour
 
         while (triangleAttackTimer > 0f)
         {
+            if (player == null)
+            {
+                yield break;
+            }
+
             Vector2 startPosition = (player.transform.position - this.transform.position).normalized * firePointOffset;
 
             float startAngle = Mathf.Atan2(startPosition.y, startPosition.x);
@@ -525,6 +535,11 @@ public class BossEnemy : MonoBehaviour
 
         while (rotateAttackTimer > 0f)
         {
+            if (player == null)
+            {
+                yield break;
+            }
+
             float startAngle = Mathf.Atan2(player.transform.position.y, player.transform.position.x);
 
             float angle = rotateSpeed * Time.time;

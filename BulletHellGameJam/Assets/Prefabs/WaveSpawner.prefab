@@ -52,24 +52,26 @@ MonoBehaviour:
     type: 3}
   waves:
   - name: Wave1
-    enemyCounts: 03000000000000000000000000000000
-    rate: 1
+    enemyCounts: 03000000010000000000000000000000
+    rate: 0.75
   - name: Wave2
-    enemyCounts: 01000000020000000000000000000000
-    rate: 1
+    enemyCounts: 02000000030000000000000000000000
+    rate: 0.9
   - name: Wave3
-    enemyCounts: 01000000010000000200000000000000
+    enemyCounts: 02000000010000000200000000000000
     rate: 1
   - name: Wave4
-    enemyCounts: 01000000010000000000000003000000
+    enemyCounts: 01000000020000000000000003000000
     rate: 1
   - name: Wave5
-    enemyCounts: 02000000020000000100000003000000
+    enemyCounts: 03000000020000000100000004000000
     rate: 1
   - name: Wave6
-    enemyCounts: 03000000030000000200000004000000
-    rate: 1.5
+    enemyCounts: 05000000040000000200000004000000
+    rate: 1
   timeBetweenWaves: 10
   waveCountdownUI: {fileID: 0}
   waveCountdownText: {fileID: 0}
   upgradeMenuUI: {fileID: 0}
+  waveIncomingSound: WaveIncoming
+  bossWaveSound: BossWave

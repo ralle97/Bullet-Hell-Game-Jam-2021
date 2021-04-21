@@ -32,6 +32,7 @@ public class Enemy : MonoBehaviour
     }
 
     private ObjectPooler objectPooler;
+    private AudioManager audioManager;
 
     public EnemyStats stats = new EnemyStats();
 
@@ -61,6 +62,9 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private HPIndicatorUI hpIndicator;
 
+    [SerializeField]
+    private string collideSound = "EnemyCollide";
+
     private void OnEnable()
     {
         stats.Init();
@@ -71,7 +75,7 @@ public class Enemy : MonoBehaviour
             hpIndicator.SetHealth(stats.CurrentHealth, stats.maxHealth);
         }
 
-        shotTimer = stats.fireRate / 2;
+        shotTimer = 1.5f;
     }
 
     private void Start()
@@ -79,6 +83,7 @@ public class Enemy : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
+        audioManager = AudioManager.instance;
         objectPooler = ObjectPooler.instance;
 
         if (enemyType == EnemyType.DONUT)
@@ -204,6 +209,7 @@ public class Enemy : MonoBehaviour
 
             if (player != null && !player.IsInvincible())
             {
+                audioManager.PlaySound(collideSound);
                 player.DamagePlayer(stats.damage);
             }
         }
@@ -217,6 +223,7 @@ public class Enemy : MonoBehaviour
 
             if (player != null && !player.IsInvincible())
             {
+                audioManager.PlaySound(collideSound);
                 player.DamagePlayer(stats.damage);
             }
         }

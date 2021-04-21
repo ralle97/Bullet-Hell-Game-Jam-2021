@@ -27,6 +27,9 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     private string bossFireSound = "BossFire";
 
+    [SerializeField]
+    private string enemyFireSound = "EnemyFire";
+
     private void Awake()
     {
         audioManager = AudioManager.instance;
@@ -66,6 +69,10 @@ public class Projectile : MonoBehaviour
         {
             audioManager.PlaySound(bossFireSound);
         }
+        else if (owner != null)
+        {
+            audioManager.PlaySound(enemyFireSound);
+        }
 
         rigidBody.AddForce(dir * force);
     }
@@ -79,7 +86,6 @@ public class Projectile : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            // TODO: Change to SetActive(false) in case you do enemies via object pooling
             Enemy enemy = collision.GetComponent<Enemy>();
             enemy.DamageEnemy(PlayerStats.instance.damage);
         }

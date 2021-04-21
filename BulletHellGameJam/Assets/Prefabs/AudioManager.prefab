@@ -53,14 +53,14 @@ MonoBehaviour:
     loop: 0
   - name: ButtonPress
     clip: {fileID: 8300000, guid: 78970f4e883b5544dbbbf2558ee81e5d, type: 3}
-    volume: 0.8
+    volume: 0.9
     pitch: 1
     randomVolume: 0
     randomPitch: 0
     loop: 0
   - name: ButtonHover
     clip: {fileID: 8300000, guid: b8c4582f00a0e0247b89ac61b3aff8fe, type: 3}
-    volume: 0.5
+    volume: 0.4
     pitch: 1
     randomVolume: 0
     randomPitch: 0
@@ -93,3 +93,59 @@ MonoBehaviour:
     randomVolume: 0.1
     randomPitch: 0.1
     loop: 0
+  - name: IceCreamProjectileExplosion
+    clip: {fileID: 8300000, guid: e3619d4059d66524e918cd055ba277af, type: 3}
+    volume: 0.7
+    pitch: 1
+    randomVolume: 0.1
+    randomPitch: 0.1
+    loop: 0
+  - name: BossFire
+    clip: {fileID: 8300000, guid: 8b908f5ba27e1084fa334ed2eebae0d1, type: 3}
+    volume: 0.6
+    pitch: 1
+    randomVolume: 0.2
+    randomPitch: 0.2
+    loop: 0
+  - name: EnemyCollide
+    clip: {fileID: 8300000, guid: b90df2c6a7432b24b8404e6ea1e7bca9, type: 3}
+    volume: 0.7
+    pitch: 1
+    randomVolume: 0.1
+    randomPitch: 0.1
+    loop: 0
+  - name: EnemyFire
+    clip: {fileID: 8300000, guid: 620450096f45d99428464c92aa0ac15c, type: 3}
+    volume: 0.6
+    pitch: 1
+    randomVolume: 0.2
+    randomPitch: 0.1
+    loop: 0
+  - name: PlayerGrunt
+    clip: {fileID: 8300000, guid: 93179a872759c05478ed04c6cd75c136, type: 3}
+    volume: 0.6
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0.1
+    loop: 0
+  - name: WaveIncoming
+    clip: {fileID: 8300000, guid: 163880e9dca4db04d94a9462bc5058aa, type: 3}
+    volume: 0.5
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+    loop: 0
+  - name: BossWave
+    clip: {fileID: 8300000, guid: e9cc0675849ab46469dcdf94fde4456a, type: 3}
+    volume: 0.6
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+    loop: 0
+  - name: Music
+    clip: {fileID: 8300000, guid: cd00dce027142a8429cb243215d24ce1, type: 3}
+    volume: 0.45
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+    loop: 1

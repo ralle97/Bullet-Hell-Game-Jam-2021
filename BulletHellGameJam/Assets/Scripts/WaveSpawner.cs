@@ -57,6 +57,18 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField]
     private GameObject upgradeMenuUI;
 
+    private AudioManager audioManager;
+
+    [SerializeField]
+    private string waveIncomingSound = "WaveIncoming";
+    [SerializeField]
+    private string bossWaveSound = "BossWave";
+
+    [SerializeField]
+    private GameObject waveUI;
+    [SerializeField]
+    private TextMeshProUGUI waveUIText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -70,6 +82,8 @@ public class WaveSpawner : MonoBehaviour
         searchTimer = searchCountdown;
 
         waveEnemyCount = new int[waveEnemyPrefabs.Length];
+
+        audioManager = AudioManager.instance;
     }
 
     // Update is called once per frame
@@ -99,6 +113,12 @@ public class WaveSpawner : MonoBehaviour
                 if (state != SpawnState.SPAWNING)
                 {
                     GameMaster.instance.canUpgrade = false;
+                    
+                    waveUI.SetActive(true);
+                    waveUIText.text = "Wave <color=green>" + (nextWave + 1).ToString() + "</color> Incoming";
+                    
+                    audioManager.PlaySound(waveIncomingSound);
+                    
                     StartCoroutine(SpawnWave(waves[nextWave]));
                 }
             }
@@ -117,7 +137,14 @@ public class WaveSpawner : MonoBehaviour
             {
                 GameMaster.instance.canUpgrade = false;
                 GameMaster.instance.WaveStart();
+                
                 waveCountdownUI.gameObject.SetActive(false);
+
+                waveUI.SetActive(true);
+                waveUIText.fontSize = 42;
+                waveUIText.text = "<color=#0060ff>Boss Wave Incoming</color>";
+
+                audioManager.PlaySound(bossWaveSound);
 
                 Instantiate(bossEnemyPrefab, Vector2.zero, Quaternion.identity);
                 bossSpawned = true;
@@ -150,6 +177,8 @@ public class WaveSpawner : MonoBehaviour
 
         state = SpawnState.COUNTING;
         waveCountdown = timeBetweenWaves;
+
+        waveUI.SetActive(false);
 
         GameMaster.instance.WaveFinished();
 
