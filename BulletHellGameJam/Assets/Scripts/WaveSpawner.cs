@@ -69,6 +69,9 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI waveUIText;
 
+    private PlayerController player;
+    private GameMaster gm;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -84,6 +87,9 @@ public class WaveSpawner : MonoBehaviour
         waveEnemyCount = new int[waveEnemyPrefabs.Length];
 
         audioManager = AudioManager.instance;
+        gm = GameMaster.instance;
+
+        player = FindObjectOfType<PlayerController>();
     }
 
     // Update is called once per frame
@@ -171,7 +177,10 @@ public class WaveSpawner : MonoBehaviour
 
     private void WaveCompleted()
     {
-        Debug.Log("Wave Completed!");
+        if (gm.isGameOver)
+        {
+            return;
+        }
 
         waveCountdownUI.SetActive(true);
 
@@ -194,8 +203,6 @@ public class WaveSpawner : MonoBehaviour
 
     IEnumerator SpawnWave(Wave wave)
     {
-        Debug.Log("Spawning Wave: " + wave.name);
-        
         state = SpawnState.SPAWNING;
 
         GameMaster.instance.WaveStart();
@@ -232,10 +239,23 @@ public class WaveSpawner : MonoBehaviour
 
     private void SpawnEnemy(int index)
     {
-        float spawnPosX = Random.Range((float)-bounds.extents.x, (float)bounds.extents.x);
-        float spawnPosY = Random.Range((float)-bounds.extents.y, (float)bounds.extents.y);
+        float spawnPosX;
+        float spawnPosY;
+        Vector2 spawnPos;
 
-        Vector2 spawnPos = new Vector2(spawnPosX, spawnPosY);
+        while (true)
+        {
+            spawnPosX = Random.Range((float)-bounds.extents.x, (float)bounds.extents.x);
+            spawnPosY = Random.Range((float)-bounds.extents.y, (float)bounds.extents.y);
+
+            spawnPos = new Vector2(spawnPosX, spawnPosY);
+
+            if (Vector2.Distance(spawnPos, player.transform.position) > 1.75f)
+            {
+                break;
+            }
+        }
+        
 
         Instantiate(waveEnemyPrefabs[index], spawnPos, Quaternion.identity);
     }

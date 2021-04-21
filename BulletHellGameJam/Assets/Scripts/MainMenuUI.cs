@@ -15,6 +15,9 @@ public class MainMenuUI : MonoBehaviour
 
     public string playLevelSceneName = "MainLevel";
 
+    [SerializeField]
+    private string themeSong = "Music";
+
     private AudioManager audioManager;
 
     // Start is called before the first frame update
@@ -25,11 +28,15 @@ public class MainMenuUI : MonoBehaviour
         {
             Debug.LogError("No AudioManager instance found in the scene");
         }
+
+        audioManager.PlaySound(themeSong);
     }
 
     public void PlayGame()
     {
         audioManager.PlaySound(buttonPressSound);
+
+        audioManager.StopSound(themeSong);
 
         SceneManager.LoadScene(playLevelSceneName);
     }
@@ -44,8 +51,6 @@ public class MainMenuUI : MonoBehaviour
 
     public void OnMouseOver()
     {
-        Debug.Log("Sound should play");
-
         audioManager.PlaySound(mouseHoverSound);
     }
 }

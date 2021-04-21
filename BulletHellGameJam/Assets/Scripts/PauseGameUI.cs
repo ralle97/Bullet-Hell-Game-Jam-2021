@@ -30,6 +30,7 @@ public class PauseGameUI : MonoBehaviour
 
     public void ToMainMenu()
     {
+        Time.timeScale = 1f;
         audioManager.PlaySound(buttonPressSound);
 
         sceneFader.FadeTo(menuSceneName);
@@ -37,6 +38,7 @@ public class PauseGameUI : MonoBehaviour
 
     public void Quit()
     {
+        Time.timeScale = 1f;
         audioManager.PlaySound(buttonPressSound);
 
         Debug.Log("APPLICATION QUIT!");

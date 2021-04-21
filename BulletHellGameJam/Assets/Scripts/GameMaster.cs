@@ -256,8 +256,6 @@ public class GameMaster : MonoBehaviour
 
         Instantiate(powerupPrefabs[index], spawnPos, Quaternion.identity);
 
-        Debug.Log("Powerup spawned");
-
         powerupTimer = powerupCooldown;
     }
 
@@ -368,12 +366,15 @@ public class GameMaster : MonoBehaviour
                 triangleTimer += triangleAttackDuration;
             }
         }
-
-        Debug.Log("Powerup " + type + " picked.");
     }
 
     public void WaveFinished()
     {
+        if (isGameOver)
+        {
+            return;
+        }
+
         UpgradePoints += upgradePointsAward;
         upgradePointsText.text = "Upgrade points: " + UpgradePoints.ToString() + "UP";
         canUpgrade = true;

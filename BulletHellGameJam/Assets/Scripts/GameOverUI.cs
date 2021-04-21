@@ -9,7 +9,7 @@ public class GameOverUI : MonoBehaviour
     private string mouseHoverSound = "ButtonHover";
 
     [SerializeField]
-    private string buttonPressSound = "ButtonPress";   
+    private string buttonPressSound = "ButtonPress";
 
     public string menuSceneName = "MainMenu";
 
