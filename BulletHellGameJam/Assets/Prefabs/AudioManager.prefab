@@ -65,3 +65,31 @@ MonoBehaviour:
     randomVolume: 0
     randomPitch: 0
     loop: 0
+  - name: Upgrade
+    clip: {fileID: 8300000, guid: e436575f02fbbda409d19af943408476, type: 3}
+    volume: 0.7
+    pitch: 1.4
+    randomVolume: 0
+    randomPitch: 0
+    loop: 0
+  - name: NoUpgradePoints
+    clip: {fileID: 8300000, guid: 856359401f2301c4894f49dba00fd407, type: 3}
+    volume: 0.8
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+    loop: 0
+  - name: FireProjectile
+    clip: {fileID: 8300000, guid: ce38d00b85a353e4785621e8a3a75525, type: 3}
+    volume: 0.6
+    pitch: 1
+    randomVolume: 0.2
+    randomPitch: 0.1
+    loop: 0
+  - name: Explosion
+    clip: {fileID: 8300000, guid: 0b941463592a0134eaf4fa3456073642, type: 3}
+    volume: 0.7
+    pitch: 1
+    randomVolume: 0.1
+    randomPitch: 0.1
+    loop: 0

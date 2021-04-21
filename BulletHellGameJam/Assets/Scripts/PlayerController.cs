@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     private GameMaster gm;
     private PlayerStats stats;
     private ObjectPooler objectPooler;
+    private AudioManager audioManager;
 
     private Animator animator;
     private Camera mainCamera;
@@ -35,10 +36,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private HPIndicatorUI hpBar;
 
+    [SerializeField]
+    private string fireProjectileSound = "FireProjectile";
+
     // Start is called before the first frame update
     void Start()
     {
         gm = GameMaster.instance;
+        audioManager = AudioManager.instance;
 
         stats = PlayerStats.instance;
         stats.Health = stats.maxHealth;
@@ -121,6 +126,8 @@ public class PlayerController : MonoBehaviour
         {
             ChangeMousePos();
             ChangeFirePointPos();
+
+            audioManager.PlaySound(fireProjectileSound);
 
             if (!stats.isTriangleAttack)
             {

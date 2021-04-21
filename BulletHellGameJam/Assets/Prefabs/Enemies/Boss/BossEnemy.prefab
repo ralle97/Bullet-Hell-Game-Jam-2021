@@ -162,9 +162,9 @@ GameObject:
   - component: {fileID: 6806599524058583708}
   - component: {fileID: 2761340298851302951}
   - component: {fileID: 8482788501878683557}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BossEnemy
-  m_TagString: Untagged
+  m_TagString: BossEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -247,7 +247,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 3
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -328,48 +328,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-    maxHealth: 1000
-    damage: 40
-    speed: 2
+    maxHealth: 4000
+    damage: 50
+    speed: 1.5
+    armorPct: 0.2
   hpIndicator: {fileID: 323241605330959967}
   patterns:
   - name: ScatterAttack
     patternCooldown: 20
-    patternFireRate: 0
+    patternFireRate: 1.5
     patternDuration: 10
-    projectileName: 
-    projectileForce: 0
-    projectileDamage: 0
+    projectileName: IceCreamProjectileBig
+    projectileForce: 200
+    projectileDamage: 50
   - name: TriangleAttack
     patternCooldown: 20
-    patternFireRate: 0
+    patternFireRate: 2
     patternDuration: 10
-    projectileName: 
-    projectileForce: 0
-    projectileDamage: 0
+    projectileName: PizzaProjectile
+    projectileForce: 400
+    projectileDamage: 40
   - name: AllAroundAttack
     patternCooldown: 20
-    patternFireRate: 0
+    patternFireRate: 1
     patternDuration: 10
-    projectileName: 
-    projectileForce: 0
-    projectileDamage: 0
+    projectileName: DonutProjectile
+    projectileForce: 325
+    projectileDamage: 20
   - name: RotateFullCircleAttack
     patternCooldown: 20
-    patternFireRate: 0
+    patternFireRate: 18
     patternDuration: 10
-    projectileName: 
-    projectileForce: 0
-    projectileDamage: 0
+    projectileName: BossProjectileBlack
+    projectileForce: 400
+    projectileDamage: 30
   - name: RotateToPlayerPositionAttack
     patternCooldown: 20
-    patternFireRate: 0
+    patternFireRate: 10
     patternDuration: 10
-    projectileName: 
-    projectileForce: 0
-    projectileDamage: 0
+    projectileName: BossProjectileBlue
+    projectileForce: 400
+    projectileDamage: 30
   player: {fileID: 0}
+  patternChangeTimer: 0
   shoot: 0
+  triangleShotCount: 5
+  triangleTotalAngle: 60
+  allAroundShots: 24
+  rotateSpeed: 3
+  numOfFirepoints: 3
+  totalAngleCoverage: 90
   deathParticles:
   - {fileID: 2337370661862193964, guid: ec766682d75681b49b11ee9d0c026e6b, type: 3}
   - {fileID: 4485688021553597617, guid: 87a589cda63643a45b5ca4f371415b97, type: 3}
@@ -435,7 +443,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!114 &2275383458761550549
 MonoBehaviour:

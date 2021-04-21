@@ -94,7 +94,7 @@ public class WaveSpawner : MonoBehaviour
                 }
             }
 
-            if (waveCountdown <= 0)
+            if (waveCountdown <= 0f)
             {
                 if (state != SpawnState.SPAWNING)
                 {
@@ -110,9 +110,18 @@ public class WaveSpawner : MonoBehaviour
         }
         else
         {
-            // TODO: Summon boss
-            Instantiate(bossEnemyPrefab, Vector2.zero, Quaternion.identity);
-            bossSpawned = true;
+            waveCountdown -= Time.deltaTime;
+            waveCountdownText.text = "Next Wave in: " + (int)waveCountdown + "s";
+
+            if (waveCountdown <= 0f)
+            {
+                GameMaster.instance.canUpgrade = false;
+                GameMaster.instance.WaveStart();
+                waveCountdownUI.gameObject.SetActive(false);
+
+                Instantiate(bossEnemyPrefab, Vector2.zero, Quaternion.identity);
+                bossSpawned = true;
+            }
         }
     }
 

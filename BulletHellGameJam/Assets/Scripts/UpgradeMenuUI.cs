@@ -87,7 +87,7 @@ public class UpgradeMenuUI : MonoBehaviour
         if (CheckUpgradePoints())
         {
             stats.maxHealth += healthAddition;
-            stats.Health = stats.maxHealth;
+            stats.Health += healthAddition;
 
             hpBar.SetHealth(stats.Health, stats.maxHealth);
 

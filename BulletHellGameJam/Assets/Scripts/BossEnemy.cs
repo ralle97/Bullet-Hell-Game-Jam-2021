@@ -35,6 +35,8 @@ public class BossEnemy : MonoBehaviour
 
         public float speed = 2f;
 
+        public float armorPct = 0.2f;
+
         public void Init()
         {
             currentHealth = maxHealth;
@@ -43,8 +45,7 @@ public class BossEnemy : MonoBehaviour
 
     private GameMaster gm;
 
-    [SerializeField]
-    private BossStats stats;
+    public BossStats stats;
 
     [SerializeField]
     private HPIndicatorUI hpIndicator;
@@ -63,8 +64,9 @@ public class BossEnemy : MonoBehaviour
     private Animator animator;
 
     private float firePointOffset = 2.5f;
-
-    private float patternChangeTimer;
+    
+    [HideInInspector]
+    public float patternChangeTimer;
     public bool shoot = false;
     private bool waitToShoot = false;
 
@@ -92,8 +94,6 @@ public class BossEnemy : MonoBehaviour
 
     public GameObject[] deathParticles;
 
-    public TextMeshProUGUI patternChangeText;
-
     private void OnEnable()
     {
         stats.Init();
@@ -104,16 +104,14 @@ public class BossEnemy : MonoBehaviour
             hpIndicator.SetHealth(stats.CurrentHealth, stats.maxHealth);
         }
 
-        patternChangeTimer = -1;
-        currentPatternIndex = -1;
+        patternChangeTimer = 0;
+        currentPatternIndex = 0;
 
         patternCooldownTimers = new float[patterns.Length];
         for (int i = 0; i < patternCooldownTimers.Length; i++)
         {
             patternCooldownTimers[i] = 0f;
         }
-
-        patternChangeText.gameObject.SetActive(true);
     }
 
     private void Start()
@@ -122,7 +120,9 @@ public class BossEnemy : MonoBehaviour
         animator = GetComponent<Animator>();
 
         objectPooler = ObjectPooler.instance;
+        
         gm = GameMaster.instance;
+        gm.bossPatternChangeText.gameObject.SetActive(true);
     }
 
     private void Update()
@@ -139,8 +139,8 @@ public class BossEnemy : MonoBehaviour
 
         patternChangeTimer -= Time.deltaTime;
 
-        patternChangeText.text = "Boss pattern change in: " + patternChangeTimer.ToString("F2") + "s";
-
+        gm.ChangeBossPatternText(patternChangeTimer);
+        
         if (patternChangeTimer < 0f && player != null)
         {
             if (!waitToShoot)
@@ -483,8 +483,8 @@ public class BossEnemy : MonoBehaviour
 
             for (int i = 0; i < numOfFirepoints; i++)
             {
-                float posX = Mathf.Cos(angle + angleBetweenFirepoints) * firePointOffset;
-                float posY = Mathf.Sin(angle + angleBetweenFirepoints) * firePointOffset;
+                float posX = Mathf.Cos(angle + i * angleBetweenFirepoints) * firePointOffset;
+                float posY = Mathf.Sin(angle + i * angleBetweenFirepoints) * firePointOffset;
 
                 positions[i] = new Vector2(transform.position.x + posX, transform.position.y + posY);
             }
@@ -541,6 +541,8 @@ public class BossEnemy : MonoBehaviour
                 SetPosRotActivate(projectileObject, position, Quaternion.identity);
 
                 Projectile projectile = projectileObject.GetComponent<Projectile>();
+                projectile.isOwnerBoss = true;
+                projectile.bossProjectileDamage = patterns[currentPatternIndex].projectileDamage;
 
                 projectile.Launch((position - (Vector2)transform.position).normalized, patterns[currentPatternIndex].projectileForce);
             }

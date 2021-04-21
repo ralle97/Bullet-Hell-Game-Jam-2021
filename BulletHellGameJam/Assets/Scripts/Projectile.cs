@@ -5,7 +5,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     private ObjectPooler objectPooler;
-
+    private AudioManager audioManager;
     private Rigidbody2D rigidBody;
 
     [HideInInspector]
@@ -21,8 +21,15 @@ public class Projectile : MonoBehaviour
     [HideInInspector]
     public int bossProjectileDamage;
 
+    [SerializeField]
+    private string iceCreamProjectileExplosionSound = "IceCreamProjectileExplosion";
+
+    [SerializeField]
+    private string bossFireSound = "BossFire";
+
     private void Awake()
     {
+        audioManager = AudioManager.instance;
         objectPooler = ObjectPooler.instance;
         rigidBody = GetComponent<Rigidbody2D>();
     }
@@ -30,11 +37,6 @@ public class Projectile : MonoBehaviour
     private void OnEnable()
     {
         timer = timeToLive;
-
-        if (owner != null)
-        {
-            projectileDamage = owner.stats.damage;
-        }
     }
 
     private void Update()
@@ -55,6 +57,15 @@ public class Projectile : MonoBehaviour
     public void Launch(Vector2 dir, float force)
     {
         projectileForce = force;
+        if (owner != null)
+        {
+            projectileDamage = owner.stats.damage;
+        }
+
+        if (isOwnerBoss)
+        {
+            audioManager.PlaySound(bossFireSound);
+        }
 
         rigidBody.AddForce(dir * force);
     }
@@ -89,7 +100,7 @@ public class Projectile : MonoBehaviour
         else if (collision.gameObject.CompareTag("BossEnemy"))
         {
             BossEnemy boss = collision.GetComponent<BossEnemy>();
-            boss.DamageBoss(PlayerStats.instance.damage);
+            boss.DamageBoss(Mathf.RoundToInt((1 - boss.stats.armorPct) * PlayerStats.instance.damage));
         }
 
         if ((this.name.Equals("IceCreamProjectileBig") || this.name.Equals("IceCreamProjectileBig(Clone)")) && collision.CompareTag("Background"))
@@ -106,6 +117,8 @@ public class Projectile : MonoBehaviour
 
     private void AllAroundAttack(int count, float firePointOffset, string projectileTag)
     {
+        audioManager.PlaySound(iceCreamProjectileExplosionSound);
+
         Vector2[] positions = new Vector2[count];
 
         float angleOffset = Random.Range(-10f, 10f);

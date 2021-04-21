@@ -96,6 +96,11 @@ public class GameMaster : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI upgradePointsText;
 
+    public TextMeshProUGUI bossPatternChangeText;
+
+    [SerializeField]
+    private string explosionSound = "Explosion";
+
     private void Start()
     {
         playerStats = PlayerStats.instance;
@@ -281,8 +286,7 @@ public class GameMaster : MonoBehaviour
         Instantiate(enemy.deathEffect, enemy.transform.position, Quaternion.identity);
         CameraShake.instance.Shake(2f, 0.15f);
 
-        // TODO: If object pooling for enemies, then change active to false
-        //enemy.gameObject.SetActive(false);
+        instance.audioManager.PlaySound(instance.explosionSound);
         Destroy(enemy.gameObject);
     }
 
@@ -294,8 +298,9 @@ public class GameMaster : MonoBehaviour
         }
         CameraShake.instance.Shake(7f, 1f);
 
-        boss.patternChangeText.gameObject.SetActive(false);
+        instance.bossPatternChangeText.gameObject.SetActive(false);
 
+        instance.audioManager.PlaySound(instance.explosionSound);
         Destroy(boss.gameObject);
 
         instance.gameFinished = true;
@@ -305,7 +310,8 @@ public class GameMaster : MonoBehaviour
     {
         Instantiate(player.deathEffect, player.transform.position, Quaternion.identity);
         CameraShake.instance.Shake(5f, 0.6f);
-        
+
+        instance.audioManager.PlaySound(instance.explosionSound);
         Destroy(player.gameObject);
 
         instance.EndGame();
@@ -382,5 +388,10 @@ public class GameMaster : MonoBehaviour
         }
         
         canUpgrade = false;
+    }
+
+    public void ChangeBossPatternText(float timer)
+    {
+        bossPatternChangeText.text = "Boss pattern change in: " + timer.ToString("F2") + "s";
     }
 }
