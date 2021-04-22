@@ -75,7 +75,7 @@ public class Enemy : MonoBehaviour
             hpIndicator.SetHealth(stats.CurrentHealth, stats.maxHealth);
         }
 
-        shotTimer = 1.5f;
+        shotTimer = 2f;
     }
 
     private void Start()
@@ -288,11 +288,12 @@ public class Enemy : MonoBehaviour
     {
         Vector2[] positions = new Vector2[count];
 
-        float angleOffset = Random.Range(-10f, 10f);
+        float angleBetweenTwoProjectiles = 360 / count;
+        float angleOffset = Random.Range(-angleBetweenTwoProjectiles, angleBetweenTwoProjectiles);
 
         for (int i = 0; i < count; i++)
         {
-            float angle = i * (360 / count) * Mathf.Deg2Rad;
+            float angle = i * angleBetweenTwoProjectiles * Mathf.Deg2Rad;
 
             float posX = Mathf.Cos(angle + angleOffset) * firePointOffset;
             float posY = Mathf.Sin(angle + angleOffset) * firePointOffset;

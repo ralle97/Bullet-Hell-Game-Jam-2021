@@ -87,8 +87,6 @@ public class GameMaster : MonoBehaviour
 
     [SerializeField]
     private int startingUpgradePoints = 0;
-    [SerializeField]
-    private int upgradePointsAward = 1;
     [HideInInspector]
     public bool canUpgrade = false;
     public bool upgradeMenuOpened = false;
@@ -368,14 +366,14 @@ public class GameMaster : MonoBehaviour
         }
     }
 
-    public void WaveFinished()
+    public void WaveFinished(int reward)
     {
         if (isGameOver)
         {
             return;
         }
 
-        UpgradePoints += upgradePointsAward;
+        UpgradePoints += reward;
         upgradePointsText.text = "Upgrade points: " + UpgradePoints.ToString() + "UP";
         canUpgrade = true;
     }

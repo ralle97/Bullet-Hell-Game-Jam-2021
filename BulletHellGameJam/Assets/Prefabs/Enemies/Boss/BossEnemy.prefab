@@ -328,7 +328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-    maxHealth: 8000
+    maxHealth: 7500
     damage: 50
     speed: 1.5
     armorPct: 0.3
@@ -340,7 +340,7 @@ MonoBehaviour:
     patternDuration: 10
     projectileName: IceCreamProjectileBig
     projectileForce: 200
-    projectileDamage: 50
+    projectileDamage: 40
   - name: TriangleAttack
     patternCooldown: 20
     patternFireRate: 2
@@ -353,21 +353,21 @@ MonoBehaviour:
     patternFireRate: 1
     patternDuration: 10
     projectileName: DonutProjectile
-    projectileForce: 325
+    projectileForce: 300
     projectileDamage: 20
   - name: RotateFullCircleAttack
     patternCooldown: 20
     patternFireRate: 18
     patternDuration: 10
     projectileName: BossProjectileBlack
-    projectileForce: 400
+    projectileForce: 375
     projectileDamage: 30
   - name: RotateToPlayerPositionAttack
     patternCooldown: 20
     patternFireRate: 12
     patternDuration: 10
     projectileName: BossProjectileBlue
-    projectileForce: 400
+    projectileForce: 375
     projectileDamage: 30
   player: {fileID: 0}
   patternChangeTimer: 0

@@ -230,7 +230,7 @@ MonoBehaviour:
   stats:
     maxHealth: 120
     damage: 40
-    fireRate: 3.5
+    fireRate: 3
     projectileForce: 400
     speed: 2
     movementRange: 5
@@ -240,6 +240,7 @@ MonoBehaviour:
   deathEffect: {fileID: 1076346069997427241, guid: f4b9165109447144a9a96b27ef89b779,
     type: 3}
   hpIndicator: {fileID: 8486814186746491179}
+  collideSound: EnemyCollide
 --- !u!95 &4092304196641313011
 Animator:
   serializedVersion: 3

@@ -325,7 +325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-    maxHealth: 150
+    maxHealth: 200
     damage: 30
     fireRate: 2
     projectileForce: 500
@@ -337,6 +337,7 @@ MonoBehaviour:
   deathEffect: {fileID: 4753978146953238806, guid: 30046495b600911479005141e190bee6,
     type: 3}
   hpIndicator: {fileID: 1898331460149689528}
+  collideSound: EnemyCollide
 --- !u!95 &308378164
 Animator:
   serializedVersion: 3

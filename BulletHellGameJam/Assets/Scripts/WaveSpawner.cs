@@ -14,6 +14,7 @@ public class WaveSpawner : MonoBehaviour
         public string name;
         public int[] enemyCounts;
         public float rate;
+        public int upgradePointsReward;
     }
 
     private Bounds bounds;
@@ -189,7 +190,7 @@ public class WaveSpawner : MonoBehaviour
 
         waveUI.SetActive(false);
 
-        GameMaster.instance.WaveFinished();
+        GameMaster.instance.WaveFinished(waves[nextWave].upgradePointsReward);
 
         if (nextWave + 1 >= waves.Length)
         {
