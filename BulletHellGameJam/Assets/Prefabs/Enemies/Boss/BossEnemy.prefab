@@ -339,35 +339,35 @@ MonoBehaviour:
     patternFireRate: 1.5
     patternDuration: 10
     projectileName: IceCreamProjectileBig
-    projectileForce: 200
+    projectileForce: 175
     projectileDamage: 40
   - name: TriangleAttack
     patternCooldown: 20
     patternFireRate: 2
     patternDuration: 10
     projectileName: PizzaProjectile
-    projectileForce: 400
+    projectileForce: 350
     projectileDamage: 40
   - name: AllAroundAttack
     patternCooldown: 20
     patternFireRate: 1
     patternDuration: 10
     projectileName: DonutProjectile
-    projectileForce: 300
+    projectileForce: 250
     projectileDamage: 20
   - name: RotateFullCircleAttack
     patternCooldown: 20
     patternFireRate: 18
     patternDuration: 10
     projectileName: BossProjectileBlack
-    projectileForce: 375
+    projectileForce: 300
     projectileDamage: 30
   - name: RotateToPlayerPositionAttack
     patternCooldown: 20
     patternFireRate: 12
     patternDuration: 10
     projectileName: BossProjectileBlue
-    projectileForce: 375
+    projectileForce: 300
     projectileDamage: 30
   player: {fileID: 0}
   patternChangeTimer: 0

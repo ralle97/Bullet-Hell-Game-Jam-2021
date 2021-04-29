@@ -209,7 +209,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInvincible: 0
-  projectileSpeed: 500
+  projectileSpeed: 350
   deathEffect: {fileID: 5307247001111324103, guid: 85cb75e215c22d245873deca74888214,
     type: 3}
   hpBar: {fileID: 0}
+  fireProjectileSound: FireProjectile
+  playerGruntSound: PlayerGrunt

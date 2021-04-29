@@ -15,6 +15,15 @@ public class UpgradeMenuUI : MonoBehaviour
     private TextMeshProUGUI damageText;
 
     [SerializeField]
+    private TextMeshProUGUI healthButtonText;
+    [SerializeField]
+    private TextMeshProUGUI speedButtonText;
+    [SerializeField]
+    private TextMeshProUGUI fireRateButtonText;
+    [SerializeField]
+    private TextMeshProUGUI damageButtonText;
+
+    [SerializeField]
     private int healthAddition = 50;
     [SerializeField]
     private float speedAddition = 1f;
@@ -24,7 +33,20 @@ public class UpgradeMenuUI : MonoBehaviour
     private int damageAddition = 5;
 
     [SerializeField]
-    private int upgradeCost = 1;
+    private int healthUpgradeCost = 1;
+    [SerializeField]
+    private int speedUpgradeCost = 1;
+    [SerializeField]
+    private int fireRateUpgradeCost = 1;
+    [SerializeField]
+    private int damageUpgradeCost = 1;
+
+    private int healthUpgradedCount = 0;
+    private int speedUpgradedCount = 0;
+    private int fireRateUpgradedCount = 0;
+    private int damageUpgradedCount = 0;
+
+    private int countAfterCostUp = 3;
 
     private PlayerStats stats;
 
@@ -59,11 +81,16 @@ public class UpgradeMenuUI : MonoBehaviour
         speedText.text = "Speed: " + stats.speed.ToString();
         fireRateText.text = "Fire Rate: " + stats.fireRate.ToString() + "/s";
         damageText.text = "Damage: " + stats.damage.ToString();
+
+        healthButtonText.text = "Upgrade\n(" + healthUpgradeCost + "UP)";
+        speedButtonText.text = "Upgrade\n(" + speedUpgradeCost + "UP)";
+        fireRateButtonText.text = "Upgrade\n(" + fireRateUpgradeCost + "UP)";
+        damageButtonText.text = "Upgrade\n(" + damageUpgradeCost + "UP)";
     }
 
-    private bool CheckUpgradePoints()
+    private bool CheckUpgradePoints(int cost)
     {
-        if (GameMaster.UpgradePoints < upgradeCost)
+        if (GameMaster.UpgradePoints < cost)
         {
             audioManager.PlaySound(noUpgradePointsSound);
             return false;
@@ -74,9 +101,9 @@ public class UpgradeMenuUI : MonoBehaviour
         }
     }
 
-    private void Upgrade()
+    private void Upgrade(int cost)
     {
-        GameMaster.UpgradePoints -= upgradeCost;
+        GameMaster.UpgradePoints -= cost;
         audioManager.PlaySound(upgradeSound);
 
         UpdateValues();
@@ -84,44 +111,64 @@ public class UpgradeMenuUI : MonoBehaviour
 
     public void UpgradeHealth()
     {
-        if (CheckUpgradePoints())
+        if (CheckUpgradePoints(healthUpgradeCost))
         {
             stats.maxHealth += healthAddition;
             stats.Health += healthAddition;
 
             hpBar.SetHealth(stats.Health, stats.maxHealth);
 
-            Upgrade();
+            Upgrade(healthUpgradeCost);
+            healthUpgradedCount++;
+            if (healthUpgradedCount % countAfterCostUp == 0)
+            {
+                healthUpgradeCost++;
+            }
         }
     }
 
     public void UpgradeSpeed()
     {
-        if (CheckUpgradePoints())
+        if (CheckUpgradePoints(speedUpgradeCost))
         {
             stats.speed += speedAddition;
 
-            Upgrade();
+            Upgrade(speedUpgradeCost);
+            speedUpgradedCount++;
+            if (speedUpgradedCount % countAfterCostUp == 0)
+            {
+                speedUpgradeCost++;
+            }
         }
     }
 
     public void UpgradeFireRate()
     {
-        if (CheckUpgradePoints())
+        if (CheckUpgradePoints(fireRateUpgradeCost))
         {
             stats.fireRate += fireRateAddition;
 
-            Upgrade();
+            Upgrade(fireRateUpgradeCost);
+            fireRateUpgradedCount++;
+            if (fireRateUpgradedCount % countAfterCostUp == 0)
+            {
+                fireRateUpgradeCost++;
+            }
         }
     }
 
     public void UpgradeDamage()
     {
-        if (CheckUpgradePoints())
+        if (CheckUpgradePoints(damageUpgradeCost))
         {
             stats.damage += damageAddition;
 
-            Upgrade();
+            Upgrade(damageUpgradeCost);
+            damageUpgradedCount++;
+            if (damageUpgradedCount % countAfterCostUp == 0)
+            {
+                damageUpgradeCost++;
+            }
         }
     }
 }

@@ -69,7 +69,7 @@ public class GameMaster : MonoBehaviour
     private bool isFireRateEnhanced;
     public float fireRateDuration = 3f;
     private float fireRateTimer;
-    public float fireRateAmount = 2f;
+    public float fireRateAmount = 1.5f;
     private float prevFireRate;
 
     private bool isTriangleAttack;
@@ -207,8 +207,6 @@ public class GameMaster : MonoBehaviour
         {
             isPaused = true;
 
-
-            
             prevTimeScale = Time.timeScale;
             Time.timeScale = 0f;    
         }
@@ -228,8 +226,6 @@ public class GameMaster : MonoBehaviour
             upgradeMenuOpened = true;
             upgradePointsText.gameObject.SetActive(false);
 
-
-            
             prevTimeScale = Time.timeScale;
             Time.timeScale = 0.5f;
         }

@@ -140,7 +140,7 @@ MonoBehaviour:
     maxHealth: 150
     damage: 40
     fireRate: 2
-    projectileForce: 175
+    projectileForce: 150
     speed: 2
     movementRange: 5
   enemyType: 0

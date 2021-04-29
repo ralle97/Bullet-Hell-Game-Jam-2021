@@ -40,6 +40,11 @@ public class Sound
     {
         source.Stop();
     }
+
+    public void Pause()
+    {
+        source.Pause();
+    }
 }
 
 public class AudioManager : MonoBehaviour
@@ -100,6 +105,20 @@ public class AudioManager : MonoBehaviour
             if (sounds[i].name == soundName)
             {
                 sounds[i].Stop();
+                return;
+            }
+        }
+
+        Debug.LogWarning("AudioManager: Sound not found in list, " + soundName);
+    }
+
+    public void PauseSound(string soundName)
+    {
+        for (int i = 0; i < sounds.Length; i++)
+        {
+            if (sounds[i].name == soundName)
+            {
+                sounds[i].Pause();
                 return;
             }
         }
