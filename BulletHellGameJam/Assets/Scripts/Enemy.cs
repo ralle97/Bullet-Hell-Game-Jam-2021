@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IEnemy
 {
     public enum EnemyType { ICECREAM, PIZZA, BURGER, DONUT };
 
@@ -186,7 +186,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void DamageEnemy(int damage)
+    public void TakeHit(int damage)
     {
         stats.CurrentHealth -= damage;
 

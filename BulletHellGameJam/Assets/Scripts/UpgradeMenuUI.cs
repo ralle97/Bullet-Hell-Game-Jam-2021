@@ -66,6 +66,8 @@ public class UpgradeMenuUI : MonoBehaviour
 
         healthAddition = stats.maxHealth / 3;
         damageAddition = stats.damage / 4;
+        //fireRateAddition = Mathf.CeilToInt(stats.fireRate / 5f);
+        //speedAddition = Mathf.CeilToInt(stats.speed / 5f);
 
         audioManager = AudioManager.instance;
     }
@@ -105,8 +107,6 @@ public class UpgradeMenuUI : MonoBehaviour
     {
         GameMaster.UpgradePoints -= cost;
         audioManager.PlaySound(upgradeSound);
-
-        UpdateValues();
     }
 
     public void UpgradeHealth()
@@ -119,11 +119,14 @@ public class UpgradeMenuUI : MonoBehaviour
             hpBar.SetHealth(stats.Health, stats.maxHealth);
 
             Upgrade(healthUpgradeCost);
+
             healthUpgradedCount++;
             if (healthUpgradedCount % countAfterCostUp == 0)
             {
                 healthUpgradeCost++;
             }
+
+            UpdateValues();
         }
     }
 
@@ -134,11 +137,14 @@ public class UpgradeMenuUI : MonoBehaviour
             stats.speed += speedAddition;
 
             Upgrade(speedUpgradeCost);
+
             speedUpgradedCount++;
             if (speedUpgradedCount % countAfterCostUp == 0)
             {
                 speedUpgradeCost++;
             }
+
+            UpdateValues();
         }
     }
 
@@ -149,11 +155,14 @@ public class UpgradeMenuUI : MonoBehaviour
             stats.fireRate += fireRateAddition;
 
             Upgrade(fireRateUpgradeCost);
+
             fireRateUpgradedCount++;
             if (fireRateUpgradedCount % countAfterCostUp == 0)
             {
                 fireRateUpgradeCost++;
             }
+
+            UpdateValues();
         }
     }
 
@@ -164,11 +173,14 @@ public class UpgradeMenuUI : MonoBehaviour
             stats.damage += damageAddition;
 
             Upgrade(damageUpgradeCost);
+
             damageUpgradedCount++;
             if (damageUpgradedCount % countAfterCostUp == 0)
             {
                 damageUpgradeCost++;
             }
+
+            UpdateValues();
         }
     }
 }

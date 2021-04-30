@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class BossEnemy : MonoBehaviour
+public class BossEnemy : MonoBehaviour, IEnemy
 {
     [System.Serializable]
     public class Pattern
@@ -22,7 +22,7 @@ public class BossEnemy : MonoBehaviour
     [System.Serializable]
     public class BossStats
     {
-        public int maxHealth = 2500;
+        public int maxHealth = 7500;
 
         private int currentHealth;
         public int CurrentHealth
@@ -31,11 +31,11 @@ public class BossEnemy : MonoBehaviour
             set { currentHealth = Mathf.Clamp(value, 0, maxHealth); }
         }
 
-        public int damage = 40;
+        public int damage = 50;
 
-        public float speed = 2f;
+        public float speed = 1.5f;
 
-        public float armorPct = 0.25f;
+        public float armorPct = 0.3f;
 
         public void Init()
         {
@@ -268,7 +268,7 @@ public class BossEnemy : MonoBehaviour
         rigidBody.MovePosition(position);
     }
 
-    public void DamageBoss(int damage)
+    public void TakeHit(int damage)
     {
         stats.CurrentHealth -= damage;
 
