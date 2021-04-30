@@ -46,4 +46,25 @@ public class PlayerStats : MonoBehaviour
 
     [HideInInspector]
     public bool isTriangleAttack = false;
+    
+    public bool Shield
+    {
+        get;
+        private set;
+    }
+    
+    [SerializeField]
+    private SpriteRenderer shieldEffectSprite;
+
+    public void EnableShield()
+    {
+        shieldEffectSprite.gameObject.SetActive(true);
+        Shield = true;
+    }
+
+    public void DisableShield()
+    {
+        shieldEffectSprite.gameObject.SetActive(false);
+        Shield = false;
+    }
 }

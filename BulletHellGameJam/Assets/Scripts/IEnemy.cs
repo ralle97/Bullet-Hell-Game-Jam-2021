@@ -5,4 +5,6 @@ using UnityEngine;
 public interface IEnemy
 {
     void TakeHit(int damage);
+
+    float GetArmorStat();
 }

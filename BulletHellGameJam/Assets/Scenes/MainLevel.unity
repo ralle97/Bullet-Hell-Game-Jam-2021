@@ -4236,6 +4236,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1076449798 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2807540838852258647, guid: 90c97fa0f4756b5408882d9c313cb72b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1937080539}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1078635063
 GameObject:
   m_ObjectHideFlags: 0
@@ -23362,15 +23368,15 @@ PrefabInstance:
       propertyPath: hpBar
       value: 
       objectReference: {fileID: 652377604}
+    - target: {fileID: 1910290573975825513, guid: 90c97fa0f4756b5408882d9c313cb72b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2102144190411539173, guid: 90c97fa0f4756b5408882d9c313cb72b,
         type: 3}
       propertyPath: m_Name
       value: Brocolli
-      objectReference: {fileID: 0}
-    - target: {fileID: 2102144190411539174, guid: 90c97fa0f4756b5408882d9c313cb72b,
-        type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.53125
       objectReference: {fileID: 0}
     - target: {fileID: 2102144190411539179, guid: 90c97fa0f4756b5408882d9c313cb72b,
         type: 3}
@@ -24448,11 +24454,6 @@ PrefabInstance:
       objectReference: {fileID: 1738575674}
     - target: {fileID: 2893620147787128776, guid: 698e106e7f4a9af4a9eda33ef0ac7665,
         type: 3}
-      propertyPath: fireRateAmount
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2893620147787128776, guid: 698e106e7f4a9af4a9eda33ef0ac7665,
-        type: 3}
       propertyPath: gameFinishedUI
       value: 
       objectReference: {fileID: 1380030199}
@@ -24536,6 +24537,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameMaster
       objectReference: {fileID: 0}
+    - target: {fileID: 2893620147787128783, guid: 698e106e7f4a9af4a9eda33ef0ac7665,
+        type: 3}
+      propertyPath: shieldEffectSprite
+      value: 
+      objectReference: {fileID: 1076449798}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 698e106e7f4a9af4a9eda33ef0ac7665, type: 3}
 --- !u!1001 &5443134911260354713

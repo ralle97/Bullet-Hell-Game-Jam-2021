@@ -87,10 +87,7 @@ public class Projectile : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             IEnemy enemy = collision.GetComponent<IEnemy>();
-            enemy.TakeHit(PlayerStats.instance.damage);
-
-            //Enemy enemy = collision.GetComponent<Enemy>();
-            //enemy.TakeHit(PlayerStats.instance.damage);
+            enemy.TakeHit(Mathf.RoundToInt((1 - enemy.GetArmorStat()) * PlayerStats.instance.damage));
         }
 
         else if (collision.gameObject.CompareTag("Player"))
@@ -104,12 +101,6 @@ public class Projectile : MonoBehaviour
             {
                 player.DamagePlayer(bossProjectileDamage);
             }
-        }
-
-        else if (collision.gameObject.CompareTag("BossEnemy"))
-        {
-            BossEnemy boss = collision.GetComponent<BossEnemy>();
-            boss.TakeHit(Mathf.RoundToInt((1 - boss.stats.armorPct) * PlayerStats.instance.damage));
         }
 
         if ((this.name.Equals("IceCreamProjectileBig") || this.name.Equals("IceCreamProjectileBig(Clone)")) && collision.CompareTag("Background"))

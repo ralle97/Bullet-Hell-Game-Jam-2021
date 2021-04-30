@@ -2,34 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(EnemyStats))]
 public class Enemy : MonoBehaviour, IEnemy
 {
     public enum EnemyType { ICECREAM, PIZZA, BURGER, DONUT };
-
-    [System.Serializable]
-    public class EnemyStats
-    {
-        public int maxHealth = 100;
-
-        private int currentHealth;
-        public int CurrentHealth
-        {
-            get { return currentHealth; }
-            set { currentHealth = Mathf.Clamp(value, 0, maxHealth); }
-        }
-
-        public int damage = 40;
-        public float fireRate = 2f;
-        public float projectileForce = 500f;
-
-        public float speed = 2f;
-        public float movementRange = 5f;
-
-        public void Init()
-        {
-            currentHealth = maxHealth;
-        }
-    }
 
     private ObjectPooler objectPooler;
     private AudioManager audioManager;
@@ -201,18 +177,9 @@ public class Enemy : MonoBehaviour, IEnemy
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public float GetArmorStat()
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            PlayerController player = collision.collider.GetComponent<PlayerController>();
-
-            if (player != null && !player.IsInvincible())
-            {
-                audioManager.PlaySound(collideSound);
-                player.DamagePlayer(stats.damage);
-            }
-        }
+        return stats.armorPct;
     }
 
     private void OnCollisionStay2D(Collision2D collision)

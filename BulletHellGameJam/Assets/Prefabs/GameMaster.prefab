@@ -57,19 +57,21 @@ MonoBehaviour:
   - {fileID: 8166324004130516687, guid: 5af27c4ab3b43634ab57d48121de4373, type: 3}
   - {fileID: 3823953856373348569, guid: c36790791898330478c0f1bb6d6db700, type: 3}
   - {fileID: 7507515204060124383, guid: 302ba3fcf443edc4290888675214822c, type: 3}
+  - {fileID: 9143523264369299685, guid: 5f47d740438345b45bba716c71f98939, type: 3}
   slowTimeDuration: 3
   timeSlowAmount: 0.5
   fireRateDuration: 3
-  fireRateAmount: 2
+  fireRateAmount: 1.5
   triangleAttackDuration: 5
   powerupTimerText: {fileID: 0}
   gameFinished: 0
   hpBar: {fileID: 0}
   startingUpgradePoints: 0
-  upgradePointsAward: 1
   canUpgrade: 0
   upgradeMenuOpened: 0
   upgradePointsText: {fileID: 0}
+  bossPatternChangeText: {fileID: 0}
+  explosionSound: Explosion
 --- !u!114 &2893620147787128783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,3 +90,4 @@ MonoBehaviour:
   fireRate: 4
   timeInvincible: 2
   isTriangleAttack: 0
+  shieldEffectSprite: {fileID: 0}

@@ -360,6 +360,10 @@ public class GameMaster : MonoBehaviour
                 triangleTimer += triangleAttackDuration;
             }
         }
+        else if (type == Powerup.PowerupType.SHIELD)
+        {
+            playerStats.EnableShield();
+        }
     }
 
     public void WaveFinished(int reward)

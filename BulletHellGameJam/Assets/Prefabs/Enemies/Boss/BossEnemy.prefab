@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 8482788501878683557}
   m_Layer: 10
   m_Name: BossEnemy
-  m_TagString: BossEnemy
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -330,7 +330,10 @@ MonoBehaviour:
   stats:
     maxHealth: 7500
     damage: 50
+    fireRate: 0
+    projectileForce: 0
     speed: 1.5
+    movementRange: 0
     armorPct: 0.3
   hpIndicator: {fileID: 323241605330959967}
   patterns:
@@ -354,21 +357,21 @@ MonoBehaviour:
     patternDuration: 10
     projectileName: DonutProjectile
     projectileForce: 250
-    projectileDamage: 20
+    projectileDamage: 25
   - name: RotateFullCircleAttack
     patternCooldown: 20
     patternFireRate: 18
     patternDuration: 10
     projectileName: BossProjectileBlack
     projectileForce: 300
-    projectileDamage: 30
+    projectileDamage: 35
   - name: RotateToPlayerPositionAttack
     patternCooldown: 20
     patternFireRate: 12
     patternDuration: 10
     projectileName: BossProjectileBlue
     projectileForce: 300
-    projectileDamage: 30
+    projectileDamage: 35
   player: {fileID: 0}
   patternChangeTimer: 0
   shoot: 0

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Powerup : MonoBehaviour
 {
-    public enum PowerupType { HPREGEN, STOPWATCH, FIRERATE, TRIANGLE };
+    public enum PowerupType { HPREGEN, STOPWATCH, FIRERATE, TRIANGLE, SHIELD };
 
     public PowerupType powerupType;
 
@@ -17,6 +17,15 @@ public class Powerup : MonoBehaviour
                 PlayerStats stats = PlayerStats.instance;
 
                 if (stats.Health >= stats.maxHealth)
+                {
+                    return;
+                }
+            }
+            else if (powerupType == PowerupType.SHIELD)
+            {
+                PlayerStats stats = PlayerStats.instance;
+
+                if (stats.Shield)
                 {
                     return;
                 }

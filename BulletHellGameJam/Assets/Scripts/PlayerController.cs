@@ -233,7 +233,11 @@ public class PlayerController : MonoBehaviour
 
     public void DamagePlayer(int damage)
     {
-        if (!isInvincible)
+        if (stats.Shield)
+        {
+            stats.DisableShield();
+        }
+        else if (!isInvincible)
         {
             stats.Health -= damage;
 

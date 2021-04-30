@@ -19,33 +19,9 @@ public class BossEnemy : MonoBehaviour, IEnemy
         public int projectileDamage;
     }
 
-    [System.Serializable]
-    public class BossStats
-    {
-        public int maxHealth = 7500;
-
-        private int currentHealth;
-        public int CurrentHealth
-        {
-            get { return currentHealth; }
-            set { currentHealth = Mathf.Clamp(value, 0, maxHealth); }
-        }
-
-        public int damage = 50;
-
-        public float speed = 1.5f;
-
-        public float armorPct = 0.3f;
-
-        public void Init()
-        {
-            currentHealth = maxHealth;
-        }
-    }
-
     private GameMaster gm;
 
-    public BossStats stats;
+    public EnemyStats stats = new EnemyStats();
 
     [SerializeField]
     private HPIndicatorUI hpIndicator;
@@ -283,17 +259,9 @@ public class BossEnemy : MonoBehaviour, IEnemy
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public float GetArmorStat()
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            PlayerController player = collision.collider.GetComponent<PlayerController>();
-
-            if (player != null && !player.IsInvincible())
-            {
-                player.DamagePlayer(stats.damage);
-            }
-        }
+        return stats.armorPct;
     }
 
     private void OnCollisionStay2D(Collision2D collision)
