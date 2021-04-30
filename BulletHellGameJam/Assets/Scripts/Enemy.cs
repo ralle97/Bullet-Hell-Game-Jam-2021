@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(EnemyStats))]
+//[RequireComponent(typeof(EnemyStats))]
 public class Enemy : MonoBehaviour, IEnemy
 {
-    public enum EnemyType { ICECREAM, PIZZA, BURGER, DONUT };
+    public enum EnemyType { ICECREAM, PIZZA, BURGER, DONUT, FRIES };
 
     private ObjectPooler objectPooler;
     private AudioManager audioManager;
@@ -111,6 +111,20 @@ public class Enemy : MonoBehaviour, IEnemy
                     else if (waitToShoot && shoot)
                     {
                         AllAroundAttack(allAroundShots, "DonutProjectile");
+                        waitToShoot = false;
+                    }
+                    break;
+
+                case EnemyType.FRIES:
+                    if (!waitToShoot && !shoot)
+                    {
+                        animator.SetTrigger("Shoot");
+                        waitToShoot = true;
+                    }
+                    else if (waitToShoot && shoot)
+                    {
+                        // TODO: Change to new attack once you have projectile sprite
+                        TriangleAttack(triangleShotCount, triangleTotalAngle, "PizzaProjectile");
                         waitToShoot = false;
                     }
                     break;

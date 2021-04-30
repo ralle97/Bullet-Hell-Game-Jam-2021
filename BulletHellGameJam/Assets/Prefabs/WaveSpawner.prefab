@@ -48,30 +48,39 @@ MonoBehaviour:
   - {fileID: 1655877193983522738, guid: a177a3edfc02f6740b46007d5d40aca2, type: 3}
   - {fileID: 4185689788584157373, guid: 739e0765ebeb98b4ea7e8e4652e43013, type: 3}
   - {fileID: 7421881503099605230, guid: 3aadb1cca1abe0941a95f99df112ac25, type: 3}
+  - {fileID: 6747311066746202517, guid: 16af6bc0140f3c44aafc40c2cd09692c, type: 3}
   bossEnemyPrefab: {fileID: 5742358458125421292, guid: 1869f145187b26845ba77a02f30d571c,
     type: 3}
   waves:
   - name: Wave1
-    enemyCounts: 03000000010000000000000000000000
+    enemyCounts: 0300000000000000000000000000000000000000
     rate: 0.75
+    upgradePointsReward: 1
   - name: Wave2
-    enemyCounts: 02000000030000000000000000000000
+    enemyCounts: 0100000003000000000000000000000000000000
     rate: 0.9
+    upgradePointsReward: 1
   - name: Wave3
-    enemyCounts: 02000000010000000200000000000000
+    enemyCounts: 0200000001000000020000000000000000000000
     rate: 1
+    upgradePointsReward: 1
   - name: Wave4
-    enemyCounts: 01000000020000000000000003000000
+    enemyCounts: 0100000002000000000000000300000000000000
     rate: 1
+    upgradePointsReward: 1
   - name: Wave5
-    enemyCounts: 03000000020000000100000004000000
-    rate: 1
+    enemyCounts: 0200000002000000010000000300000000000000
+    rate: 0.9
+    upgradePointsReward: 2
   - name: Wave6
-    enemyCounts: 05000000040000000200000004000000
-    rate: 1
+    enemyCounts: 0300000003000000020000000400000000000000
+    rate: 0.8
+    upgradePointsReward: 2
   timeBetweenWaves: 10
   waveCountdownUI: {fileID: 0}
   waveCountdownText: {fileID: 0}
   upgradeMenuUI: {fileID: 0}
   waveIncomingSound: WaveIncoming
   bossWaveSound: BossWave
+  waveUI: {fileID: 0}
+  waveUIText: {fileID: 0}
