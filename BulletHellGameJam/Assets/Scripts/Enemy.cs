@@ -32,6 +32,7 @@ public class Enemy : MonoBehaviour, IEnemy
     private int allAroundShots = 24;
     private int triangleShotCount = 5;
     private float triangleTotalAngle = 60;
+    private int friesLineShots = 5;
 
     public GameObject deathEffect;
 
@@ -123,8 +124,7 @@ public class Enemy : MonoBehaviour, IEnemy
                     }
                     else if (waitToShoot && shoot)
                     {
-                        // TODO: Change to new attack once you have projectile sprite
-                        TriangleAttack(triangleShotCount, triangleTotalAngle, "PizzaProjectile");
+                        StartCoroutine(LineAttack(friesLineShots, "FriesProjectile"));
                         waitToShoot = false;
                     }
                     break;
@@ -272,6 +272,8 @@ public class Enemy : MonoBehaviour, IEnemy
         float angleBetweenTwoProjectiles = 360 / count;
         float angleOffset = Random.Range(-angleBetweenTwoProjectiles, angleBetweenTwoProjectiles);
 
+        float nextAngle;
+
         for (int i = 0; i < count; i++)
         {
             float angle = i * angleBetweenTwoProjectiles * Mathf.Deg2Rad;
@@ -331,5 +333,44 @@ public class Enemy : MonoBehaviour, IEnemy
         float shotTimeOffset = Random.Range(0.9f, 1.1f);
 
         shotTimer = 1f / stats.fireRate * shotTimeOffset;
+    }
+
+    IEnumerator LineAttack(int count, string projectileTag)
+    {
+        shotTimer = 1f / stats.fireRate;
+
+        for (int i = 0; i < count; i++)
+        {
+            if (player == null)
+            {
+                yield break;
+            }
+
+            Vector2 startPosition = (player.transform.position - this.transform.position).normalized * firePointOffset;
+
+            float offsetX = Random.Range(0.97f, 1.03f);
+            float offsetY = Random.Range(0.97f, 1.03f);
+
+            float angle = Mathf.Atan2(startPosition.y, startPosition.x);
+
+            float posX = Mathf.Cos(angle * offsetX) * firePointOffset;
+            float posY = Mathf.Sin(angle * offsetY) * firePointOffset;
+
+            Vector2 position = new Vector2(transform.position.x + posX, transform.position.y + posY);
+
+            GameObject projectileObject = objectPooler.SpawnFromPool(projectileTag);
+
+            if (projectileObject != null)
+            {
+                SetPosRotActivate(projectileObject, position, Quaternion.Euler(0f, 0f, angle * Mathf.Rad2Deg + 90f));
+
+                Projectile projectile = projectileObject.GetComponent<Projectile>();
+                projectile.owner = this;
+
+                projectile.Launch((position - (Vector2)transform.position).normalized, stats.projectileForce);
+            }
+
+            yield return new WaitForSeconds((1 / stats.fireRate) / (count * 2));
+        }
     }
 }
