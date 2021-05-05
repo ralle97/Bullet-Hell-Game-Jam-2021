@@ -99,6 +99,10 @@ public class GameMaster : MonoBehaviour
     [SerializeField]
     private string explosionSound = "Explosion";
 
+    public Texture2D crosshairTexture;
+    [HideInInspector]
+    public Vector2 crosshairHotspot;
+
     private void Start()
     {
         playerStats = PlayerStats.instance;
@@ -106,6 +110,9 @@ public class GameMaster : MonoBehaviour
         {
             Debug.LogError("No PlayerStats found in the scene.");
         }
+
+        crosshairHotspot = new Vector2(crosshairTexture.width / 2, crosshairTexture.height / 2);
+        Cursor.SetCursor(crosshairTexture, crosshairHotspot, CursorMode.Auto);
 
         audioManager = AudioManager.instance;
         if (audioManager == null)
@@ -213,6 +220,7 @@ public class GameMaster : MonoBehaviour
         else
         {
             isPaused = false;
+
             Time.timeScale = prevTimeScale;
         }
     }
@@ -233,6 +241,7 @@ public class GameMaster : MonoBehaviour
         {
             upgradeMenuOpened = false;
             upgradePointsText.gameObject.SetActive(true);
+
             Time.timeScale = prevTimeScale;
         }
 
@@ -266,8 +275,6 @@ public class GameMaster : MonoBehaviour
     {
         Time.timeScale = 1f;
         isGameOver = true;
-        
-
         
         waveCountdownUI.SetActive(false);
         gameFinishedUI.SetActive(true);
@@ -382,8 +389,7 @@ public class GameMaster : MonoBehaviour
     {
         if (upgradeMenuOpened)
         {
-            upgradeMenuUI.SetActive(false);
-            upgradeMenuOpened = false;
+            ToggleUpgradeMenu(false);
         }
         
         canUpgrade = false;

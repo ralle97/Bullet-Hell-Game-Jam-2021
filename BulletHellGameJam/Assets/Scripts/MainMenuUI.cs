@@ -20,6 +20,12 @@ public class MainMenuUI : MonoBehaviour
 
     private AudioManager audioManager;
 
+    [SerializeField]
+    private GameObject settingsMenu;
+
+    [SerializeField]
+    private Texture2D crosshairTexture;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,5 +58,10 @@ public class MainMenuUI : MonoBehaviour
     public void OnMouseOver()
     {
         audioManager.PlaySound(mouseHoverSound);
+    }
+
+    public void OpenSettingsMenu()
+    {
+        settingsMenu.SetActive(true);
     }
 }

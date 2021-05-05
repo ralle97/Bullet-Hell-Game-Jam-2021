@@ -44,108 +44,138 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: Pickup
+  - audioMixerGroup: {fileID: 24300002, guid: cf36830a127164440989ab2f266e48e9, type: 2}
+    name: Pickup
     clip: {fileID: 8300000, guid: e749039bffe011b4f974cc7e5c862d7f, type: 3}
     volume: 0.5
     pitch: 1
     randomVolume: 0.2
     randomPitch: 0.1
     loop: 0
-  - name: ButtonPress
+    source: {fileID: 0}
+  - audioMixerGroup: {fileID: 24300002, guid: cf36830a127164440989ab2f266e48e9, type: 2}
+    name: ButtonPress
     clip: {fileID: 8300000, guid: 78970f4e883b5544dbbbf2558ee81e5d, type: 3}
     volume: 0.9
     pitch: 1
     randomVolume: 0
     randomPitch: 0
     loop: 0
-  - name: ButtonHover
+    source: {fileID: 0}
+  - audioMixerGroup: {fileID: 24300002, guid: cf36830a127164440989ab2f266e48e9, type: 2}
+    name: ButtonHover
     clip: {fileID: 8300000, guid: b8c4582f00a0e0247b89ac61b3aff8fe, type: 3}
     volume: 0.4
     pitch: 1
     randomVolume: 0
     randomPitch: 0
     loop: 0
-  - name: Upgrade
+    source: {fileID: 0}
+  - audioMixerGroup: {fileID: 24300002, guid: cf36830a127164440989ab2f266e48e9, type: 2}
+    name: Upgrade
     clip: {fileID: 8300000, guid: e436575f02fbbda409d19af943408476, type: 3}
     volume: 0.7
     pitch: 1.4
     randomVolume: 0
     randomPitch: 0
     loop: 0
-  - name: NoUpgradePoints
+    source: {fileID: 0}
+  - audioMixerGroup: {fileID: 24300002, guid: cf36830a127164440989ab2f266e48e9, type: 2}
+    name: NoUpgradePoints
     clip: {fileID: 8300000, guid: 856359401f2301c4894f49dba00fd407, type: 3}
     volume: 0.8
     pitch: 1
     randomVolume: 0
     randomPitch: 0
     loop: 0
-  - name: FireProjectile
+    source: {fileID: 0}
+  - audioMixerGroup: {fileID: 24300002, guid: cf36830a127164440989ab2f266e48e9, type: 2}
+    name: FireProjectile
     clip: {fileID: 8300000, guid: ce38d00b85a353e4785621e8a3a75525, type: 3}
     volume: 0.6
     pitch: 1
     randomVolume: 0.2
     randomPitch: 0.1
     loop: 0
-  - name: Explosion
+    source: {fileID: 0}
+  - audioMixerGroup: {fileID: 24300002, guid: cf36830a127164440989ab2f266e48e9, type: 2}
+    name: Explosion
     clip: {fileID: 8300000, guid: 0b941463592a0134eaf4fa3456073642, type: 3}
     volume: 0.7
     pitch: 1
     randomVolume: 0.1
     randomPitch: 0.1
     loop: 0
-  - name: IceCreamProjectileExplosion
+    source: {fileID: 0}
+  - audioMixerGroup: {fileID: 24300002, guid: cf36830a127164440989ab2f266e48e9, type: 2}
+    name: IceCreamProjectileExplosion
     clip: {fileID: 8300000, guid: e3619d4059d66524e918cd055ba277af, type: 3}
     volume: 0.7
     pitch: 1
     randomVolume: 0.1
     randomPitch: 0.1
     loop: 0
-  - name: BossFire
+    source: {fileID: 0}
+  - audioMixerGroup: {fileID: 24300002, guid: cf36830a127164440989ab2f266e48e9, type: 2}
+    name: BossFire
     clip: {fileID: 8300000, guid: 8b908f5ba27e1084fa334ed2eebae0d1, type: 3}
     volume: 0.6
     pitch: 1
     randomVolume: 0.2
     randomPitch: 0.2
     loop: 0
-  - name: EnemyCollide
+    source: {fileID: 0}
+  - audioMixerGroup: {fileID: 24300002, guid: cf36830a127164440989ab2f266e48e9, type: 2}
+    name: EnemyCollide
     clip: {fileID: 8300000, guid: b90df2c6a7432b24b8404e6ea1e7bca9, type: 3}
     volume: 0.7
     pitch: 1
     randomVolume: 0.1
     randomPitch: 0.1
     loop: 0
-  - name: EnemyFire
+    source: {fileID: 0}
+  - audioMixerGroup: {fileID: 24300002, guid: cf36830a127164440989ab2f266e48e9, type: 2}
+    name: EnemyFire
     clip: {fileID: 8300000, guid: 620450096f45d99428464c92aa0ac15c, type: 3}
     volume: 0.6
     pitch: 1
     randomVolume: 0.2
     randomPitch: 0.1
     loop: 0
-  - name: PlayerGrunt
+    source: {fileID: 0}
+  - audioMixerGroup: {fileID: 24300002, guid: cf36830a127164440989ab2f266e48e9, type: 2}
+    name: PlayerGrunt
     clip: {fileID: 8300000, guid: 93179a872759c05478ed04c6cd75c136, type: 3}
     volume: 0.6
     pitch: 1
     randomVolume: 0
     randomPitch: 0.1
     loop: 0
-  - name: WaveIncoming
+    source: {fileID: 0}
+  - audioMixerGroup: {fileID: 24300002, guid: cf36830a127164440989ab2f266e48e9, type: 2}
+    name: WaveIncoming
     clip: {fileID: 8300000, guid: 163880e9dca4db04d94a9462bc5058aa, type: 3}
     volume: 0.5
     pitch: 1
     randomVolume: 0
     randomPitch: 0
     loop: 0
-  - name: BossWave
+    source: {fileID: 0}
+  - audioMixerGroup: {fileID: 24300002, guid: cf36830a127164440989ab2f266e48e9, type: 2}
+    name: BossWave
     clip: {fileID: 8300000, guid: e9cc0675849ab46469dcdf94fde4456a, type: 3}
     volume: 0.6
     pitch: 1
     randomVolume: 0
     randomPitch: 0
     loop: 0
-  - name: Music
+    source: {fileID: 0}
+  - audioMixerGroup: {fileID: 24300002, guid: cf36830a127164440989ab2f266e48e9, type: 2}
+    name: Music
     clip: {fileID: 8300000, guid: cd00dce027142a8429cb243215d24ce1, type: 3}
-    volume: 0.45
+    volume: 0.55
     pitch: 1
     randomVolume: 0
     randomPitch: 0
     loop: 1
+    source: {fileID: 0}

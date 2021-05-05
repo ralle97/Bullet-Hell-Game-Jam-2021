@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 [System.Serializable]
 public class Sound
 {
+    public AudioMixerGroup audioMixerGroup;
+
     public string name;
     public AudioClip clip;
 
@@ -20,7 +23,8 @@ public class Sound
 
     public bool loop = false;
 
-    private AudioSource source;
+    [HideInInspector]
+    public AudioSource source;
 
     public void SetSource(AudioSource src)
     {
@@ -66,6 +70,14 @@ public class AudioManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(this);
+
+            for (int i = 0; i < sounds.Length; i++)
+            {
+                GameObject go = new GameObject("Sound_" + i + "_" + sounds[i].name);
+                go.transform.SetParent(this.transform);
+                sounds[i].SetSource(go.AddComponent<AudioSource>());
+                sounds[i].source.outputAudioMixerGroup = sounds[i].audioMixerGroup;
+            }
         }
     }
 
@@ -73,16 +85,6 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField]
     private Sound[] sounds;
-
-    private void Start()
-    {
-        for (int i = 0; i < sounds.Length; i++)
-        {
-            GameObject go = new GameObject("Sound_" + i + "_" + sounds[i].name);
-            go.transform.SetParent(this.transform);
-            sounds[i].SetSource(go.AddComponent<AudioSource>());
-        }
-    }
 
     public void PlaySound(string soundName)
     {

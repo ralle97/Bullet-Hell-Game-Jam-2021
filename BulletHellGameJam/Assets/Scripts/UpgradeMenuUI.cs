@@ -74,7 +74,14 @@ public class UpgradeMenuUI : MonoBehaviour
 
     private void OnEnable()
     {
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         UpdateValues();
+    }
+
+    private void OnDisable()
+    {
+        GameMaster gm = GameMaster.instance;
+        Cursor.SetCursor(gm.crosshairTexture, gm.crosshairHotspot, CursorMode.Auto);
     }
 
     private void UpdateValues()

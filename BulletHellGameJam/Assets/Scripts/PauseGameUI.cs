@@ -28,10 +28,23 @@ public class PauseGameUI : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+    }
+
+    private void OnDisable()
+    {
+        GameMaster gm = GameMaster.instance;
+        Cursor.SetCursor(gm.crosshairTexture, gm.crosshairHotspot, CursorMode.Auto);
+    }
+
     public void ToMainMenu()
     {
         Time.timeScale = 1f;
         audioManager.PlaySound(buttonPressSound);
+
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
 
         sceneFader.FadeTo(menuSceneName);
     }
@@ -40,6 +53,8 @@ public class PauseGameUI : MonoBehaviour
     {
         Time.timeScale = 1f;
         audioManager.PlaySound(buttonPressSound);
+
+        //Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
 
         Debug.Log("APPLICATION QUIT!");
         Application.Quit();

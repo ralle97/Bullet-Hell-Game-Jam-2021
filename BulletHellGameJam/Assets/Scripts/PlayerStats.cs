@@ -52,7 +52,7 @@ public class PlayerStats : MonoBehaviour
         get;
         private set;
     }
-    
+
     [SerializeField]
     private SpriteRenderer shieldEffectSprite;
 

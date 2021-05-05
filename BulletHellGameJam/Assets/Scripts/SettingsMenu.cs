@@ -3,14 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using TMPro;
 
 public class SettingsMenu : MonoBehaviour
 {
-    public AudioMixer audioMixer;
+    [SerializeField]
+    private AudioMixer audioMixer;
 
-    public Dropdown resolutionDropdown;
+    [SerializeField]
+    private TMP_Dropdown resolutionDropdown;
 
     Resolution[] resolutions;
+
+    [SerializeField]
+    private GameObject settingsMenu;
 
     private void Start()
     {
@@ -39,7 +45,7 @@ public class SettingsMenu : MonoBehaviour
 
     public void SetVolume(float volume)
     {
-        audioMixer.SetFloat("Volume", volume);
+        audioMixer.SetFloat("Volume", Mathf.Log10(volume) * 20);
     }
 
     public void SetQuality(int qualityIndex)
@@ -50,11 +56,25 @@ public class SettingsMenu : MonoBehaviour
     public void SetFullscreen(bool isFullscreen)
     {
         Screen.fullScreen = isFullscreen;
+
+        if (isFullscreen)
+        {
+            Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+        }
+        else
+        {
+            Screen.fullScreenMode = FullScreenMode.Windowed;
+        }
     }
 
     public void SetResolution(int resolutionIndex)
     {
         Resolution resolution = resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen); 
+    }
+
+    public void BackToMenu()
+    {
+        settingsMenu.SetActive(false);
     }
 }

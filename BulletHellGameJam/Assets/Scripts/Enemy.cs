@@ -272,8 +272,6 @@ public class Enemy : MonoBehaviour, IEnemy
         float angleBetweenTwoProjectiles = 360 / count;
         float angleOffset = Random.Range(-angleBetweenTwoProjectiles, angleBetweenTwoProjectiles);
 
-        float nextAngle;
-
         for (int i = 0; i < count; i++)
         {
             float angle = i * angleBetweenTwoProjectiles * Mathf.Deg2Rad;

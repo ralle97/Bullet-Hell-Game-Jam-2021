@@ -27,9 +27,22 @@ public class GameOverUI : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+    }
+
+    private void OnDisable()
+    {
+        GameMaster gm = GameMaster.instance;
+        Cursor.SetCursor(gm.crosshairTexture, gm.crosshairHotspot, CursorMode.Auto);
+    }
+
     public void ToMainMenu()
     {
         audioManager.PlaySound(buttonPressSound);
+
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
 
         sceneFader.FadeTo(menuSceneName);
     }
@@ -37,7 +50,9 @@ public class GameOverUI : MonoBehaviour
     public void Quit()
     {
         audioManager.PlaySound(buttonPressSound);
-        
+
+        //Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+
         Debug.Log("APPLICATION QUIT!");
         Application.Quit();
     }
