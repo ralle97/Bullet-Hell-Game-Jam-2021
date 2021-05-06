@@ -187,7 +187,7 @@ public class GameMaster : MonoBehaviour
                 SpawnRandomPowerup();
             }
 
-            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.JoystickButton6))
             {
                 if (!upgradeMenuOpened)
                 {
@@ -199,7 +199,7 @@ public class GameMaster : MonoBehaviour
                 }
             }
 
-            if (canUpgrade && Input.GetKeyDown(KeyCode.U))
+            if (canUpgrade && (Input.GetKeyDown(KeyCode.U) || Input.GetKeyDown(KeyCode.JoystickButton4)))
             {
                 ToggleUpgradeMenu(!upgradeMenuUI.activeSelf);
             }

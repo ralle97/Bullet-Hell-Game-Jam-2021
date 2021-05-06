@@ -42,6 +42,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private string playerGruntSound = "PlayerGrunt";
 
+    private bool gamepadSupport = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -75,6 +77,15 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetJoystickNames().Length > 0)
+        {
+            gamepadSupport = true;
+        }
+        else
+        {
+            gamepadSupport = false;
+        }
+
         if (gm.upgradeMenuOpened || gm.isGameOver || gm.isPaused)
         {
             horizontal = 0;
@@ -157,13 +168,20 @@ public class PlayerController : MonoBehaviour
         float mousePosY = mainCamera.ScreenToWorldPoint(Input.mousePosition).y;
 
         mousePos = new Vector2(mousePosX, mousePosY);
+
+        if (gamepadSupport)
+        {
+            float rightStickX = Input.GetAxis("Right Stick X");
+            float rightStickY = Input.GetAxis("Right Stick Y");
+
+            mousePos = new Vector2(transform.position.x + rightStickX, transform.position.y + rightStickY);
+        }
     }
 
     private void ChangeFirePointPos()
     {
         float angle = Mathf.Atan2(mousePos.y - transform.position.y,
                                 mousePos.x - transform.position.x);
-
         float firePointX = Mathf.Cos(angle) * firePointOffset;
         float firePointY = Mathf.Sin(angle) * firePointOffset;
 
