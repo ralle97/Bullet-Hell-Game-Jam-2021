@@ -72,7 +72,7 @@ MonoBehaviour:
   upgradePointsText: {fileID: 0}
   bossPatternChangeText: {fileID: 0}
   explosionSound: Explosion
-  crosshairTexture: {fileID: 2800000, guid: dfba7a5cf3a445b4b90af973a3fe0190, type: 3}
+  crosshairTexture: {fileID: 2800000, guid: 77da3ba28ee238b49a814ecc9dad2b01, type: 3}
   crosshairHotspot: {x: 16, y: 16}
 --- !u!114 &2893620147787128783
 MonoBehaviour:
