@@ -26,6 +26,25 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField]
     private string buttonPressSound = "ButtonPress";
 
+    private Controls controls;
+
+    private void Awake()
+    {
+        controls = new Controls();
+
+        controls.Master.Back.performed += ctx => BackToMenu();
+    }
+
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Disable();
+    }
+
     private void Start()
     {
         audioManager = AudioManager.instance;
@@ -51,14 +70,6 @@ public class SettingsMenu : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionsIndex;
         resolutionDropdown.RefreshShownValue();
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Backspace))
-        {
-            BackToMenu();
-        }
     }
 
     public void SetVolume(float volume)

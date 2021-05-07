@@ -7,6 +7,8 @@ using TMPro;
 
 public class GameMaster : MonoBehaviour
 {
+    private Controls controls;
+    
     #region Singleton
 
     public static GameMaster instance;
@@ -24,6 +26,12 @@ public class GameMaster : MonoBehaviour
         {
             instance = this;
         }
+
+        controls = new Controls();
+
+        controls.Master.Pause.performed += ctx => TogglePauseUpgradeMenu();
+
+        controls.Master.UpgradeMenu.performed += ctx => ToggleUpgradeMenu();
     }
 
     #endregion
@@ -102,6 +110,42 @@ public class GameMaster : MonoBehaviour
     public Texture2D crosshairTexture;
     [HideInInspector]
     public Vector2 crosshairHotspot;
+
+    private void OnEnable()
+    {
+        controls.Master.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Master.Disable();
+    }
+
+    private void TogglePauseUpgradeMenu()
+    {
+        if (!isGameOver)
+        {
+            if (!upgradeMenuOpened)
+            {
+                TogglePauseMenu(!pauseGameUI.activeSelf);
+            }
+            else
+            {
+                ToggleUpgradeMenu(!upgradeMenuUI.activeSelf);
+            }
+        }
+    }
+
+    private void ToggleUpgradeMenu()
+    {
+        if (!isGameOver)
+        {
+            if (canUpgrade)
+            {
+                ToggleUpgradeMenu(!upgradeMenuUI.activeSelf);
+            }
+        }
+    }
 
     private void Start()
     {
@@ -185,23 +229,6 @@ public class GameMaster : MonoBehaviour
             if (powerupTimer <= 0f)
             {
                 SpawnRandomPowerup();
-            }
-
-            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.JoystickButton6))
-            {
-                if (!upgradeMenuOpened)
-                {
-                    TogglePauseMenu(!pauseGameUI.activeSelf);
-                }
-                else
-                {
-                    ToggleUpgradeMenu(!upgradeMenuUI.activeSelf);
-                }
-            }
-
-            if (canUpgrade && (Input.GetKeyDown(KeyCode.U) || Input.GetKeyDown(KeyCode.JoystickButton4)))
-            {
-                ToggleUpgradeMenu(!upgradeMenuUI.activeSelf);
             }
         }
     }

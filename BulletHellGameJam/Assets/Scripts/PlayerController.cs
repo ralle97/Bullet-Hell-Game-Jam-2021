@@ -55,7 +55,11 @@ public class PlayerController : MonoBehaviour
     {
         controls = new Controls();
 
-        controls.Master.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
+        controls.Master.Move.performed += ctx =>
+        {
+            move = ctx.ReadValue<Vector2>();
+            Debug.Log(move);
+        };
         controls.Master.Move.canceled += ctx => move = Vector2.zero;
 
         controls.Master.Aim.performed += ctx => rightStickPos = ctx.ReadValue<Vector2>();
@@ -105,14 +109,14 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!gamepadSupport && Input.GetJoystickNames().Length > 0)
+        if (!gamepadSupport && Gamepad.all.Count > 0)
         {
             gamepadSupport = true;
             gamepadCrosshair.SetActive(true);
             Cursor.SetCursor(null, gm.crosshairHotspot, CursorMode.Auto);
         }
 
-        if (gamepadSupport && Input.GetJoystickNames().Length == 0)
+        if (gamepadSupport && Gamepad.all.Count == 0)
         {
             Cursor.SetCursor(gm.crosshairTexture, gm.crosshairHotspot, CursorMode.Auto);
             gamepadCrosshair.SetActive(false);
@@ -121,14 +125,7 @@ public class PlayerController : MonoBehaviour
 
         if (gamepadSupport)
         {
-            rightStickX = Input.GetAxis("Right Stick X") * Time.deltaTime;
-            rightStickY = Input.GetAxis("Right Stick Y") * Time.deltaTime;
-
-            rightStickPos += new Vector2(rightStickX, rightStickY);
-            rightStickPos.x = Mathf.Clamp(rightStickPos.x, -1f, 1f);
-            rightStickPos.y = Mathf.Clamp(rightStickPos.y, -1f, 1f);
-
-            float angle = Mathf.Atan2(rightStickY, rightStickX);
+            float angle = Mathf.Atan2(rightStickPos.y, rightStickPos.x);
 
             rightStickPos.x = Mathf.Cos(angle);
             rightStickPos.y = Mathf.Sin(angle);
@@ -178,7 +175,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetButton("Fire1") && !shotCooldown && !gm.isPaused && !gm.isGameOver && !gm.upgradeMenuOpened)
+        if (controls.Master.Shoot.IsPressed() && !shotCooldown && !gm.isPaused && !gm.isGameOver && !gm.upgradeMenuOpened)
         {
             ChangeMousePos();
             ChangeFirePointPos();
@@ -210,16 +207,14 @@ public class PlayerController : MonoBehaviour
     {
         if (!gamepadSupport)
         {
-            float mousePosX = mainCamera.ScreenToWorldPoint(Input.mousePosition).x;
-            float mousePosY = mainCamera.ScreenToWorldPoint(Input.mousePosition).y;
+            float mousePosX = mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue()).x;
+            float mousePosY = mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue()).y;
 
             mousePos = new Vector2(mousePosX, mousePosY);
         }
         else
         {
-            mousePos = (Vector2)transform.position + rightStickPos;
-
-            Debug.Log("MousePos: " + mousePos);
+            mousePos = gamepadCrosshair.transform.position;
         }
     }
 
