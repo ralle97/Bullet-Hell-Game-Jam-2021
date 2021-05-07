@@ -62,6 +62,8 @@ public class MainMenuUI : MonoBehaviour
 
     public void OpenSettingsMenu()
     {
+        audioManager.PlaySound(buttonPressSound);
+
         settingsMenu.SetActive(true);
     }
 }

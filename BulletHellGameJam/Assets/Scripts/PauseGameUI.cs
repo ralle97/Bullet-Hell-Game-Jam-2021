@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseGameUI : MonoBehaviour
 {
@@ -18,6 +18,9 @@ public class PauseGameUI : MonoBehaviour
 
     private AudioManager audioManager;
 
+    [SerializeField]
+    private Button continueButton;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +34,7 @@ public class PauseGameUI : MonoBehaviour
     private void OnEnable()
     {
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        continueButton.Select();
     }
 
     private void OnDisable()

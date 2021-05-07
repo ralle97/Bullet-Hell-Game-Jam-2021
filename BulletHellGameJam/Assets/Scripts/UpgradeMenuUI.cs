@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class UpgradeMenuUI : MonoBehaviour
 {
@@ -60,6 +62,9 @@ public class UpgradeMenuUI : MonoBehaviour
     [SerializeField]
     private string noUpgradePointsSound = "NoUpgradePoints";
 
+    [SerializeField]
+    private Button healthUpgradeButton;
+
     private void Awake()
     {
         stats = PlayerStats.instance;
@@ -76,6 +81,7 @@ public class UpgradeMenuUI : MonoBehaviour
     {
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         UpdateValues();
+        healthUpgradeButton.Select();
     }
 
     private void OnDisable()

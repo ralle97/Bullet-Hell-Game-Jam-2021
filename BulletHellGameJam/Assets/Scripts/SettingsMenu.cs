@@ -18,8 +18,18 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField]
     private GameObject settingsMenu;
 
+    [SerializeField]
+    private Button playButton;
+
+    private AudioManager audioManager;
+
+    [SerializeField]
+    private string buttonPressSound = "ButtonPress";
+
     private void Start()
     {
+        audioManager = AudioManager.instance;
+
         resolutions = Screen.resolutions;
 
         resolutionDropdown.ClearOptions();
@@ -41,6 +51,14 @@ public class SettingsMenu : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionsIndex;
         resolutionDropdown.RefreshShownValue();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Backspace))
+        {
+            BackToMenu();
+        }
     }
 
     public void SetVolume(float volume)
@@ -75,6 +93,9 @@ public class SettingsMenu : MonoBehaviour
 
     public void BackToMenu()
     {
+        audioManager.PlaySound(buttonPressSound);
+
         settingsMenu.SetActive(false);
+        playButton.Select();
     }
 }

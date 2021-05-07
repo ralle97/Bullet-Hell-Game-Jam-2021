@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameOverUI : MonoBehaviour
 {
@@ -17,6 +18,9 @@ public class GameOverUI : MonoBehaviour
 
     private AudioManager audioManager;
 
+    [SerializeField]
+    private Button restartButton;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +34,7 @@ public class GameOverUI : MonoBehaviour
     private void OnEnable()
     {
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        restartButton.Select();
     }
 
     private void OnDisable()

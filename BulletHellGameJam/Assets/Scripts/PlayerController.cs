@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField]
+    private Controls controls;
+
     private GameMaster gm;
     private PlayerStats stats;
     private ObjectPooler objectPooler;
@@ -12,8 +16,7 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private Camera mainCamera;
 
-    private float horizontal;
-    private float vertical;
+    private Vector2 move;
 
     private Rigidbody2D rigidBody;
 
@@ -24,7 +27,7 @@ public class PlayerController : MonoBehaviour
     private float shotTimer;
 
     private Vector2 lookDir = new Vector2(0, -1);
-    private Vector2 mousePos;
+    private Vector2 mousePos = Vector2.zero;
 
     public float projectileSpeed = 300f;
 
@@ -43,6 +46,31 @@ public class PlayerController : MonoBehaviour
     private string playerGruntSound = "PlayerGrunt";
 
     private bool gamepadSupport = false;
+    private Vector2 rightStickPos = Vector2.zero;
+
+    [SerializeField]
+    private GameObject gamepadCrosshair;
+
+    private void Awake()
+    {
+        controls = new Controls();
+
+        controls.Master.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
+        controls.Master.Move.canceled += ctx => move = Vector2.zero;
+
+        controls.Master.Aim.performed += ctx => rightStickPos = ctx.ReadValue<Vector2>();
+        controls.Master.Aim.canceled += ctx => rightStickPos = Vector2.zero;
+    }
+
+    private void OnEnable()
+    {
+        controls.Master.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Master.Disable();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -77,19 +105,40 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetJoystickNames().Length > 0)
+        if (!gamepadSupport && Input.GetJoystickNames().Length > 0)
         {
             gamepadSupport = true;
+            gamepadCrosshair.SetActive(true);
+            Cursor.SetCursor(null, gm.crosshairHotspot, CursorMode.Auto);
         }
-        else
+
+        if (gamepadSupport && Input.GetJoystickNames().Length == 0)
         {
+            Cursor.SetCursor(gm.crosshairTexture, gm.crosshairHotspot, CursorMode.Auto);
+            gamepadCrosshair.SetActive(false);
             gamepadSupport = false;
+        }
+
+        if (gamepadSupport)
+        {
+            rightStickX = Input.GetAxis("Right Stick X") * Time.deltaTime;
+            rightStickY = Input.GetAxis("Right Stick Y") * Time.deltaTime;
+
+            rightStickPos += new Vector2(rightStickX, rightStickY);
+            rightStickPos.x = Mathf.Clamp(rightStickPos.x, -1f, 1f);
+            rightStickPos.y = Mathf.Clamp(rightStickPos.y, -1f, 1f);
+
+            float angle = Mathf.Atan2(rightStickY, rightStickX);
+
+            rightStickPos.x = Mathf.Cos(angle);
+            rightStickPos.y = Mathf.Sin(angle);
+
+            gamepadCrosshair.transform.position = transform.position + (Vector3)rightStickPos;
         }
 
         if (gm.upgradeMenuOpened || gm.isGameOver || gm.isPaused)
         {
-            horizontal = 0;
-            vertical = 0;
+            move = Vector2.zero;
 
             animator.SetFloat("Look X", 0);
             animator.SetFloat("Look Y", 0);
@@ -98,11 +147,6 @@ public class PlayerController : MonoBehaviour
             return;
         }
         
-        horizontal = Input.GetAxis("Horizontal");
-        vertical = Input.GetAxis("Vertical");
-
-        Vector2 move = new Vector2(horizontal, vertical);
-
         if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
         {
             lookDir.Set(move.x, move.y);
@@ -156,25 +200,26 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 position = rigidBody.position;
 
-        position.x += horizontal * stats.speed * Time.fixedDeltaTime / Time.timeScale;
-        position.y += vertical * stats.speed * Time.fixedDeltaTime / Time.timeScale;
+        position.x += move.x * stats.speed * Time.fixedDeltaTime / Time.timeScale;
+        position.y += move.y * stats.speed * Time.fixedDeltaTime / Time.timeScale;
 
         rigidBody.MovePosition(position);
     }
 
     private void ChangeMousePos()
     {
-        float mousePosX = mainCamera.ScreenToWorldPoint(Input.mousePosition).x;
-        float mousePosY = mainCamera.ScreenToWorldPoint(Input.mousePosition).y;
-
-        mousePos = new Vector2(mousePosX, mousePosY);
-
-        if (gamepadSupport)
+        if (!gamepadSupport)
         {
-            float rightStickX = Input.GetAxis("Right Stick X");
-            float rightStickY = Input.GetAxis("Right Stick Y");
+            float mousePosX = mainCamera.ScreenToWorldPoint(Input.mousePosition).x;
+            float mousePosY = mainCamera.ScreenToWorldPoint(Input.mousePosition).y;
 
-            mousePos = new Vector2(transform.position.x + rightStickX, transform.position.y + rightStickY);
+            mousePos = new Vector2(mousePosX, mousePosY);
+        }
+        else
+        {
+            mousePos = (Vector2)transform.position + rightStickPos;
+
+            Debug.Log("MousePos: " + mousePos);
         }
     }
 
