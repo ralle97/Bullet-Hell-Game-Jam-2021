@@ -130,7 +130,7 @@ public class PlayerController : MonoBehaviour
             rightStickPos.x = Mathf.Cos(angle);
             rightStickPos.y = Mathf.Sin(angle);
 
-            gamepadCrosshair.transform.position = transform.position + (Vector3)rightStickPos;
+            gamepadCrosshair.transform.position = (transform.position + (Vector3)rightStickPos) * 2.5f;
         }
 
         if (gm.upgradeMenuOpened || gm.isGameOver || gm.isPaused)

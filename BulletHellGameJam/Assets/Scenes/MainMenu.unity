@@ -2126,12 +2126,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '-<u>WASD or Arrows to move</u>
+  m_text: '-<u>WASD/Arrows to move</u>
 
     -<u>Left mouse button to shoot</u>
 
-    -<u>Escape
-    or P to pause the game</u>'
+    -<u>Escape/P
+    to pause the game</u>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 08042dd87092de64e867eee476692419, type: 2}
   m_sharedMaterial: {fileID: 5997340380222705213, guid: 08042dd87092de64e867eee476692419,
@@ -3104,7 +3104,7 @@ MonoBehaviour:
   playLevelSceneName: MainLevel
   themeSong: Music
   settingsMenu: {fileID: 645023490}
-  crosshairTexture: {fileID: 0}
+  howToPlay: {fileID: 534470273}
 --- !u!1 &986532129
 GameObject:
   m_ObjectHideFlags: 0

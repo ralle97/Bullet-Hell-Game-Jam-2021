@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Cinemachine;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class GameMaster : MonoBehaviour
 {
@@ -111,6 +112,11 @@ public class GameMaster : MonoBehaviour
     [HideInInspector]
     public Vector2 crosshairHotspot;
 
+    private bool gamepadSupport = false;
+
+    [SerializeField]
+    private TextMeshProUGUI pressButtonForUpgradeMenu;
+
     private void OnEnable()
     {
         controls.Master.Enable();
@@ -182,6 +188,18 @@ public class GameMaster : MonoBehaviour
 
     private void Update()
     {
+        if (!gamepadSupport && Gamepad.all.Count > 0)
+        {
+            gamepadSupport = true;
+            ChangePressButtonForUpgradeMenuText(gamepadSupport);
+        }
+
+        if (gamepadSupport && Gamepad.all.Count == 0)
+        {
+            gamepadSupport = false;
+            ChangePressButtonForUpgradeMenuText(gamepadSupport);
+        }
+
         if (isTimeSlowed)
         {
             slowTimer -= Time.deltaTime;
@@ -230,6 +248,18 @@ public class GameMaster : MonoBehaviour
             {
                 SpawnRandomPowerup();
             }
+        }
+    }
+
+    private void ChangePressButtonForUpgradeMenuText(bool gamepadSupport)
+    {
+        if (!gamepadSupport)
+        {
+            pressButtonForUpgradeMenu.text = "Press 'U' button to open/close the upgrade menu";
+        }
+        else
+        {
+            pressButtonForUpgradeMenu.text = "Press 'Square' button to open/close the upgrade menu";
         }
     }
 

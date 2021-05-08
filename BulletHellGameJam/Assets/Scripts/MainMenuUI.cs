@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
+using TMPro;
 
 public class MainMenuUI : MonoBehaviour
 {
@@ -24,7 +26,9 @@ public class MainMenuUI : MonoBehaviour
     private GameObject settingsMenu;
 
     [SerializeField]
-    private Texture2D crosshairTexture;
+    private TextMeshProUGUI howToPlay;
+
+    private bool gamepadSupport = false;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +40,39 @@ public class MainMenuUI : MonoBehaviour
         }
 
         audioManager.PlaySound(themeSong);
+
+        ChangeHowToPlayText(gamepadSupport);
+    }
+
+    private void Update()
+    {
+        if (!gamepadSupport && Gamepad.all.Count > 0)
+        {
+            gamepadSupport = true;
+            ChangeHowToPlayText(gamepadSupport);
+        }
+
+        if (gamepadSupport && Gamepad.all.Count == 0)
+        {
+            gamepadSupport = false;
+            ChangeHowToPlayText(gamepadSupport);
+        }
+    }
+
+    private void ChangeHowToPlayText(bool gamepadSupport)
+    {
+        if (!gamepadSupport)
+        {
+            howToPlay.text = "-<u>WASD or Arrows to move</u>\n" +
+                             "-<u>Left mouse button to shoot</u>\n" + 
+                             "-<u>Escape or P to pause the game</u>";
+        }
+        else
+        {
+            howToPlay.text = "-<u>Left stick to move</u>\n" +
+                             "-<u>R2 to shoot, Right stick to aim</u>\n" +
+                             "-<u>Start to pause the game</u>";
+        }
     }
 
     public void PlayGame()
