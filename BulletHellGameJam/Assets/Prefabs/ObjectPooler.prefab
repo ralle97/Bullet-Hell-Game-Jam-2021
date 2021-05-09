@@ -79,3 +79,8 @@ MonoBehaviour:
       type: 3}
     size: 200
     shouldExpand: 1
+  - tag: FriesProjectile
+    prefab: {fileID: 7161625350868981661, guid: 7534da6caa61bf741baca55e8b89d133,
+      type: 3}
+    size: 75
+    shouldExpand: 1

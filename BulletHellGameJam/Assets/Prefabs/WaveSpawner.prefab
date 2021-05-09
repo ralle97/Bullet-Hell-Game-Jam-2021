@@ -53,7 +53,7 @@ MonoBehaviour:
     type: 3}
   waves:
   - name: Wave1
-    enemyCounts: 0300000000000000000000000000000000000000
+    enemyCounts: 0300000000000000000000000000000001000000
     rate: 0.75
     upgradePointsReward: 1
   - name: Wave2
@@ -61,19 +61,19 @@ MonoBehaviour:
     rate: 0.9
     upgradePointsReward: 1
   - name: Wave3
-    enemyCounts: 0200000001000000020000000000000000000000
+    enemyCounts: 0200000001000000020000000000000001000000
     rate: 1
     upgradePointsReward: 1
   - name: Wave4
-    enemyCounts: 0100000002000000000000000300000000000000
+    enemyCounts: 0100000002000000000000000300000001000000
     rate: 1
     upgradePointsReward: 1
   - name: Wave5
-    enemyCounts: 0200000002000000010000000300000000000000
+    enemyCounts: 0200000002000000010000000300000002000000
     rate: 0.9
     upgradePointsReward: 2
   - name: Wave6
-    enemyCounts: 0300000003000000020000000400000000000000
+    enemyCounts: 0300000003000000020000000400000002000000
     rate: 0.8
     upgradePointsReward: 2
   timeBetweenWaves: 10

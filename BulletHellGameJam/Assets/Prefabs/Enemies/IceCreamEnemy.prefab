@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6511767459705877063}
   - component: {fileID: 3783575382651255694}
   - component: {fileID: 1022478772652862925}
-  - component: {fileID: -7235271106551546920}
   - component: {fileID: 679865692501288352}
+  - component: {fileID: 5579234678804171348}
   m_Layer: 10
   m_Name: IceCreamEnemy
   m_TagString: Enemy
@@ -124,32 +124,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.025}
   m_Size: {x: 0.625, y: 1.1}
   m_Direction: 0
---- !u!114 &-7235271106551546920
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1491885632186370003}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 969603039b7ba72479c8f9f848f157bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stats:
-    maxHealth: 150
-    damage: 40
-    fireRate: 2
-    projectileForce: 150
-    speed: 2
-    movementRange: 5
-  enemyType: 0
-  player: {fileID: 0}
-  shoot: 0
-  deathEffect: {fileID: 4904587520576108710, guid: 7418dcc1e7ab83a40a48da5a2bf027c3,
-    type: 3}
-  hpIndicator: {fileID: 1773349243938295529}
-  collideSound: EnemyCollide
 --- !u!95 &679865692501288352
 Animator:
   serializedVersion: 3
@@ -169,6 +143,33 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5579234678804171348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491885632186370003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96c6930e5fa7de345b2b5e069bbef5b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats:
+    maxHealth: 150
+    damage: 40
+    speed: 2
+    armorPct: 0
+    fireRate: 2
+    projectileForce: 150
+    movementRange: 5
+  player: {fileID: 0}
+  shoot: 0
+  deathEffect: {fileID: 4904587520576108710, guid: 7418dcc1e7ab83a40a48da5a2bf027c3,
+    type: 3}
+  hpIndicator: {fileID: 1773349243938295529}
+  collideSound: EnemyCollide
+  shoot: 0
 --- !u!1 &4043457454147039245
 GameObject:
   m_ObjectHideFlags: 0

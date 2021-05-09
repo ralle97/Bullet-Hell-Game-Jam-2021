@@ -126,8 +126,8 @@ GameObject:
   - component: {fileID: 6747311066746202514}
   - component: {fileID: 6747311066746202513}
   - component: {fileID: 6747311066746202512}
-  - component: {fileID: 6747311066746202519}
   - component: {fileID: 6747311066746202518}
+  - component: {fileID: -927134243888107384}
   m_Layer: 10
   m_Name: FrenchFriesEnemy
   m_TagString: Enemy
@@ -238,33 +238,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.7, y: 0.85}
   m_Direction: 0
---- !u!114 &6747311066746202519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6747311066746202517}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 969603039b7ba72479c8f9f848f157bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stats:
-    maxHealth: 200
-    damage: 35
-    speed: 2
-    armorPct: 0
-    fireRate: 1
-    projectileForce: 325
-    movementRange: 5
-  enemyType: 4
-  player: {fileID: 0}
-  shoot: 0
-  deathEffect: {fileID: 1076346069997427241, guid: fe8e3723351a84d4290a5cb4c20169b5,
-    type: 3}
-  hpIndicator: {fileID: 8490071927267972270}
-  collideSound: EnemyCollide
 --- !u!95 &6747311066746202518
 Animator:
   serializedVersion: 3
@@ -284,6 +257,33 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-927134243888107384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6747311066746202517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c16ace932bb049446bf47dc7873089c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats:
+    maxHealth: 200
+    damage: 35
+    speed: 2
+    armorPct: 0
+    fireRate: 1
+    projectileForce: 325
+    movementRange: 5
+  enemyType: 4
+  player: {fileID: 0}
+  shoot: 0
+  deathEffect: {fileID: 1076346069997427241, guid: fe8e3723351a84d4290a5cb4c20169b5,
+    type: 3}
+  hpIndicator: {fileID: 8490071927267972270}
+  collideSound: EnemyCollide
 --- !u!1 &8677347433050790467
 GameObject:
   m_ObjectHideFlags: 0

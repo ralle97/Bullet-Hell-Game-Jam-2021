@@ -58,7 +58,6 @@ public class PlayerController : MonoBehaviour
         controls.Master.Move.performed += ctx =>
         {
             move = ctx.ReadValue<Vector2>();
-            Debug.Log(move);
         };
         controls.Master.Move.canceled += ctx => move = Vector2.zero;
 

@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 5078726573639917203}
   - component: {fileID: 2695561801960339180}
   - component: {fileID: 5153625891437725012}
-  - component: {fileID: -3827957480373013963}
   - component: {fileID: 544105016806252989}
+  - component: {fileID: -797524770157428394}
   m_Layer: 10
   m_Name: DonutEnemy
   m_TagString: Enemy
@@ -124,32 +124,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.75
---- !u!114 &-3827957480373013963
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4185689788584157373}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 969603039b7ba72479c8f9f848f157bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stats:
-    maxHealth: 300
-    damage: 25
-    fireRate: 2
-    projectileForce: 225
-    speed: 1
-    movementRange: 5
-  enemyType: 3
-  player: {fileID: 0}
-  shoot: 0
-  deathEffect: {fileID: 7558710792730019333, guid: cc46d56ce3807b24993c7216300a0973,
-    type: 3}
-  hpIndicator: {fileID: 3614865376556962280}
-  collideSound: EnemyCollide
 --- !u!95 &544105016806252989
 Animator:
   serializedVersion: 3
@@ -169,6 +143,33 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-797524770157428394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4185689788584157373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4fb3e13d4f3ceb4d98b724ce7edee50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats:
+    maxHealth: 300
+    damage: 25
+    speed: 1
+    armorPct: 0
+    fireRate: 2
+    projectileForce: 225
+    movementRange: 5
+  enemyType: 3
+  player: {fileID: 0}
+  shoot: 0
+  deathEffect: {fileID: 7558710792730019333, guid: cc46d56ce3807b24993c7216300a0973,
+    type: 3}
+  hpIndicator: {fileID: 3614865376556962280}
+  collideSound: EnemyCollide
 --- !u!1 &4568973005027108143
 GameObject:
   m_ObjectHideFlags: 0

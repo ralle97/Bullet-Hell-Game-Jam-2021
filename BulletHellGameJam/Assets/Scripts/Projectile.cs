@@ -30,6 +30,8 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     private string enemyFireSound = "EnemyFire";
 
+    private bool isIceCreamProjectile = false;
+
     private void Awake()
     {
         audioManager = AudioManager.instance;
@@ -40,6 +42,11 @@ public class Projectile : MonoBehaviour
     private void OnEnable()
     {
         timer = timeToLive;
+
+        if (this.name.Equals("IceCreamProjectileBig") || this.name.Equals("IceCreamProjectileBig(Clone)"))
+        {
+            isIceCreamProjectile = true;
+        }
     }
 
     private void Update()
@@ -48,7 +55,7 @@ public class Projectile : MonoBehaviour
 
         if (timer <= 0.0f)
         {
-            if (this.name.Equals("IceCreamProjectileBig") || this.name.Equals("IceCreamProjectileBig(Clone)"))
+            if (isIceCreamProjectile)
             {
                 AllAroundAttack(18, 0.275f, "IceCreamProjectileSmall");
             }
@@ -103,13 +110,13 @@ public class Projectile : MonoBehaviour
             }
         }
 
-        if ((this.name.Equals("IceCreamProjectileBig") || this.name.Equals("IceCreamProjectileBig(Clone)")) && collision.CompareTag("Background"))
+        if (isIceCreamProjectile && collision.CompareTag("Background"))
         {
             AllAroundAttack(18, 0.275f, "IceCreamProjectileSmall");
             this.gameObject.SetActive(false);
         }
 
-        if (!(this.name.Equals("IceCreamProjectileBig") || this.name.Equals("IceCreamProjectileBig(Clone)")))
+        if (!isIceCreamProjectile)
         {
             this.gameObject.SetActive(false);
         }
