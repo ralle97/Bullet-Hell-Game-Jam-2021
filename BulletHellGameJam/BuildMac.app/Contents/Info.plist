@@ -5,21 +5,21 @@
     <key>CFBundleDevelopmentRegion</key>
     <string>English</string>
     <key>CFBundleExecutable</key>
-    <string>BulletHellGameJam</string>
+    <string>Fast Food Fight</string>
     <key>CFBundleGetInfoString</key>
     <string>Unity Player version 2019.4.25f1 (01a0494af254). (c) 2021 Unity Technologies ApS. All rights reserved.</string>
     <key>CFBundleIconFile</key>
     <string>PlayerIcon.icns</string>
     <key>CFBundleIdentifier</key>
-    <string>com.DefaultCompany.BulletHellGameJam</string>
+    <string>com.DefaultCompany.FastFoodFight</string>
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
     <key>CFBundleName</key>
-    <string>BulletHellGameJam</string>
+    <string>Fast Food Fight</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>
-    <string>0.1</string>
+    <string>0.0.2</string>
     <key>CFBundleSupportedPlatforms</key>
     <array>
       <string>MacOSX</string>

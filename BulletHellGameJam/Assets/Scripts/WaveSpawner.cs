@@ -257,7 +257,6 @@ public class WaveSpawner : MonoBehaviour
             }
         }
         
-
         Instantiate(waveEnemyPrefabs[index], spawnPos, Quaternion.identity);
     }
 }

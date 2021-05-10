@@ -958,7 +958,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 303.5, y: -150}
+  m_AnchoredPosition: {x: 304.5, y: -150}
   m_SizeDelta: {x: 705, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &293820156
@@ -1873,7 +1873,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 303.5, y: -250}
+  m_AnchoredPosition: {x: 304.5, y: -250}
   m_SizeDelta: {x: 705, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &448140898
@@ -2670,6 +2670,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1069013354, guid: 90c97fa0f4756b5408882d9c313cb72b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1910290573975825513, guid: 90c97fa0f4756b5408882d9c313cb72b,
         type: 3}
       propertyPath: m_IsActive
@@ -2829,7 +2833,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 303.5, y: -50}
+  m_AnchoredPosition: {x: 304.5, y: -50}
   m_SizeDelta: {x: 705, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &801910303
@@ -3105,6 +3109,10 @@ MonoBehaviour:
   themeSong: Music
   settingsMenu: {fileID: 645023490}
   howToPlay: {fileID: 534470273}
+  audioMixer: {fileID: 24100000, guid: cf36830a127164440989ab2f266e48e9, type: 2}
+  settingsFullscreenToggle: {fileID: 571333681}
+  settingsQualityLevel: {fileID: 331234251}
+  settingsVolumeSlider: {fileID: 1747921104}
 --- !u!1 &986532129
 GameObject:
   m_ObjectHideFlags: 0
@@ -21872,7 +21880,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 303.5, y: -350}
+  m_AnchoredPosition: {x: 304.5, y: -350}
   m_SizeDelta: {x: 700, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1939648259

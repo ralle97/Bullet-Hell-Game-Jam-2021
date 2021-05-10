@@ -55,15 +55,28 @@ public class SettingsMenu : MonoBehaviour
 
         List<string> options = new List<string>();
 
+        int screenWidth = PlayerPrefs.GetInt("ScreenWidth", 0);
+        int screenHeight = PlayerPrefs.GetInt("ScreenHeight", 0);
+
         int currentResolutionsIndex = 0;
         for (int i = 0; i < resolutions.Length; i++)
         {
             string option = resolutions[i].width + " x " + resolutions[i].height;
             options.Add(option);
 
-            if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
+            if (screenWidth == 0 || screenHeight == 0)
             {
-                currentResolutionsIndex = i;
+                if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
+                {
+                    currentResolutionsIndex = i;
+                }
+            }
+            else
+            {
+                if (resolutions[i].width == screenWidth && resolutions[i].height == screenHeight)
+                {
+                    currentResolutionsIndex = i;
+                }
             }
         }
 
@@ -75,11 +88,15 @@ public class SettingsMenu : MonoBehaviour
     public void SetVolume(float volume)
     {
         audioMixer.SetFloat("Volume", Mathf.Log10(volume) * 20);
+
+        PlayerPrefs.SetFloat("Volume", volume);
     }
 
     public void SetQuality(int qualityIndex)
     {
         QualitySettings.SetQualityLevel(qualityIndex);
+
+        PlayerPrefs.SetInt("QualityLevel", qualityIndex);
     }
 
     public void SetFullscreen(bool isFullscreen)
@@ -94,16 +111,23 @@ public class SettingsMenu : MonoBehaviour
         {
             Screen.fullScreenMode = FullScreenMode.Windowed;
         }
+
+        PlayerPrefs.SetInt("Fullscreen", isFullscreen ? 1 : 0);
     }
 
     public void SetResolution(int resolutionIndex)
     {
         Resolution resolution = resolutions[resolutionIndex];
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen); 
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+
+        PlayerPrefs.SetInt("ScreenWidth", resolution.width);
+        PlayerPrefs.SetInt("ScreenHeight", resolution.height);
     }
 
     public void BackToMenu()
     {
+        PlayerPrefs.Save();
+
         audioManager.PlaySound(buttonPressSound);
 
         settingsMenu.SetActive(false);

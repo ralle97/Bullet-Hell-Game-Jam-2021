@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class MainMenuUI : MonoBehaviour
 {
@@ -29,6 +31,60 @@ public class MainMenuUI : MonoBehaviour
     private TextMeshProUGUI howToPlay;
 
     private bool gamepadSupport = false;
+
+    [SerializeField]
+    private AudioMixer audioMixer;
+
+    [SerializeField]
+    private Toggle settingsFullscreenToggle;
+    [SerializeField]
+    private TMP_Dropdown settingsQualityLevel;
+    [SerializeField]
+    private Slider settingsVolumeSlider;
+
+    private void Awake()
+    {
+        if (PlayerPrefs.HasKey("Fullscreen"))
+        {
+            bool fullscreen = PlayerPrefs.GetInt("Fullscreen") == 1 ? true : false;
+
+            Screen.fullScreen = fullscreen;
+
+            if (fullscreen)
+            {
+                Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+            }
+            else
+            {
+                Screen.fullScreenMode = FullScreenMode.Windowed;
+            }
+
+            settingsFullscreenToggle.isOn = fullscreen;
+        }
+
+        if (PlayerPrefs.HasKey("QualityLevel"))
+        {
+            int quality = PlayerPrefs.GetInt("QualityLevel");
+            
+            QualitySettings.SetQualityLevel(quality);
+
+            settingsQualityLevel.value = quality;
+        }
+
+        if (PlayerPrefs.HasKey("ScreenWidth") && PlayerPrefs.HasKey("ScreenHeight"))
+        {
+            Screen.SetResolution(PlayerPrefs.GetInt("ScreenWidth"), PlayerPrefs.GetInt("ScreenHeight"), Screen.fullScreen);
+        }
+
+        if (PlayerPrefs.HasKey("Volume"))
+        {
+            float volume = PlayerPrefs.GetFloat("Volume");
+
+            audioMixer.SetFloat("Volume", Mathf.Log10(volume) * 20);
+
+            settingsVolumeSlider.value = volume;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
