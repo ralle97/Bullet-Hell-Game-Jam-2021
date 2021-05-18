@@ -50,6 +50,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private GameObject gamepadCrosshair;
+    private float gamepadCrosshairOffset = 2.5f;
 
     private void Awake()
     {
@@ -129,7 +130,7 @@ public class PlayerController : MonoBehaviour
             rightStickPos.x = Mathf.Cos(angle);
             rightStickPos.y = Mathf.Sin(angle);
 
-            gamepadCrosshair.transform.position = (transform.position + (Vector3)rightStickPos) * 2.5f;
+            gamepadCrosshair.transform.position = (transform.position + (Vector3)rightStickPos) * gamepadCrosshairOffset;
         }
 
         if (gm.upgradeMenuOpened || gm.isGameOver || gm.isPaused)
